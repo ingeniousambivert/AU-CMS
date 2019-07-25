@@ -1,0 +1,43 @@
+{
+  "name": "au-cms",
+  "version": "4.8.7",
+  "main": "index.js",
+  "scripts": {
+    "js-compile-plugins": "babel --presets env js/src/ --out-dir js/dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.mdbootstrap.com/mdb/jquery/jq-gulp.git"
+  },
+  "authors": "Monarch Maisuriya,Himanshu Joshi",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.1.2",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.23.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-minify": "^2.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.3.3",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.0-beta2",
+    "mongoose": "^5.6.6",
+    "nodemon": "^1.19.1"
+  },
+  "description": "<p align=\"center\">   <a href=\"https://mdbootstrap.com/docs/jquery/getting-started/download/\">     <img src=\"https://mdbootstrap.com/img/Marketing/general/logo/medium/mdb-r.png\">   </a> </p>",
+  "keywords": [
+    "Content",
+    "Management",
+    "System"
+  ]
+}
