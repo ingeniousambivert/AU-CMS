@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap");
 html,
 body,
 header,
 #intro {
   height: 100%;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 #intro {
@@ -14,16 +16,17 @@ header,
   background-size: cover;
 }
 
-.top-nav-collapse {
-  background-color: #24355c;
+nav {
+  background-color: #1b2230;
+  color: #fff;
 }
-@media (max-width: 768px) {
-  .navbar:not(.top-nav-collapse) {
-    background-color: #24355c;
-  }
+nav a {
+  color: #fff;
 }
-@media (min-width: 800px) and (max-width: 850px) {
-  .navbar:not(.top-nav-collapse) {
-    background-color: #24355c;
-  }
+nav a:hover {
+  color: #4285f4;
+}
+
+nav .navbar-brand {
+  font-size: 1rem;
 }
