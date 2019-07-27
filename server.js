@@ -1,6 +1,8 @@
 // Server
 // Load the things we need
-const mongoose = require('mongoose');
+const mongo=require("mongoose");
+mongo.connect("mongodb://localhost:27017/AU_DB",{useNewUrlParser:true});
+
 const express = require("express");
 const app = express();
 const port = 8000;
@@ -34,8 +36,42 @@ app.get("/upcoming", (req, res) => {
   res.render("pages/upcoming");
 });
 
+const Eventschema=new mongo.Schema({
+    eventid: {type: Number, trim: true, index: true, unique: true, sparse: true},
+   title: String,
+   about: String,
+   startdate: Date,
+   enddate:Date,
+   photo:[String],
+   fee:Number,
+   status:String,
+ },{ timestamps: true });
+
+ const Adminschema=new mongo.Schema({
+      firstname:String,
+      larstname:String,
+      email: {type: String, trim: true, index: true, unique: true, sparse: true},
+      password:String,
+      profile:String,
+
+},{ timestamps: true })
+const Participentschema=new mongo.Schema({
+  firstname:String,
+  larstname:String,
+  email: {type: String, trim: true, index: true, unique: true, sparse: true},
+  eventid:Number
+},{ timestamps: true })
 
 
+const useres=mongo.model("userscollection",Participentschema);
 
+const user=new useres({
+  firstname:"Himasnhu",
+  larstname:"Joshi",
+  email:"hjoshi115@gmail.com",
+  eventid:101
+})
+
+user.save();
 
 app.listen(port, () => console.log(`Server running on port : ${port}`));
