@@ -14,18 +14,23 @@ app.get("/", (req, res) => {
 });
 app.get("/about", (req, res) => {
   // use res.render to load up an ejs view file
-  // index page
+  // about page
   res.render("pages/about");
 });
 app.get("/contact", (req, res) => {
   // use res.render to load up an ejs view file
-  // index page
+  // contact page
   res.render("pages/contact");
 });
 app.get("/events", (req, res) => {
   // use res.render to load up an ejs view file
-  // index page
+  // events page
   res.render("pages/events");
+});
+app.get("/upcoming", (req, res) => {
+  // use res.render to load up an ejs view file
+  // upcoming events page
+  res.render("pages/upcoming");
 });
 
 app.listen(port, () => console.log(`Server running on port : ${port}`));

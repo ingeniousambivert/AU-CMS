@@ -1,0 +1,69 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partials/head %>
+  </head>
+
+  <body>
+    <!-- Start your project here-->
+    <!--Main Navigation-->
+    <header>
+      <% include ../partials/header %>
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-10">
+      <div class="container">
+        <div
+          class="jumbotron card card-image"
+          style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);"
+        >
+          <div class="text-white text-center py-5 px-4">
+            <div>
+              <h2 class="card-title h1-responsive pt-3 mb-5 font-bold">
+                <strong>Create your beautiful website with MDBootstrap</strong>
+              </h2>
+              <p class="mx-5 mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit
+                officia accusamus minus error nisi architecto nulla ipsum
+                dignissimos. Odit sed qui, dolorum!
+              </p>
+              <a class="btn btn-outline-white btn-md"
+                ><i class="fas fa-clone left"></i> View project</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--Main layout-->
+
+    <!-- Footer -->
+    <footer class="page-footer font-small unique-color-dark">
+      <% include ../partials/footer %>
+    </footer>
+    <!-- Footer -->
+    <!-- End your project here-->
+
+    <!-- SCRIPTS -->
+    <!-- Gogogle Maps JavaScript -->
+    <script type="text/javascript">
+      let date = new Date();
+      document.getElementById("copyrightDate").innerHTML = date.getFullYear();
+    </script>
+    <!-- Gogogle Maps JavaScript -->
+    <script type="text/javascript" src="../js/script.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
+  </body>
+</html>
