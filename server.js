@@ -1,5 +1,6 @@
 // Server
 // Load the things we need
+const mongoose = require('mongoose');
 const express = require("express");
 const app = express();
 const port = 8000;
@@ -32,5 +33,9 @@ app.get("/upcoming", (req, res) => {
   // upcoming events page
   res.render("pages/upcoming");
 });
+
+
+
+
 
 app.listen(port, () => console.log(`Server running on port : ${port}`));
