@@ -13,6 +13,49 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 // Use CSS
 app.use(express.static(__dirname + "/public"));
+
+/*-------------------------Schemas------------------------------ */
+
+const Eventschema=new mongo.Schema({
+  eventid: {type: Number, trim: true, index: true, unique: true, sparse: true},
+ title: String,
+ about: String,
+ startdate: Date,
+ enddate:Date,
+ photo:[String],
+ fee:Number,
+ status:String,
+},{ timestamps: true });
+
+const pastevent=new mongo.Schema({
+  eventid:Number
+},{ timestamps: true });
+
+const upcomingevent=new mongo.Schema({
+  eventid:Number
+},{ timestamps: true });
+
+const Adminschema=new mongo.Schema({
+    firstname:String,
+    larstname:String,
+    email: {type: String, trim: true, index: true, unique: true, sparse: true},
+    password:String,
+    profile:String,
+
+},{ timestamps: true })
+const Participentschema=new mongo.Schema({
+firstname:String,
+larstname:String,
+email: {type: String, trim: true, index: true, unique: true, sparse: true},
+eventid:Number
+},{ timestamps: true })
+
+
+/*--------------------------------------------------------------------------*/
+
+
+
+
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
@@ -73,34 +116,6 @@ user.save(function(err){
 });
 
 })
-
-const Eventschema=new mongo.Schema({
-    eventid: {type: Number, trim: true, index: true, unique: true, sparse: true},
-   title: String,
-   about: String,
-   startdate: Date,
-   enddate:Date,
-   photo:[String],
-   fee:Number,
-   status:String,
- },{ timestamps: true });
-
- const Adminschema=new mongo.Schema({
-      firstname:String,
-      larstname:String,
-      email: {type: String, trim: true, index: true, unique: true, sparse: true},
-      password:String,
-      profile:String,
-
-},{ timestamps: true })
-const Participentschema=new mongo.Schema({
-  firstname:String,
-  larstname:String,
-  email: {type: String, trim: true, index: true, unique: true, sparse: true},
-  eventid:Number
-},{ timestamps: true })
-
-
 
 
 
