@@ -37,9 +37,13 @@ app.get("/events", (req, res) => {
 app.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
+  res.render("pages/past");
+});
+app.get("/past", (req, res) => {
+  // use res.render to load up an ejs view file
+  // past events page
   res.render("pages/upcoming");
 });
-
 // Send mails
 
 app.post("/contacted", (req, res) => {
@@ -62,7 +66,7 @@ app.post("/contacted", (req, res) => {
       "https://api.mailgun.net:80/v3/sandbox9b7d586cb9da417b816e89006105f5ed.mailgun.org"
   });
   const data = {
-    from: user_name + user_email,
+    from: user_name + " " + user_email,
     to: "monarchmaisuriya7600@gmail.com",
     subject: user_subject,
     text: user_message
