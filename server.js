@@ -2,8 +2,8 @@
 // Load the things we need
 const nodemailer = require("nodemailer");
 const mailgun = require("mailgun-js");
-const mongo = require("mongoose");
-mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
+//const mongo = require("mongoose");
+//mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
 
 const express = require("express");
 const app = express();
@@ -99,56 +99,56 @@ app.post("/parti_reg:event", (req, res) => {
   });
 });
 
-const Eventschema = new mongo.Schema(
-  {
-    eventid: {
-      type: Number,
-      trim: true,
-      index: true,
-      unique: true,
-      sparse: true
-    },
-    title: String,
-    about: String,
-    startdate: Date,
-    enddate: Date,
-    photo: [String],
-    fee: Number,
-    status: String
-  },
-  { timestamps: true }
-);
+// const Eventschema = new mongo.Schema(
+//   {
+//     eventid: {
+//       type: Number,
+//       trim: true,
+//       index: true,
+//       unique: true,
+//       sparse: true
+//     },
+//     title: String,
+//     about: String,
+//     startdate: Date,
+//     enddate: Date,
+//     photo: [String],
+//     fee: Number,
+//     status: String
+//   },
+//   { timestamps: true }
+// );
 
-const Adminschema = new mongo.Schema(
-  {
-    firstname: String,
-    larstname: String,
-    email: {
-      type: String,
-      trim: true,
-      index: true,
-      unique: true,
-      sparse: true
-    },
-    password: String,
-    profile: String
-  },
-  { timestamps: true }
-);
-const Participentschema = new mongo.Schema(
-  {
-    firstname: String,
-    larstname: String,
-    email: {
-      type: String,
-      trim: true,
-      index: true,
-      unique: true,
-      sparse: true
-    },
-    eventid: Number
-  },
-  { timestamps: true }
-);
+// const Adminschema = new mongo.Schema(
+//   {
+//     firstname: String,
+//     larstname: String,
+//     email: {
+//       type: String,
+//       trim: true,
+//       index: true,
+//       unique: true,
+//       sparse: true
+//     },
+//     password: String,
+//     profile: String
+//   },
+//   { timestamps: true }
+// );
+// const Participentschema = new mongo.Schema(
+//   {
+//     firstname: String,
+//     larstname: String,
+//     email: {
+//       type: String,
+//       trim: true,
+//       index: true,
+//       unique: true,
+//       sparse: true
+//     },
+//     eventid: Number
+//   },
+//   { timestamps: true }
+// );
 
 app.listen(port, () => console.log(`Server running on port : ${port}`));
