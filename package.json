@@ -24,7 +24,10 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-minify": "^2.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.1.0",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "@babel/core": "^7.3.3",
