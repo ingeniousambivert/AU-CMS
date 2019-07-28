@@ -31,3 +31,7 @@ nav a:hover {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.toast-body {
+  margin: 0 auto;
+}

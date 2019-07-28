@@ -1,6 +1,7 @@
 // Server
 // Load the things we need
-var nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
+const mailgun = require("mailgun-js");
 const mongo = require("mongoose");
 mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
 
@@ -39,18 +40,43 @@ app.get("/upcoming", (req, res) => {
   res.render("pages/upcoming");
 });
 
-app.post("/contacted", (req, res) => {
-  let name = req.body.name;
-  let email = req.body.email;
-  let subject = req.body.subject;
-  let message = req.body.message;
+// Send mails
 
-  if (req.body) {
-    res.render("pages/contact", { succ: true, err: false });
-  } else {
+app.post("/contacted", (req, res) => {
+  const { user_email, user_name, user_message, user_subject } = req.body;
+
+  if (!user_subject || !user_name || !user_email || !user_message) {
     res.render("pages/contact", { succ: false, err: true });
+    res.status(400);
+  } else {
+    if (res.statusCode === 200) {
+      res.render("pages/contact", { succ: true, err: false });
+    } else {
+      res.status(400);
+      res.render("pages/contact", { succ: false, err: true });
+    }
   }
+  const mg = mailgun({
+    apiKey: "key-1db52b12596cfe563b9537f758d9e9f6",
+    domain:
+      "https://api.mailgun.net:80/v3/sandbox9b7d586cb9da417b816e89006105f5ed.mailgun.org"
+  });
+  const data = {
+    from: user_name + user_email,
+    to: "monarchmaisuriya7600@gmail.com",
+    subject: user_subject,
+    text: user_message
+  };
+  mg.messages().send(data, (error, body) => {
+    if (error) {
+      console.log("ERROR : " + error);
+    } else {
+      console.log("BODY : " + body);
+    }
+  });
 });
+
+// Events Requests
 app.post("/parti_reg:event", (req, res) => {
   const useres = mongo.model("userscollection", Participentschema);
 
