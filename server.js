@@ -36,6 +36,27 @@ app.get("/upcoming", (req, res) => {
   res.render("pages/upcoming");
 });
 
+app.post("/parti_reg:event",(req,res)=>{
+  const useres=mongo.model("userscollection",Participentschema);
+
+  const user=new useres({
+  firstname:req.body.firstname,
+  larstname:req.body.larstname,
+  email:req.body.email,
+  eventid:req.params.id,
+
+})
+
+user.save(function(err){
+  if(err)
+  {
+    console.log(err);
+   // res.render
+  }
+});
+
+})
+
 const Eventschema=new mongo.Schema({
     eventid: {type: Number, trim: true, index: true, unique: true, sparse: true},
    title: String,
@@ -63,15 +84,8 @@ const Participentschema=new mongo.Schema({
 },{ timestamps: true })
 
 
-const useres=mongo.model("userscollection",Participentschema);
 
-const user=new useres({
-  firstname:"Himasnhu",
-  larstname:"Joshi",
-  email:"hjoshi115@gmail.com",
-  eventid:101
-})
 
-user.save();
+
 
 app.listen(port, () => console.log(`Server running on port : ${port}`));
