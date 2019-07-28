@@ -15,31 +15,21 @@
     <!--Main Navigation-->
 
     <!--Main layout-->
-    <main class="mt-5">
+    <main class="mt-10">
       <div class="container">
-        <div class="row">
-          <div class="col-md-8">.col-md-8</div>
-          <div class="col-md-4">.col-md-4</div>
-        </div>
-      </div>
-    </main>
-    <!--Main layout-->
     <!--Section: Contact v.2-->
 <section class="mb-4">
-
-  
   <!--Section heading-->
   <% if (err) { %>
   <h3 class=" alert-danger text-center my-4 "">Something went wrong</h3>
   <% } %>
   <% if (succ) { %>
-    <h3 class="alert-success text-center my-4 ">your Message is send</h3>
+    <h3 class="alert-success text-center my-4 ">Message sent successfully</h3>
     <% } %>
    
   <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
   <!--Section description-->
-  <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
-      a matter of hours to help you.</p>
+  <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will revert back to you as soon as possible.</p>
 
       <div class="container">
   <div class="row">
@@ -47,7 +37,7 @@
       <!--Grid column-->
       <div class="col-md-9 mb-md-0 mb-5">
         
-        <form   style="margin: auto;" id="contact-form" name="contact-form" action="contact_us" method="POST">
+        <form   style="margin: auto;" id="contact-form" name="contact-form" action="contacted" method="POST">
 
               <!--Grid row-->
               <div class="row">
@@ -130,6 +120,7 @@
   </div>
 </div>
 </section>
+</main>
 <!--Section: Contact v.2-->
     <!-- Footer -->
     <footer class="page-footer font-small unique-color-dark">
