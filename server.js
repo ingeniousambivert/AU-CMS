@@ -1,10 +1,11 @@
 // Server
 // Load the things we need
-const nodemailer = require("nodemailer");
-const mailgun = require("mailgun-js");
+//const nodemailer = require("nodemailer");
+//const mailgun = require("mailgun-js");
 //const mongo = require("mongoose");
 //mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
-
+const request = require("request");
+const crypto = require("crypto");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
@@ -37,12 +38,12 @@ app.get("/events", (req, res) => {
 app.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
-  res.render("pages/past");
+  res.render("pages/upcoming");
 });
 app.get("/past", (req, res) => {
   // use res.render to load up an ejs view file
   // past events page
-  res.render("pages/upcoming");
+  res.render("pages/past");
 });
 // Send mails
 
@@ -54,30 +55,75 @@ app.post("/contacted", (req, res) => {
     res.status(400);
   } else {
     if (res.statusCode === 200) {
+      //Mailgun Integration
+      // const mg = mailgun({
+      //   apiKey: "key-1db52b12596cfe563b9537f758d9e9f6",
+      //   domain:
+      //     "https://api.mailgun.net:80/v3/sandbox9b7d586cb9da417b816e89006105f5ed.mailgun.org"
+      // });
+      // const data = {
+      //   from: user_name + " " + user_email,
+      //   to: "monarchmaisuriya7600@gmail.com",
+      //   subject: user_subject,
+      //   text: user_message
+      // };
+      // mg.messages().send(data, (error, body) => {
+      //   if (error) {
+      //     console.log("ERROR : " + error);
+      //   } else {
+      //     console.log("BODY : " + body);
+      //     console.log(data);
+      //   }=
+      // });
+
+      //Mailchimp Integration
+      const { firstname, lastname, email } = req.body;
+      const data = {
+        members: [
+          {
+            email_address: email,
+            status: "subscribed",
+            merge_fields: {
+              FNAME: firstname,
+              LNAME: lastname
+            }
+          }
+        ]
+      };
+
+      const postData = JSON.stringify(data);
+
+      if (!firstname || !lastname || !email) {
+        res.sendFile(__dirname + "/failed.html");
+        res.status(400);
+      } else {
+        if (res.statusCode === 200) {
+          res.sendFile(__dirname + "/success.html");
+        } else {
+          res.status(400);
+          res.sendFile(__dirname + "/failed.html");
+        }
+      }
+      const options = {
+        url: "https://<DC>.api.mailchimp.com/3.0/lists/{list_id}",
+        method: "POST",
+        headers: {
+          Authorization: "auth api_key"
+        },
+        body: postData
+      };
+
+      request(options, (err, response, body) => {
+        console.log(response.statusCode);
+        console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
+      });
+
       res.render("pages/contact", { succ: true, err: false });
     } else {
       res.status(400);
       res.render("pages/contact", { succ: false, err: true });
     }
   }
-  const mg = mailgun({
-    apiKey: "key-1db52b12596cfe563b9537f758d9e9f6",
-    domain:
-      "https://api.mailgun.net:80/v3/sandbox9b7d586cb9da417b816e89006105f5ed.mailgun.org"
-  });
-  const data = {
-    from: user_name + " " + user_email,
-    to: "monarchmaisuriya7600@gmail.com",
-    subject: user_subject,
-    text: user_message
-  };
-  mg.messages().send(data, (error, body) => {
-    if (error) {
-      console.log("ERROR : " + error);
-    } else {
-      console.log("BODY : " + body);
-    }
-  });
 });
 
 // Events Requests

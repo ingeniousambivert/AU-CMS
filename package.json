@@ -4,8 +4,7 @@
   "main": "server.js",
   "scripts": {
     "js-compile-plugins": "babel --presets env js/src/ --out-dir js/dist/",
-    "dev": "nodemon server.js",
-    "build": "rm -rf dist && webpack --mode development"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +39,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "mailgun-js": "^0.22.0",
