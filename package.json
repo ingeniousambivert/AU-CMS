@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "js-compile-plugins": "babel --presets env js/src/ --out-dir js/dist/",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -43,5 +44,6 @@
     "Content",
     "Management",
     "System"
-  ]
+  ],
+  "author": ""
 }
