@@ -8,7 +8,6 @@ const request = require("request");
 const crypto = require("crypto");
 const express = require("express");
 const app = express();
-const port = process.env.PORT;
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 // Set the view engine to ejs
@@ -197,4 +196,10 @@ app.post("/parti_reg:event", (req, res) => {
 //   { timestamps: true }
 // );
 
-app.listen(port, () => console.log(`Server running on port : ${port}`));
+app.listen(process.env.PORT || 8000, function() {
+  console.log(
+    "Server running on port : %d in %s mode",
+    this.address().port,
+    app.settings.env
+  );
+});
