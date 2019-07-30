@@ -17,6 +17,19 @@ nav a:hover {
   color: #4285f4;
 }
 
+.top-nav-collapse {
+  background-color: #1b2230;
+}
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #1b2230;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #1b2230;
+  }
+}
 .dropdown:hover > .dropdown-menu {
   display: block;
 }
