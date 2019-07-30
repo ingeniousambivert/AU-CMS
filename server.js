@@ -195,10 +195,9 @@ app.post("/parti_reg:event", (req, res) => {
 //   },
 //   { timestamps: true }
 // );
-
 app.listen(process.env.PORT || 8000, function() {
   console.log(
-    "Server running on : %d in %s mode",
+    "Express server listening on port %d in %s mode",
     this.address().port,
     app.settings.env
   );
