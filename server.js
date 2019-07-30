@@ -3,11 +3,12 @@
 const nodemailer = require("nodemailer");
 const mailgun = require("mailgun-js");
 const mongo = require("mongoose");
+const env = process.env.PORT;
 mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
 
 const express = require("express");
 const app = express();
-const port = 8000;
+const port = 8000 | env;
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 // Set the view engine to ejs
