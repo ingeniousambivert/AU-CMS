@@ -14,36 +14,67 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 // Use CSS
 app.use(express.static(__dirname + "/public"));
+
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
   res.render("pages/index");
 });
+
 app.get("/about", (req, res) => {
   // use res.render to load up an ejs view file
   // about page
   res.render("pages/about");
 });
+
 app.get("/contact", (req, res) => {
   // use res.render to load up an ejs view file
   // contact page
   res.render("pages/contact", { succ: false, err: false });
 });
+
 app.get("/events", (req, res) => {
   // use res.render to load up an ejs view file
   // events page
   res.render("pages/events");
 });
+
 app.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
   res.render("pages/upcoming");
 });
+
 app.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // past events page
   res.render("pages/former");
 });
+
+app.get("/chemecar", (req, res) => {
+  // use res.render to load up an ejs view file
+  // chemecar events page
+  res.render("pages/chemecar");
+});
+
+app.get("/newsletter", (req, res) => {
+  // use res.render to load up an ejs view file
+  // chemecar events page
+  res.render("pages/newsletter");
+});
+
+app.get("/show-tell", (req, res) => {
+  // use res.render to load up an ejs view file
+  // chemecar events page
+  res.render("pages/show-tell");
+});
+
+app.get("/industrial-visits", (req, res) => {
+  // use res.render to load up an ejs view file
+  // newsletterpage
+  res.render("pages/industrial-visits");
+});
+
 // Send mails
 
 app.post("/contacted", (req, res) => {
