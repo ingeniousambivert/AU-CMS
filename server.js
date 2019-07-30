@@ -39,10 +39,10 @@ app.get("/upcoming", (req, res) => {
   // upcoming events page
   res.render("pages/upcoming");
 });
-app.get("/past", (req, res) => {
+app.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // past events page
-  res.render("pages/past");
+  res.render("pages/former");
 });
 // Send mails
 

@@ -17,6 +17,13 @@ nav a:hover {
   color: #4285f4;
 }
 
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+.dropdown > .dropdown-toggle:active {
+  pointer-events: none;
+}
+
 .mt-10 {
   margin-top: 10%;
 }
