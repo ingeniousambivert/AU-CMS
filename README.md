@@ -18,13 +18,13 @@ npm run dev
 
 ## Built with
 
-Front End
+Front End :
 
 [MDBootstrap](https://mdbootstrap.com)
 
 [EJS](https://ejs.co/)
 
-Back End
+Back End :
 
 [ExpressJS](https://expressjs.com)
 
