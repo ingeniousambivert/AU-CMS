@@ -6,28 +6,31 @@ body {
 }
 
 nav {
-  background-color: #1b2230;
+  background-color: #4285f4;
   color: #fff;
   font-size: 1rem;
 }
+
 nav a {
   color: #fff;
 }
 nav a:hover {
-  color: #4285f4;
+  color: #1b2230;
 }
-
+.dropdown-item a {
+  color: #1b2230;
+}
 .top-nav-collapse {
-  background-color: #1b2230;
+  background-color: #4285f4;
 }
 @media (max-width: 768px) {
   .navbar:not(.top-nav-collapse) {
-    background-color: #1b2230;
+    background-color: #4285f4;
   }
 }
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
-    background-color: #1b2230;
+    background-color: #4285f4;
   }
 }
 .dropdown:hover > .dropdown-menu {
