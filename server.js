@@ -1,5 +1,6 @@
 // Server
 // Load the things we need
+<<<<<<< HEAD
 //const nodemailer = require("nodemailer");
 //const mailgun = require("mailgun-js");
 //const mongo = require("mongoose");
@@ -7,6 +8,17 @@
 const request = require("request");
 const express = require("express");
 const app = express();
+=======
+const nodemailer = require("nodemailer");
+const mailgun = require("mailgun-js");
+const mongo = require("mongoose");
+const env = process.env.PORT;
+mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
+
+const express = require("express");
+const app = express();
+const port = env;
+>>>>>>> 848e9e63bdf96061604de2388de74dad33ddf68c
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 // Set the view engine to ejs
