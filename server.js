@@ -77,7 +77,7 @@ app.get("/industrial-visits", (req, res) => {
 
 // Send mails
 
-app.post("/contacted", (req, res) => {
+app.post("/register", (req, res) => {
   const { user_email, user_name, user_message, user_subject } = req.body;
 
   if (!user_subject || !user_name || !user_email || !user_message) {
@@ -107,7 +107,7 @@ app.post("/contacted", (req, res) => {
       // });
 
       //Mailchimp Integration
-      const { firstname, lastname, email } = req.body;
+      const { user_name, user_email } = req.body;
       const data = {
         members: [
           {
