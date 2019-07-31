@@ -22,7 +22,7 @@
         <!--Card content-->
         <div class="card-body px-lg-5">
           <!-- Form -->
-          <form class="md-form  px-lg-5">
+          <form class="md-form  px-lg-5" action="/newsletter" method="POST">
             <div class="text-center">
               <p>
                 Join our mailing list. We write rarely, but only the best
@@ -30,15 +30,26 @@
               </p>
 
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                   <div class="md-form mb-0">
                     <input
                       type="text"
-                      id="name"
-                      name="user_name"
+                      id="fname"
+                      name="user_fname"
                       class="form-control"
                     />
-                    <label for="email" class="">Your Name</label>
+                    <label for="fname" class="">First Name</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="md-form mb-0">
+                    <input
+                      type="text"
+                      id="lname"
+                      name="user_lname"
+                      class="form-control"
+                    />
+                    <label for="lname" class="">Last Name</label>
                   </div>
                 </div>
               </div>

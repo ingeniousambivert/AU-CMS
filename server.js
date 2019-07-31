@@ -5,7 +5,6 @@
 //const mongo = require("mongoose");
 //mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
 const request = require("request");
-const crypto = require("crypto");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -75,47 +74,24 @@ app.get("/industrial-visits", (req, res) => {
   res.render("pages/industrial-visits");
 });
 
-// Send mails
+//Newsletter
 
-app.post("/register", (req, res) => {
-  const { user_email, user_name, user_message, user_subject } = req.body;
-
-  if (!user_subject || !user_name || !user_email || !user_message) {
-    res.render("pages/contact", { succ: false, err: true });
+app.post("/newsletter", (req, res) => {
+  const { user_fname, user_lname, user_email } = req.body;
+  if (!user_fname || !user_email || !user_lname) {
+    res.render("pages/newsletter", { succ: false, err: true });
     res.status(400);
   } else {
     if (res.statusCode === 200) {
-      //Mailgun Integration
-      // const mg = mailgun({
-      //   apiKey: "key-1db52b12596cfe563b9537f758d9e9f6",
-      //   domain:
-      //     "https://api.mailgun.net:80/v3/sandbox9b7d586cb9da417b816e89006105f5ed.mailgun.org"
-      // });
-      // const data = {
-      //   from: user_name + " " + user_email,
-      //   to: "monarchmaisuriya7600@gmail.com",
-      //   subject: user_subject,
-      //   text: user_message
-      // };
-      // mg.messages().send(data, (error, body) => {
-      //   if (error) {
-      //     console.log("ERROR : " + error);
-      //   } else {
-      //     console.log("BODY : " + body);
-      //     console.log(data);
-      //   }=
-      // });
-
       //Mailchimp Integration
-      const { user_name, user_email } = req.body;
       const data = {
         members: [
           {
-            email_address: email,
+            email_address: user_email,
             status: "subscribed",
             merge_fields: {
-              FNAME: firstname,
-              LNAME: lastname
+              FNAME: user_fname,
+              LNAME: user_lname
             }
           }
         ]
@@ -123,22 +99,18 @@ app.post("/register", (req, res) => {
 
       const postData = JSON.stringify(data);
 
-      if (!firstname || !lastname || !email) {
-        res.sendFile(__dirname + "/failed.html");
-        res.status(400);
+      if (res.statusCode === 200) {
+        res.render("pages/newsletter", { succ: true, err: false });
       } else {
-        if (res.statusCode === 200) {
-          res.sendFile(__dirname + "/success.html");
-        } else {
-          res.status(400);
-          res.sendFile(__dirname + "/failed.html");
-        }
+        res.status(400);
+        res.render("pages/newsletter", { succ: false, err: true });
       }
+
       const options = {
-        url: "https://<DC>.api.mailchimp.com/3.0/lists/{list_id}",
+        url: "https://<DC>.api.mailchimp.com/3.0/lists/8bd6f842d1",
         method: "POST",
         headers: {
-          Authorization: "auth api_key"
+          Authorization: "auth deed85fccbcc5e5f0f54d7acb8629242-us18"
         },
         body: postData
       };
@@ -147,33 +119,28 @@ app.post("/register", (req, res) => {
         console.log(response.statusCode);
         console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
       });
-
-      res.render("pages/contact", { succ: true, err: false });
-    } else {
-      res.status(400);
-      res.render("pages/contact", { succ: false, err: true });
     }
   }
 });
 
 // Events Requests
-app.post("/parti_reg:event", (req, res) => {
-  const useres = mongo.model("userscollection", Participentschema);
+// app.post("/parti_reg:event", (req, res) => {
+//   const useres = mongo.model("userscollection", Participentschema);
 
-  const user = new useres({
-    firstname: req.body.firstname,
-    larstname: req.body.larstname,
-    email: req.body.email,
-    eventid: req.params.id
-  });
+//   const user = new useres({
+//     firstname: req.body.firstname,
+//     larstname: req.body.larstname,
+//     email: req.body.email,
+//     eventid: req.params.id
+//   });
 
-  user.save(function(err) {
-    if (err) {
-      console.log(err);
-      // res.render
-    }
-  });
-});
+//   user.save(function(err) {
+//     if (err) {
+//       console.log(err);
+//       // res.render
+//     }
+//   });
+// });
 
 // const Eventschema = new mongo.Schema(
 //   {
