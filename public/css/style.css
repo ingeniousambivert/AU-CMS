@@ -64,3 +64,11 @@ nav a:hover {
   border: 2px rgba(27, 34, 48, 0.5) solid;
   border-radius: 20px;
 }
+
+a {
+  color: darkgray;
+}
+
+a:hover {
+  color: #212121;
+}

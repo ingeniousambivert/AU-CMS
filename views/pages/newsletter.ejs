@@ -40,6 +40,7 @@
                       id="fname"
                       name="user_fname"
                       class="form-control"
+                      required
                     />
                     <label for="fname" class="">First Name</label>
                   </div>
@@ -51,6 +52,7 @@
                       id="lname"
                       name="user_lname"
                       class="form-control"
+                      required
                     />
                     <label for="lname" class="">Last Name</label>
                   </div>
@@ -65,17 +67,19 @@
                       id="email"
                       name="user_email"
                       class="form-control"
+                      required
                     />
                     <label for="email" class="">Your Email</label>
                   </div>
                 </div>
               </div>
             </div>
-            <a
-              class="btn btn-rounded unique-color-dark mt-5"
-              onclick="document.getElementById('newsletter-form').submit();"
-              >Subscribe</a
+            <button
+              type="submit"
+              class="btn btn-rounded text-white unique-color-dark mt-5"
             >
+              Subscribe
+            </button>
           </form>
         </div>
       </div>
