@@ -81,6 +81,16 @@ a:hover {
   flex-wrap: wrap;
 }
 
+.modal-body {
+  margin: 0 auto;
+  background-position: fixed;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .blur {
   transform: scale(0.9);
   opacity: 0.6;
