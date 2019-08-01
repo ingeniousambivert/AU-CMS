@@ -118,11 +118,9 @@
       <div id="modal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog  modal-lg">
           <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">
+              <button type="button" class="close" id="modal-close" data-dismiss="modal">
                 <i class="fa fa-times"></i>
               </button>
-            </div>
             <div class="modal-body"></div>
           </div>
         </div>
@@ -166,11 +164,11 @@
       });
 
       $("#modal").on("show.bs.modal", function() {
-        $(".col-6,.row .thumbnail").addClass("blur");
+        $(".row .thumbnail").addClass("blur");
       });
 
       $("#modal").on("hide.bs.modal", function() {
-        $(".col-6,.row .thumbnail").removeClass("blur");
+        $(".row .thumbnail").removeClass("blur");
       });
     </script>
     <!-- JavaScript -->

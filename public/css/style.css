@@ -78,17 +78,24 @@ a:hover {
 .thumbnail {
   margin: 1%;
   display: flex;
-  flex-wrap: wrap;
-}
-
-.modal-body {
-  margin: 0 auto;
   background-position: fixed;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  flex-wrap: wrap;
+}
+
+.modal-body {
+  margin: 0 auto;
+}
+
+#modal-close {
+  text-align: right;
+  padding-right: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
 }
 
 .blur {
