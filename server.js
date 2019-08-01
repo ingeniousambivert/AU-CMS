@@ -1,7 +1,9 @@
-// Server Code
-
+// Express Server
 const express = require("express");
 const app = express();
+
+//Express-Validator for basic validations
+const { check, validationResult } = require("express-validator");
 
 const request = require("request");
 // Set the bodyparser
@@ -27,7 +29,7 @@ const Participant = require("./models/participant.model");
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
-  res.render("pages/index");
+  res.render("pages/index", { succ: false, err: false });
 });
 
 app.get("/about", (req, res) => {
@@ -77,27 +79,54 @@ app.get("/upcoming", (req, res) => {
   res.render("pages/upcoming", { succ: false, err: false });
 });
 
-// Participant Register
-app.post("/register", (req, res) => {
-  // Save the participant in MongoDB
-  let name = req.body.user_name;
-  let email = req.body.user_email;
-  const newParticipant = new Participant({
-    name: name,
-    email: email
-  });
-  newParticipant
-    .save()
-    .then(() => {
-      res.render("pages/upcoming", { succ: true, err: false });
-    })
-    .catch(
-      err => console.log(err),
-      () => {
-        res.render("pages/upcoming", { succ: false, err: true });
-      }
-    );
-});
+// Participant Registeration
+app.post(
+  "/register",
+  [
+    check("user_email")
+      .isEmail()
+      .custom((value, { req }) => {
+        return new Promise((resolve, reject) => {
+          Participant.findOne({ email: req.body.email }, function(
+            err,
+            participant
+          ) {
+            if (err) {
+              reject(console.log("Error"));
+            }
+            if (Boolean(participant)) {
+              reject(console.log("Error in Email"));
+            }
+            resolve(true);
+          });
+        });
+      })
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    // Save the participant in MongoDB
+    let name = req.body.user_name;
+    let email = req.body.user_email;
+    const newParticipant = new Participant({
+      name: name,
+      email: email
+    });
+    newParticipant
+      .save()
+      .then(() => {
+        res.render("pages/upcoming", { succ: true, err: false });
+      })
+      .catch(
+        err => console.log(err),
+        () => {
+          res.render("pages/upcoming", { succ: false, err: true });
+        }
+      );
+  }
+);
 
 //Newsletter
 app.post("/", (req, res) => {
