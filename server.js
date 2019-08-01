@@ -20,7 +20,8 @@ mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB connected successfully"))
   .catch(err => console.log(err));
-
+// Load User model
+const Participant = require("./models/participant.model");
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
@@ -122,7 +123,7 @@ app.post("/", (req, res) => {
 
 app.listen(process.env.PORT || 8000, function() {
   console.log(
-    "Express server listening on port %d in %s mode",
+    "Express Server listening on port %d in %s mode",
     this.address().port,
     app.settings.env
   );

@@ -1,6 +1,6 @@
 
 //Events Requests
-app.post("/parti_reg:event", (req, res) => {
+app.post("/part_reg:event", (req, res) => {
   const useres = mongo.model("userscollection", Participentschema);
 
   const user = new useres({
