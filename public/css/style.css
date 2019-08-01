@@ -78,13 +78,16 @@ a:hover {
 .thumbnail {
   margin: 1%;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.img-thumbnail {
   background-position: fixed;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  flex-wrap: wrap;
 }
 
 .modal-body {
