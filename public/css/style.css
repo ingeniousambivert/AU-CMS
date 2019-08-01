@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Sans|Roboto+Condensed&display=swap");
-
+/* Basic CSS */
 html,
 body {
   height: 100%;
@@ -71,4 +71,22 @@ a {
 
 a:hover {
   color: #212121;
+}
+
+/* Gallery CSS*/
+
+.thumbnail {
+  margin: 1%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.blur {
+  transform: scale(0.9);
+  opacity: 0.6;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
 }
