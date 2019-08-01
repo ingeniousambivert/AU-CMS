@@ -20,7 +20,12 @@
             <strong>Stay in the know , on the go</strong>
           </h2>
           <!-- Form -->
-          <form class="md-form  px-lg-5" action="/newsletter" method="POST">
+          <form
+            class="md-form  px-lg-5"
+            id="newsletter-form"
+            action="/newsletter"
+            method="POST"
+          >
             <div class="text-center">
               <p>
                 Join our mailing list. We write rarely, but only the best
@@ -65,15 +70,12 @@
                   </div>
                 </div>
               </div>
-
-              <button
-                style="width:50%; margin:0 auto;"
-                class=" btn white-text unique-color-dark btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                type="submit"
-              >
-                Subscribe
-              </button>
             </div>
+            <a
+              class="btn btn-rounded unique-color-dark mt-5"
+              onclick="document.getElementById('newsletter-form').submit();"
+              >Subscribe</a
+            >
           </form>
         </div>
       </div>
