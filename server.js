@@ -56,12 +56,6 @@ app.get("/chemecar", (req, res) => {
   res.render("pages/chemecar");
 });
 
-app.get("/newsletter", (req, res) => {
-  // use res.render to load up an ejs view file
-  // chemecar events page
-  res.render("pages/newsletter");
-});
-
 app.get("/show-tell", (req, res) => {
   // use res.render to load up an ejs view file
   // chemecar events page
@@ -76,9 +70,9 @@ app.get("/industrial-visits", (req, res) => {
 
 //Newsletter
 
-app.post("/newsletter", (req, res) => {
-  const { user_fname, user_lname, user_email } = req.body;
-  if (!user_fname || !user_email || !user_lname) {
+app.post("/", (req, res) => {
+  const { user_email } = req.body;
+  if (!user_email) {
     res.render("pages/newsletter", { succ: false, err: true });
     res.status(400);
   } else {
@@ -88,11 +82,7 @@ app.post("/newsletter", (req, res) => {
         members: [
           {
             email_address: user_email,
-            status: "subscribed",
-            merge_fields: {
-              FNAME: user_fname,
-              LNAME: user_lname
-            }
+            status: "subscribed"
           }
         ]
       };
@@ -100,10 +90,10 @@ app.post("/newsletter", (req, res) => {
       const postData = JSON.stringify(data);
 
       if (res.statusCode === 200) {
-        res.render("pages/newsletter", { succ: true, err: false });
+        res.render("pages/index", { succ: true, err: false });
       } else {
         res.status(400);
-        res.render("pages/newsletter", { succ: false, err: true });
+        res.render("pages/index", { succ: false, err: true });
       }
 
       const options = {
