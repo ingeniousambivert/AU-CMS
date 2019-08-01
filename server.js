@@ -1,18 +1,25 @@
-// Server
-// Load the things we need
-//const nodemailer = require("nodemailer");
-//const mailgun = require("mailgun-js");
-//const mongo = require("mongoose");
-//mongo.connect("mongodb://localhost:27017/AU_DB", { useNewUrlParser: true });
-const request = require("request");
+// Server Code
+
 const express = require("express");
 const app = express();
+
+const request = require("request");
+// Set the bodyparser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 // Set the view engine to ejs
 app.set("view engine", "ejs");
 // Use CSS
 app.use(express.static(__dirname + "/public"));
+// DB Config
+const mongoose = require("mongoose");
+const db = "mongodb://localhost:27017/AU_DB";
+
+// Connect to MongoDB
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch(err => console.log(err));
 
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
@@ -113,76 +120,6 @@ app.post("/", (req, res) => {
   }
 });
 
-// Events Requests
-// app.post("/parti_reg:event", (req, res) => {
-//   const useres = mongo.model("userscollection", Participentschema);
-
-//   const user = new useres({
-//     firstname: req.body.firstname,
-//     larstname: req.body.larstname,
-//     email: req.body.email,
-//     eventid: req.params.id
-//   });
-
-//   user.save(function(err) {
-//     if (err) {
-//       console.log(err);
-//       // res.render
-//     }
-//   });
-// });
-
-// const Eventschema = new mongo.Schema(
-//   {
-//     eventid: {
-//       type: Number,
-//       trim: true,
-//       index: true,
-//       unique: true,
-//       sparse: true
-//     },
-//     title: String,
-//     about: String,
-//     startdate: Date,
-//     enddate: Date,
-//     photo: [String],
-//     fee: Number,
-//     status: String
-//   },
-//   { timestamps: true }
-// );
-
-// const Adminschema = new mongo.Schema(
-//   {
-//     firstname: String,
-//     larstname: String,
-//     email: {
-//       type: String,
-//       trim: true,
-//       index: true,
-//       unique: true,
-//       sparse: true
-//     },
-//     password: String,
-//     profile: String
-//   },
-//   { timestamps: true }
-// );
-// const Participentschema = new mongo.Schema(
-//   {
-//     firstname: String,
-//     larstname: String,
-//     email: {
-//       type: String,
-//       trim: true,
-//       index: true,
-//       unique: true,
-//       sparse: true
-//     },
-//     eventid: Number
-//   },
-//   { timestamps: true }
-// );
 app.listen(process.env.PORT || 8000, function() {
   console.log(
     "Express server listening on port %d in %s mode",
