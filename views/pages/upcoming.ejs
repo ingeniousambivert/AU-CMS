@@ -102,38 +102,32 @@
               </p>
 
               <!-- Form -->
-              <form class="md-form px-lg-5" id="register-event">
+              <form
+                method="POST"
+                action="https://formspree.io/email@domain.tld"
+                class="mt-5"
+              >
                 <div class="row">
-                  <div class="col-sm-6">
-                    <div class="md-form mb-0">
-                      <input
-                        type="text"
-                        id="email"
-                        name="user_email"
-                        class="form-control"
-                        required
-                      />
-                      <label for="email" class="">Your Email</label>
-                    </div>
+                  <div class="col-6">
+                    <input
+                      type="text"
+                      id="defaultContactFormName"
+                      class="form-control mb-4"
+                      placeholder="Name"
+                    />
                   </div>
-                  <div class="col-sm-6">
-                    <div class="md-form mb-0">
-                      <input
-                        type="text"
-                        id="name"
-                        name="user_name"
-                        class="form-control"
-                        required
-                      />
-                      <label for="name" class="">Your Name</label>
-                    </div>
+                  <div class="col-6">
+                    <input
+                      type="email"
+                      id="defaultContactFormEmail"
+                      class="form-control mb-4"
+                      placeholder="E-mail"
+                    />
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  class="btn btn-rounded text-white unique-color-dark mt-5"
-                >
-                  Register
+
+                <button class="btn unique-color-dark white-text " type="submit">
+                  Send
                 </button>
               </form>
             </div>
