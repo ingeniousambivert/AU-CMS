@@ -110,3 +110,8 @@ a:hover {
   -ms-filter: blur(2px);
   filter: blur(2px);
 }
+
+.alert {
+  width: 40%;
+  margin: 0 auto;
+}

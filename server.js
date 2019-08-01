@@ -39,19 +39,13 @@ app.get("/about", (req, res) => {
 app.get("/contact", (req, res) => {
   // use res.render to load up an ejs view file
   // contact page
-  res.render("pages/contact", { succ: false, err: false });
+  res.render("pages/contact");
 });
 
 app.get("/events", (req, res) => {
   // use res.render to load up an ejs view file
   // events page
   res.render("pages/events");
-});
-
-app.get("/upcoming", (req, res) => {
-  // use res.render to load up an ejs view file
-  // upcoming events page
-  res.render("pages/upcoming");
 });
 
 app.get("/former", (req, res) => {
@@ -77,19 +71,32 @@ app.get("/industrial-visits", (req, res) => {
   // newsletterpage
   res.render("pages/industrial-visits");
 });
+app.get("/upcoming", (req, res) => {
+  // use res.render to load up an ejs view file
+  // upcoming events page
+  res.render("pages/upcoming", { succ: false, err: false });
+});
 
-app.post("/upcoming", (req, res) => {
+// Participant Register
+app.post("/register", (req, res) => {
   // Save the participant in MongoDB
-
+  let name = req.body.user_name;
+  let email = req.body.user_email;
   const newParticipant = new Participant({
-    name: req.body.user_name,
-    email: req.body.user_email
+    name: name,
+    email: email
   });
   newParticipant
     .save()
-    .then(participant => console.log(participant))
-    .catch(err => console.log(err));
-  res.render("pages/upcoming");
+    .then(() => {
+      res.render("pages/upcoming", { succ: true, err: false });
+    })
+    .catch(
+      err => console.log(err),
+      () => {
+        res.render("pages/upcoming", { succ: false, err: true });
+      }
+    );
 });
 
 //Newsletter
