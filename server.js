@@ -20,8 +20,10 @@ mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB connected successfully"))
   .catch(err => console.log(err));
-// Load User model
+// Load Participant model
 const Participant = require("./models/participant.model");
+
+// GET and POST Routes
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
@@ -76,8 +78,21 @@ app.get("/industrial-visits", (req, res) => {
   res.render("pages/industrial-visits");
 });
 
-//Newsletter
+app.post("/upcoming", (req, res) => {
+  // Save the participant in MongoDB
 
+  const newParticipant = new Participant({
+    name: req.body.user_name,
+    email: req.body.user_email
+  });
+  newParticipant
+    .save()
+    .then(participant => console.log(participant))
+    .catch(err => console.log(err));
+  res.render("pages/upcoming");
+});
+
+//Newsletter
 app.post("/", (req, res) => {
   const { user_email } = req.body;
   if (!user_email) {

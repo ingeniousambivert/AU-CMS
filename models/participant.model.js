@@ -10,7 +10,8 @@ const ParticipantSchema = new Schema({
   email: {
     type: String,
     required: true
-  }
+  },
+  time: { type: Date, default: Date.now }
 });
 
 module.exports = Participant = mongoose.model(

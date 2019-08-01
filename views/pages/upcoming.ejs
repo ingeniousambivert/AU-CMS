@@ -102,15 +102,12 @@
               </p>
 
               <!-- Form -->
-              <form
-                method="POST"
-                action="https://formspree.io/email@domain.tld"
-                class="mt-5"
-              >
+              <form method="POST" action="/upcoming" class="mt-5">
                 <div class="row">
                   <div class="col-6">
                     <input
                       type="text"
+                      name="user_name"
                       id="defaultContactFormName"
                       class="form-control mb-4"
                       placeholder="Name"
@@ -119,6 +116,7 @@
                   <div class="col-6">
                     <input
                       type="email"
+                      name="user_email"
                       id="defaultContactFormEmail"
                       class="form-control mb-4"
                       placeholder="E-mail"
