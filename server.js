@@ -129,6 +129,24 @@ app.post(
 );
 
 //Newsletter
+
+//----------------------------------------------------admin panel
+app.get("/adminpanel", (req, res) => {
+  // use res.render to load up an ejs view file
+  // contact page
+  res.render("adminform/admin");
+});
+
+app.get("/adminpanel/addevent", (req, res) => {
+  // use res.render to load up an ejs view file
+  // contact page
+  res.render("adminform/addevent");
+});
+
+
+
+
+//------------------------------------------------------------
 app.post("/", (req, res) => {
   const { user_email } = req.body;
   if (!user_email) {
