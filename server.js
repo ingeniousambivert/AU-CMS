@@ -1,7 +1,7 @@
 // Express Server
 const express = require("express");
 const app = express();
-
+//const multer = require("multer");
 //Express-Validator for basic validations
 const { check, validationResult } = require("express-validator");
 
@@ -100,7 +100,7 @@ app.post(
             resolve(true);
           });
         });
-      })
+      })  
   ],
   (req, res) => {
     const errors = validationResult(req);
