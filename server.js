@@ -157,9 +157,13 @@ app.post("/", (req, res) => {
 
       const options = {
         url: "https://us18.api.mailchimp.com/3.0/lists/8bd6f842d1",
+        // Temp URL
+        // Replace with Owner's lists
         method: "POST",
         headers: {
           Authorization: "auth deed85fccbcc5e5f0f54d7acb8629242-us18"
+          // Temp API KEY
+          // Replace with Owner's API Key
         },
         body: postData
       };
