@@ -4,6 +4,32 @@
 <html lang="en">
   <head>
     <% include ../partials/head %>
+    <link href="../../css/swipe.css" rel="stylesheet" />
+    <style>
+     
+       .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+      </style>
   </head>
 
   <body>
@@ -28,8 +54,8 @@
           </p>
 
           <!-- Grid row -->
-          <div class="row">
-            <!-- Grid column -->
+          <!--div class="row">
+            
             <% team.forEach(function(ele){ %>
             <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
               <div class="avatar mx-auto">
@@ -48,35 +74,62 @@
                  <%=ele.about%> 
               </p>
               <ul class="list-unstyled mb-0">
-                <!-- Facebook -->
+                
                 <a class="p-2 fa-lg fb-ic">
                   <i class="fab fa-facebook-f blue-text"> </i>
                 </a>
-                <!-- Twitter -->
+                
                 <a class="p-2 fa-lg tw-ic">
                   <i class="fab fa-twitter blue-text"> </i>
                 </a>
-                <!-- Instagram -->
+                
                 <a class="p-2 fa-lg ins-ic">
                   <i class="fab fa-instagram blue-text"> </i>
                 </a>
               </ul>
             </div>
             <%})%>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-           
-            <!-- Grid column -->
-
-            <!-- Grid column -->
             
-            <!-- Grid column -->
+          </div -->
 
-            <!-- Grid column -->
-          
-            <!-- Grid column -->
-          </div>
+          <!-- Swiper -->
+  <div class="swiper-container">
+      <div class="swiper-wrapper">
+          <% team.forEach(function(ele){ %>
+        <div class="swiper-slide">
+            <div class="card w-50">
+
+                <!--Card image-->
+                <div class="view overlay">
+                  <img class="card-img-top" src="img/<%=ele.image%>" alt="Card image cap">
+                  <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+            
+                <!--Card content-->
+                <div class="card-body">
+            
+                  <!--Title-->
+                  <h4 class="card-title"><%=ele.name%></h4>
+                  <p class="text-primary"><i><%=ele.pos%></i> </p>
+                  <!--Text-->
+                  <p class="card-text"><%=ele.about%></p>
+                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                </div>
+            
+              </div>
+
+        </div>
+        <%})%>
+        
+      </div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+
           <!-- Grid row -->
         </section>
         <!-- Section: Team v.1 -->
@@ -101,11 +154,22 @@
     <script type="text/javascript" src="../js/script.js"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="../js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../js/mdb.min.js"></script>
+    <script type="text/javascript" src="../js/swipe.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+      </script>
+    
   </body>
 </html>
