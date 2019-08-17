@@ -31,25 +31,25 @@
  <% visit.forEach(function(item){ %>
     <!-- Grid column -->
     <div class="col-md-12 mb-4">
-      <% item.images.forEach(function(img){ %>
-      <div class="card card-image" style="background-image: url(<%= img %>);">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-         <%})%>
-          <div>
-            
-            <h3 class="py-3 font-weight-bold">
-              <strong><%= item.title %></strong>
-            </h3>
-            <h6 class="white-text">
-              <%= item.date %>
-            </h6>
-            <p class="pb-3"><%= item.details %>
-            </p>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fas fa-clone left"></i> View project</a>
-          </div>
-        </div>
-      </div>
-    </div>
+      <!-- Jumbotron -->
+<div class="jumbotron text-center">
+
+
+  <!-- Card image -->
+  <% item.images.forEach(function(img){ %>
+  <div class="view overlay my-4">
+    <img src="<%= img %>" class="img-fluid" alt="Industrial Visit">
+     <%})%>
+  </div>
+
+  <!-- Title -->
+  <h4 class="card-title h4 pb-2"><strong><%= item.title %></strong></h4>
+   <!-- Data -->
+  <p class="dark-grey-text mb-4"><%= item.date %></p>
+  <p class="card-text"><%= item.details %></p>
+
+</div>
+<!-- Jumbotron -->
     <!-- Grid column -->
 
 <% }) %>
