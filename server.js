@@ -16,9 +16,7 @@ app.use(express.static(__dirname + "/public"));
 // DB Config
 const mongoose = require("mongoose");
 const db = "mongodb://localhost:27017/AU_DB";
-// Data for views
-const events = require("./data/events.json");
-const team = require("./data/team.json");
+
 // Connect to MongoDB
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -26,6 +24,11 @@ mongoose
   .catch(err => console.log(err));
 // Load Participant model
 const Participant = require("./models/participant.model");
+
+// Data for views
+const events = require("./data/events.json");
+const team = require("./data/team.json");
+const visits = require("./data/visits.json");
 
 // GET and POST Routes
 app.get("/", (req, res) => {
@@ -55,7 +58,7 @@ app.get("/events", (req, res) => {
 app.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // past events page
-  res.render("pages/former", { data: events });
+  res.render("pages/former", { event: events });
 });
 
 app.get("/chemecar", (req, res) => {
@@ -73,7 +76,7 @@ app.get("/show-tell", (req, res) => {
 app.get("/industrial-visits", (req, res) => {
   // use res.render to load up an ejs view file
   // newsletterpage
-  res.render("pages/industrial-visits");
+  res.render("pages/industrial-visits", { visit: visits });
 });
 app.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file

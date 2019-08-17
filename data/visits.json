@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "1st Industrial Visit – Narayan industry, Naroda ",
+    "date": "27th October 2019",
+    "details": "Energy of the students was at the utmost level as it was the first industrial visit of AIChE Ahmedabad University. We have shown the outline of the Narayan industry so that students understand in better way and solve their doubts during the industrial visit. The reason why we have set this industrial visit was that students had perform few experiments on dye during their academy year and we want to show them in the large scale. We want our students to know the importance, classification and uses of dye. On the day of the industrial visit it was great to see massive response from the students. Students had taken major initiative to learn about industry and process. Industrial visit had completed smoothly and students had learned a lot from this visit.",
+    "stages": ["HELLO", "HEY"],
+    "images": ["https://mdbootstrap.com/img/Photos/Others/img%20%2832%29.jpg"]
+  },
+  {
+    "id": 2,
+    "title": "PUBGe",
+    "date": "29th August 2018",
+    "details": "After Inauguration we had organized an event which was based on the most additive game of all time i.e. PUBG. In this event it was a mixture of treasure hunt with PUBG elements and chemistry. This was planning to be a great event and a huge event where exact 100 students participated. All the 4 years were invited and the whole campus was the playfield. We had a total of 20~30 Volunteers and only because of them It was possible.<br>Students were overwhelmed with the management and they were glad they could participate in an event like this.",
+    "stages": ["", ""],
+    "images": [
+      "https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img%20%2873%29.jpg"
+    ]
+  }
+]
