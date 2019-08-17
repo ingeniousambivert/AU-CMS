@@ -4,14 +4,7 @@
 <html lang="en">
   <head>
     <% include ../partials/head %>
-    <style>
-      .modal-content{
-        background: #8360c3;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-      }
-      </style>
+   
   </head>
 
   <body>
@@ -34,12 +27,7 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
   <!-- Card -->
 <div class="row">
     <% data.forEach(function(item){ %>
-      
-     
-      
-   
-
-      
+       
   <div class="col-md-6">
     
   <div class="card">
@@ -90,10 +78,10 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
        
       <div class="modal fade" id="m<%=item.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog  modal-fluid" role="document">
+  <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" style="color: #fff" id="exampleModalLabel">Reviews</h5>
+        <h5 class="modal-title"  id="exampleModalLabel">Reviews</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -102,7 +90,7 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
         <ul style="list-style: none"> 
           <% item.review.forEach(function(ele){ %>
           <li>
-            <h5 style="color:white" class="text-center">
+            <h5 class="text-center dark-grey-text">
                <em> “<%=ele.data%>”
               </em>
               <br><br>
@@ -114,10 +102,7 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
           <ul>
           
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
+     
     </div>
   </div>
 </div>
@@ -160,25 +145,6 @@ background: linear-gradient(to right, #2ebf91, #8360c3); /* W3C, IE 10+/ Edge, F
       let date = new Date();
       document.getElementById("copyrightDate").innerHTML = date.getFullYear();
 
-      // Gallery JS
-      $(".thumbnail").click(function() {
-        $(".modal-body").empty();
-        $(
-          $(this)
-            .parents("div")
-            .html()
-        ).appendTo(".modal-body");
-        $("#modal").modal({ show: true });
-      });
-
-      $("#modal").on("show.bs.modal", function() {
-        $(".row .thumbnail").addClass("blur");
-      });
-
-      $("#modal").on("hide.bs.modal", function() {
-        $(".row .thumbnail").removeClass("blur");
-        
-      });
     </script>
     <!-- JavaScript -->
   </body>
