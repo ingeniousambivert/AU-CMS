@@ -1,4 +1,6 @@
+/*FONTS*/
 @import url("https://fonts.googleapis.com/css?family=PT+Sans|Roboto+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css?family=PT+Serif&display=swap");
 /* Basic CSS */
 html,
 body {
@@ -114,4 +116,13 @@ a:hover {
 .alert {
   width: 40%;
   margin: 0 auto;
+}
+
+.pt-text {
+  font-size:1.15rem;
+  font-family: "PT Serif", serif;
+}
+
+.gray-text{
+  color:#606060;
 }
