@@ -13,6 +13,7 @@ npm install
 ## Usage
 
 ```bash
+npm start
 npm run dev
 ```
 
