@@ -1,7 +1,7 @@
 // Express Server
 const express = require("express");
 const app = express();
-
+//const multer = require("multer");
 //Express-Validator for basic validations
 const { check, validationResult } = require("express-validator");
 
@@ -16,7 +16,9 @@ app.use(express.static(__dirname + "/public"));
 // DB Config
 const mongoose = require("mongoose");
 const db = "mongodb://localhost:27017/AU_DB";
-
+// Data for views
+const events = require("./data/events.json");
+const team = require("./data/team.json");
 // Connect to MongoDB
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -35,7 +37,7 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
   // use res.render to load up an ejs view file
   // about page
-  res.render("pages/about");
+  res.render("pages/about", { team: team });
 });
 
 app.get("/contact", (req, res) => {
@@ -53,7 +55,7 @@ app.get("/events", (req, res) => {
 app.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // past events page
-  res.render("pages/former");
+  res.render("pages/former", { data: events });
 });
 
 app.get("/chemecar", (req, res) => {
@@ -127,6 +129,19 @@ app.post(
       );
   }
 );
+
+//Admin panel
+app.get("/adminpanel", (req, res) => {
+  // use res.render to load up an ejs view file
+  // contact page
+  res.render("adminform/admin");
+});
+
+app.get("/adminpanel/addevent", (req, res) => {
+  // use res.render to load up an ejs view file
+  // contact page
+  res.render("adminform/addevent");
+});
 
 //Newsletter
 app.post("/", (req, res) => {

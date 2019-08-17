@@ -4,6 +4,8 @@
 <html lang="en">
   <head>
     <% include ../partials/head %>
+    <link href="../../css/swipe.css" rel="stylesheet" />
+    
   </head>
 
   <body>
@@ -16,23 +18,7 @@
     <!--Main layout-->
     <main class="mt-10">
       <div class="container">
-        <div class="row">
-          <h1
-            class="h1-responsive text-center font-weight-bold my-5"
-            style="margin: 0 auto;"
-          >
-            About Us
-          </h1>
-
-          <p class="font-weight-bold">
-            Ahmedabad University is a private, non-profit institution
-            established in 2009. We offer a range of diverse, rigorous academic
-            programmes to enable students to grow into well-rounded leaders. Our
-            programmes include undergraduate, graduate and doctoral studies in
-            areas such as engineering, life sciences, management, arts, and
-            computer science.
-          </p>
-        </div>
+      
 
         <!-- Section: Team v.1 -->
         <section class="team-section text-center my-5">
@@ -40,142 +26,50 @@
           <h2 class="h1-responsive font-weight-bold my-5">Our Amazing Team</h2>
           <!-- Section description -->
           <p class="grey-text w-responsive mx-auto mb-5">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-            error amet numquam iure provident voluptate esse quasi, veritatis
-            totam voluptas nostrum quisquam eum porro a pariatur veniam.
+              The strength of the team is each individual member. The strength of each member is the team.
           </p>
 
           <!-- Grid row -->
-          <div class="row">
-            <!-- Grid column -->
-            <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
-              <div class="avatar mx-auto">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg"
-                  class="rounded-circle z-depth-1"
-                  alt="Sample avatar"
-                />
-              </div>
-              <h5 class="font-weight-bold mt-4 mb-3">Anna Williams</h5>
-              <p class="text-uppercase blue-text">
-                <strong>Graphic designer</strong>
-              </p>
-              <p class="grey-text">
-                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                consectetur, adipisci sed quia non numquam modi tempora eius.
-              </p>
-              <ul class="list-unstyled mb-0">
-                <!-- Facebook -->
-                <a class="p-2 fa-lg fb-ic">
-                  <i class="fab fa-facebook-f blue-text"> </i>
-                </a>
-                <!-- Twitter -->
-                <a class="p-2 fa-lg tw-ic">
-                  <i class="fab fa-twitter blue-text"> </i>
-                </a>
-                <!-- Instagram -->
-                <a class="p-2 fa-lg ins-ic">
-                  <i class="fab fa-instagram blue-text"> </i>
-                </a>
-              </ul>
-            </div>
-            <!-- Grid column -->
+        
 
-            <!-- Grid column -->
-            <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
-              <div class="avatar mx-auto">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg"
-                  class="rounded-circle z-depth-1"
-                  alt="Sample avatar"
-                />
-              </div>
-              <h5 class="font-weight-bold mt-4 mb-3">John Doe</h5>
-              <p class="text-uppercase blue-text">
-                <strong>Web developer</strong>
-              </p>
-              <p class="grey-text">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                ipsa accusantium doloremque rem laudantium totam aperiam.
-              </p>
-              <ul class="list-unstyled mb-0">
-                <!-- Facebook -->
-                <a class="p-2 fa-lg fb-ic">
-                  <i class="fab fa-facebook-f blue-text"> </i>
-                </a>
-                <!-- Instagram -->
-                <a class="p-2 fa-lg ins-ic">
-                  <i class="fab fa-instagram blue-text"> </i>
-                </a>
-              </ul>
-            </div>
-            <!-- Grid column -->
+          <!-- Swiper -->
+  <div class="swiper-container">
+      <div class="swiper-wrapper">
+          <% team.forEach(function(ele){ %>
+        <div class="swiper-slide">
+            <div class="card w-75">
 
-            <!-- Grid column -->
-            <div class="col-lg-3 col-md-6 mb-md-0 mb-5">
-              <div class="avatar mx-auto">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
-                  class="rounded-circle z-depth-1"
-                  alt="Sample avatar"
-                />
+                <!--Card image-->
+                <div class="view overlay">
+                  <img class="card-img-top" src="img/<%=ele.image%>" alt="Card image cap">
+                  <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+            
+                <!--Card content-->
+                <div class="card-body">
+            
+                  <!--Title-->
+                  <h4 class="card-title"><%=ele.name%></h4>
+                  <p class="text-primary"><i><%=ele.pos%></i> </p>
+                  <!--Text-->
+                  <p class="card-text"><%=ele.about%></p>
+                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                </div>
+            
               </div>
-              <h5 class="font-weight-bold mt-4 mb-3">Maria Smith</h5>
-              <p class="text-uppercase blue-text">
-                <strong>Photographer</strong>
-              </p>
-              <p class="grey-text">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim est fugiat nulla id eu laborum.
-              </p>
-              <ul class="list-unstyled mb-0">
-                <!-- Facebook -->
-                <a class="p-2 fa-lg fb-ic">
-                  <i class="fab fa-facebook-f blue-text"> </i>
-                </a>
-                <!-- Instagram -->
-                <a class="p-2 fa-lg ins-ic">
-                  <i class="fab fa-instagram blue-text"> </i>
-                </a>
-                <!-- Dribbble -->
-                <a class="p-2 fa-lg ins-ic">
-                  <i class="fab fa-dribbble blue-text"> </i>
-                </a>
-              </ul>
-            </div>
-            <!-- Grid column -->
 
-            <!-- Grid column -->
-            <div class="col-lg-3 col-md-6">
-              <div class="avatar mx-auto">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg"
-                  class="rounded-circle z-depth-1"
-                  alt="Sample avatar"
-                />
-              </div>
-              <h5 class="font-weight-bold mt-4 mb-3">Tom Adams</h5>
-              <p class="text-uppercase blue-text">
-                <strong>Backend developer</strong>
-              </p>
-              <p class="grey-text">
-                Perspiciatis repellendus ad odit consequuntur, eveniet earum
-                nisi qui consectetur totam officia voluptates perferendis
-                voluptatibus aut.
-              </p>
-              <ul class="list-unstyled mb-0">
-                <!-- Facebook -->
-                <a class="p-2 fa-lg fb-ic">
-                  <i class="fab fa-facebook-f blue-text"> </i>
-                </a>
-                <!-- Github -->
-                <a class="p-2 fa-lg ins-ic">
-                  <i class="fab fa-github blue-text"> </i>
-                </a>
-              </ul>
-            </div>
-            <!-- Grid column -->
-          </div>
+        </div>
+        <%})%>
+        
+      </div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+
           <!-- Grid row -->
         </section>
         <!-- Section: Team v.1 -->
@@ -200,11 +94,22 @@
     <script type="text/javascript" src="../js/script.js"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="../js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../js/mdb.min.js"></script>
+    <script type="text/javascript" src="../js/swipe.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+      </script>
+    
   </body>
 </html>

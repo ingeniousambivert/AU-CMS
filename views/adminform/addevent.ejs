@@ -1,0 +1,88 @@
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/adminhead %>
+</head>
+
+<body>
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <% include ../partials/adminnav %>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+        <div class="card">
+
+        <h5 class="card-header info-color white-text text-center py-4">
+            <strong>Add Event</strong>
+        </h5>
+    
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+    
+            <!-- Form -->
+            <form class="text-center" style="color: #757575;" action="#!">
+    
+                
+                <!-- E-mail -->
+                <div class="md-form mt-0">
+                    <input type="text" id="eventid" name="eventid" class="form-control" required>
+                    <label for="eventid">Event Id</label>
+                </div>
+                <div class="md-form mt-0">
+                        <input type="text" id="eventname" name="eventname" class="form-control" required>
+                        <label for="eventname">Event Name</label>
+                </div><br>
+                <div class="md-form mt-0">
+                        <input type="date" id="startdate" name="startdate" class="form-control" >
+                        <label for="startdate">Starting Date</label>
+                </div>
+                <br>
+                <div class="md-form mt-0">
+                        <input type="date" id="enddate" name="enddate" class="form-control" >
+                        <label for="enddate">Ending Date</label>
+                </div>
+    
+                <!-- Password -->
+                <div class="md-form">
+                    <br>
+                    <textarea class="form-control" id="desc" name="desc"></textarea>
+                    <label for="desc">Description</label>
+                    <!--small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                        At least 8 characters and 1 digit
+                    </small-->
+                </div>
+    
+                <!-- Phone number -->
+                <input type="file" name="pic" accept="image/*" required multiple class="form-controle">
+                <!-- Newsletter -->
+             
+                <!-- Sign up button -->
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Register</button>
+    
+             
+                <hr>
+    
+                <!-- Terms of service -->
+                
+            </form>
+            <!-- Form -->
+    
+        </div>
+    
+    </div>
+
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+<% include ../partials/adminfooter %>   
+</body>
+
+</html>
+
