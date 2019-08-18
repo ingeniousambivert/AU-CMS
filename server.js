@@ -1,9 +1,9 @@
-// Express Server
+// Express App
 const express = require("express");
 const app = express();
-//const multer = require("multer");
+
 //Express-Validator for basic validations
-const { check, validationResult } = require("express-validator");
+//const { check, validationResult } = require("express-validator");
 
 const request = require("request");
 // Set the bodyparser
@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 // Set the view engine to ejs
 app.set("view engine", "ejs");
-// Use CSS
+// Use CSS and Images
 app.use(express.static(__dirname + "/public"));
 
 // DB Config
@@ -31,7 +31,7 @@ const events = require("./data/events.json");
 const team = require("./data/team.json");
 const visits = require("./data/visits.json");
 
-// GET and POST Routes
+// GET and POST Routes for the App
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
@@ -84,7 +84,7 @@ app.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // individual visit info page
   let visitID = req.params.id;
-  res.render("pages/visit", { visit: visits, vid: visitID });
+  res.render("pages/visit", { visit: visits, vID: visitID });
 });
 
 // Participant Registeration
@@ -101,7 +101,7 @@ const editJsonFile = require("edit-json-file");
 let file = editJsonFile("./data/participants.json", {
   autosave: true
 });
-console.log(file.get());
+//console.log(file.get());
 
 const user = {
   id: 3,
@@ -239,7 +239,7 @@ app.post("/", (req, res) => {
 
 app.listen(process.env.PORT || 8000, function() {
   console.log(
-    "Express Server listening on port %d in %s mode",
+    "Express Server - http://localhost:%d in %s mode",
     this.address().port,
     app.settings.env
   );
