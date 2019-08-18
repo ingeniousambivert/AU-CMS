@@ -83,8 +83,8 @@ app.get("/industrial-visits", (req, res) => {
 app.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // individual visit info page
-  //res.send("Displaying information for id " + req.params.id);
-  res.render("pages/visit", { visit: visits });
+  let visitID = req.params.id;
+  res.render("pages/visit", { visit: visits, vid: visitID });
 });
 
 // Participant Registeration
