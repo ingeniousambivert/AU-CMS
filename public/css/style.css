@@ -16,12 +16,13 @@ nav {
 
 nav a {
   color: #fff;
+  transition: ease all 500ms;
 }
 .dropdown-item {
   font-size: 0.9rem !important;
 }
 nav a:hover {
-  color: #1b2230;
+  color: #22438b;
 }
 .dropdown-item a {
   color: #1b2230;
