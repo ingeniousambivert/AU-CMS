@@ -79,6 +79,11 @@ a:hover {
   color: #212121;
 }
 
+.card {
+  text-align: center;
+  margin: 0 auto;
+}
+
 /* Gallery CSS*/
 
 .thumbnail {
