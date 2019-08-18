@@ -13,17 +13,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 // Use CSS
 app.use(express.static(__dirname + "/public"));
-// DB Config
-const mongoose = require("mongoose");
-const db = "mongodb://localhost:27017/AU_DB";
 
-// Connect to MongoDB
-mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(() => console.log("MongoDB connected successfully"))
-  .catch(err => console.log(err));
+// DB Config
+// const mongoose = require("mongoose");
+// const db = "mongodb://localhost:27017/AU_DB";
+
+// // Connect to MongoDB
+// mongoose
+//   .connect(db, { useNewUrlParser: true })
+//   .then(() => console.log("MongoDB connected successfully"))
+//   .catch(err => console.log(err));
 // Load Participant model
-const Participant = require("./models/participant.model");
+//const Participant = require("./models/participant.model");
 
 // Data for views
 const events = require("./data/events.json");
@@ -85,53 +86,93 @@ app.get("/upcoming", (req, res) => {
 });
 
 // Participant Registeration
-app.post(
-  "/register",
-  [
-    check("user_email")
-      .isEmail()
-      .custom((value, { req }) => {
-        return new Promise((resolve, reject) => {
-          Participant.findOne({ email: req.body.email }, function(
-            err,
-            participant
-          ) {
-            if (err) {
-              reject(console.log("Error"));
-            }
-            if (Boolean(participant)) {
-              reject(console.log("Error in Email"));
-            }
-            resolve(true);
-          });
-        });
-      })
-  ],
-  (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-    // Save the participant in MongoDB
-    let name = req.body.user_name;
-    let email = req.body.user_email;
-    const newParticipant = new Participant({
-      name: name,
-      email: email
-    });
-    newParticipant
-      .save()
-      .then(() => {
-        res.render("pages/upcoming", { succ: true, err: false });
-      })
-      .catch(
-        err => console.log(err),
-        () => {
-          res.render("pages/upcoming", { succ: false, err: true });
-        }
-      );
-  }
-);
+
+// Alternative approach using FileSystem in Node
+// const fs = require("fs");
+// fs.readFile("./data/participants.json", (err, data) => {
+//   if (err) throw err;
+//   let participant = JSON.parse(data);
+//   console.log(participant);
+// });
+
+const editJsonFile = require("edit-json-file");
+let file = editJsonFile("./data/participants.json", {
+  autosave: true
+});
+console.log(file.get());
+
+const user = {
+  id: 3,
+  name: "Jane Doe",
+  email: "jane@doe.com",
+  status: "coming"
+};
+
+app.post("/register", (req, res) => {
+  // fs.readFile("./data/participants.json", (err, data) => {
+  //   let json = JSON.parse(data);
+  //   json.push(user);
+  //   fs.writeFile("./data/participants.json", JSON.stringify(user), function(
+  //     err
+  //   ) {
+  //     if (err) throw err;
+  //     console.log('The "data to append" was appended to file!');
+  //   });
+  // });
+  let name = req.body.user_name;
+  let email = req.body.user_email;
+  file.set("name", name);
+  file.set("email", email);
+  file.set("status", "coming");
+});
+
+// app.post(
+//   "/register",
+//   [
+//     check("user_email")
+//       .isEmail()
+//       .custom((value, { req }) => {
+//         return new Promise((resolve, reject) => {
+//           Participant.findOne({ email: req.body.email }, function(
+//             err,
+//             participant
+//           ) {
+//             if (err) {
+//               reject(console.log("Error"));
+//             }
+//             if (Boolean(participant)) {
+//               reject(console.log("Error in Email"));
+//             }
+//             resolve(true);
+//           });
+//         });
+//       })
+//   ],
+//   (req, res) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(422).json({ errors: errors.array() });
+//     }
+//     // Save the participant in MongoDB
+//     let name = req.body.user_name;
+//     let email = req.body.user_email;
+//     const newParticipant = new Participant({
+//       name: name,
+//       email: email
+//     });
+//     newParticipant
+//       .save()
+//       .then(() => {
+//         res.render("pages/upcoming", { succ: true, err: false });
+//       })
+//       .catch(
+//         err => console.log(err),
+//         () => {
+//           res.render("pages/upcoming", { succ: false, err: true });
+//         }
+//       );
+//   }
+// );
 
 //Admin panel
 app.get("/adminpanel", (req, res) => {
