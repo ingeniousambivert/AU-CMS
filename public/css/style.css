@@ -162,3 +162,15 @@ a:hover {
   -webkit-align-items: center;
   align-items: center;
 }
+
+video {
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  -webkit-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.75);
+  border: rgba(0, 0, 0, 0.884) solid 1px;
+  border-radius: 5px;
+}
