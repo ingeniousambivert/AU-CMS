@@ -53,6 +53,13 @@ nav a:hover {
 .mt-15 {
   margin-top: 15%;
 }
+
+.mb-10 {
+  margin-bottom: 10%;
+}
+.mb-15 {
+  margin-bottom: 15%;
+}
 .card-image {
   background-position: fixed;
   background-repeat: no-repeat;

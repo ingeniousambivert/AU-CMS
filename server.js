@@ -50,16 +50,16 @@ app.get("/contact", (req, res) => {
   res.render("pages/contact");
 });
 
-app.get("/events", (req, res) => {
-  // use res.render to load up an ejs view file
-  // events page
-  res.render("pages/events");
-});
-
 app.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
-  // past events page
+  // former events page
   res.render("pages/former", { event: events });
+});
+
+app.get("/upcoming", (req, res) => {
+  // use res.render to load up an ejs view file
+  // upcoming events page
+  res.render("pages/upcoming", { succ: false, err: false });
 });
 
 app.get("/chemecar", (req, res) => {
@@ -70,19 +70,21 @@ app.get("/chemecar", (req, res) => {
 
 app.get("/show-tell", (req, res) => {
   // use res.render to load up an ejs view file
-  // chemecar events page
+  // show and tell events page
   res.render("pages/show-tell");
 });
 
 app.get("/industrial-visits", (req, res) => {
   // use res.render to load up an ejs view file
-  // newsletterpage
+  // industrial visits page
   res.render("pages/industrial-visits", { visit: visits });
 });
-app.get("/upcoming", (req, res) => {
+
+app.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
-  // upcoming events page
-  res.render("pages/upcoming", { succ: false, err: false });
+  // individual visit info page
+  //res.send("Displaying information for id " + req.params.id);
+  res.render("pages/visit", { visit: visits });
 });
 
 // Participant Registeration
