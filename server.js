@@ -129,13 +129,19 @@ app.post("/event/:id", (req, res) => {
 
   let flag = new Boolean(true);
   const isFull = pDB.has("participants").value();
-  const check = pDB
+
+  const checkEvent = pDB
+    .get("participants")
+    .map("eventID")
+    .value();
+
+  const checkEmail = pDB
     .get("participants")
     .map("email")
     .value();
 
-  check.forEach(element => {
-    if (email == element) {
+  checkEmail.forEach(element => {
+    if (email == element && eventID == eventID) {
       flag = false;
       res.render("pages/event", {
         succ: false,
