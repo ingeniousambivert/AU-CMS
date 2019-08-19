@@ -102,7 +102,7 @@
 
     <!-- Grid column -->
     <div class="col-lg-6 col-md-12">
-  <% event.slice(0,3).forEach(function(item){ %>
+  <% event.slice(-3).forEach(function(item){ %>
       <!-- Small news -->
       <div class="single-news mb-4">
 
@@ -128,7 +128,7 @@
 
             <!-- Excerpt -->
             <p class="font-weight-bold black-text"><%= item.title %></p>
-            <small class="font-weight-bold dark-grey-text"><%= item.date %></small>
+            <small class="font-weight-bold dark-grey-text"><%= item.Date %></small>
             <div class="d-flex justify-content-between">
               <div class="col-11 text-truncate pl-0 mb-3">
                 <a href="#!" class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos
