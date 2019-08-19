@@ -86,13 +86,12 @@
   <div class="row mt-5">
 
     <!-- Grid column -->
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-8 col-md-12">
 
       <!-- Featured news -->
       <div class="single-news mb-lg-0 mb-4">
-
         
-        <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4 pt-text"><span style="font-size:1.25rem;">Ahmedabad University</span> is a private, non-profit university that offers students a liberal education focused on research and interdiscipxary learning. We seek to mould independent thinkers and compassionate leaders who go on to engage innovatively with the complex challenges of our societies. As a research university, we are committed to the discovery of new ideas, and to the belief that good theory results in good practice. Our academic environment offers students, researchers and faculty the opportunity to participate in a unique learning process, mediated by fieldwork and projects that enable deep creative insight, rigorous analytical experimentation, and fulfilling careers. At Ahmedabad University we believe in practical knowledge more than basic theory knowledge and to accomplish that the college has many research programmes and is constantly taking projects from different companies.</p>
+        <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4 pt-text" style="font-size:1.15rem;"><span style="font-size:1.5rem;">Ahmedabad University</span> is a private, non-profit university that offers students a liberal education focused on research and interdiscipxary learning. We seek to mould independent thinkers and compassionate leaders who go on to engage innovatively with the complex challenges of our societies. As a research university, we are committed to the discovery of new ideas, and to the belief that good theory results in good practice. Our academic environment offers students, researchers and faculty the opportunity to participate in a unique learning process, mediated by fieldwork and projects that enable deep creative insight, rigorous analytical experimentation, and fulfilling careers. At Ahmedabad University we believe in practical knowledge more than basic theory knowledge and to accomplish that the college has many research programmes and is constantly taking projects from different companies.</p>
 
       </div>
       <!-- Featured news -->
@@ -101,7 +100,7 @@
     <!-- Grid column -->
 
     <!-- Grid column -->
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-4 col-md-12">
   <% formerEvents.slice(-3).forEach(function(item){ %>
       <!-- Small news -->
       <div class="single-news mb-4">
@@ -110,12 +109,12 @@
         <div class="row">
 
           <!-- Grid column -->
-          <div class="col-md-3">
+          <div class="col-md-4">
 
             <!--Image-->
             <div class="view overlay rounded z-depth-1 mb-4">
-              <img class="img-fluid" src="img/past/<%= item.active %>" alt="Sample image">
-              <a>
+              <img class="img-fluid" src="img/past/<%= item.active %>" alt="Event Image">
+              <a href="/former#<%=item.id%>">
                 <div class="mask rgba-white-slight"></div>
               </a>
             </div>
@@ -124,19 +123,11 @@
           <!-- Grid column -->
 
           <!-- Grid column -->
-          <div class="col-md-9">
+          <div class="col-md-8">
 
             <!-- Excerpt -->
-            <p class="font-weight-bold black-text"><%= item.title %></p>
+            <p class="font-weight-bold black-text"><a href="/former#<%=item.id%>"><%= item.title %></a></p>
             <small class="font-weight-bold dark-grey-text"><%= item.Date %></small>
-            <div class="d-flex justify-content-between">
-              <div class="col-11 text-truncate pl-0 mb-3">
-                <a href="#!" class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos
-                  ducimus qui blanditiis</a>
-              </div>
-                <a href="/former#<%=item.id%>"><i class="fas fa-angle-double-right"></i></a>
-            </div>
-
           </div>
           <!-- Grid column -->
 
