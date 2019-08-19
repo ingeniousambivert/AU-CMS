@@ -94,25 +94,30 @@ app.get("/visit/:id", (req, res) => {
   res.render("pages/visit", { visit: visits, vID: visitID });
 });
 
-const check = pDB.has("participants").value();
-console.log(check);
+//const check = pDB.has("participants").value();
 
 // Participant Registration
 app.post("/upcoming", (req, res) => {
   let name = req.body.user_name;
   let email = req.body.user_email;
 
-  if (email != check) {
-    pDB
-      .get("participants")
-      .push({ name: name, email: email })
-      .last()
-      .assign({ id: Date.now().toString() })
-      .write();
-    res.render("pages/upcoming", { succ: true, err: false });
-  } else {
-    res.render("pages/upcoming", { succ: false, err: true });
-  }
+  const check = pDB
+    .get("participants")
+    .map("email")
+    .value();
+  check.forEach(element => {
+    if (email != element) {
+      pDB
+        .get("participants")
+        .push({ name: name, email: email })
+        .last()
+        .assign({ id: Date.now().toString() })
+        .write();
+      res.render("pages/upcoming", { succ: true, err: false });
+    } else {
+      res.render("pages/upcoming", { succ: false, err: true });
+    }
+  });
 });
 
 // app.post(
