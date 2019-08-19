@@ -35,7 +35,7 @@ const visits = require("./data/visits.json");
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
-  res.render("pages/index", { succ: false, err: false });
+  res.render("pages/index", { succ: false, err: false, event: events });
 });
 
 app.get("/about", (req, res) => {
