@@ -35,15 +35,19 @@ const pDB = low(adapter);
 //const Participant = require("./models/participant.model");
 
 // Data for views
-const events = require("./data/events.json");
+const formerEvents = require("./data/former-events.json");
 const team = require("./data/team.json");
-const visits = require("./data/visits.json");
+const visits = require("./data/industrial-visits.json");
 
 // GET and POST Routes for the App
 app.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
-  res.render("pages/index", { succ: false, err: false, event: events });
+  res.render("pages/index", {
+    succ: false,
+    err: false,
+    formerEvents: formerEvents
+  });
 });
 
 app.get("/about", (req, res) => {
@@ -61,13 +65,19 @@ app.get("/contact", (req, res) => {
 app.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // former events page
-  res.render("pages/former", { event: events });
+  res.render("pages/former", { formerEvents: formerEvents });
 });
 
 app.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
-  res.render("pages/upcoming", { succ: false, err: false });
+  res.render("pages/upcoming");
+});
+
+app.get("/event", (req, res) => {
+  // use res.render to load up an ejs view file
+  // upcoming events page
+  res.render("pages/event", { succ: false, err: false });
 });
 
 app.get("/chemecar", (req, res) => {
@@ -96,7 +106,7 @@ app.get("/visit/:id", (req, res) => {
 });
 
 // Participant Registration
-app.post("/upcoming", (req, res) => {
+app.post("/event", (req, res) => {
   let name = req.body.user_name;
   let email = req.body.user_email;
 

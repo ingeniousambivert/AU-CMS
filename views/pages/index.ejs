@@ -102,7 +102,7 @@
 
     <!-- Grid column -->
     <div class="col-lg-6 col-md-12">
-  <% event.slice(-3).forEach(function(item){ %>
+  <% formerEvents.slice(-3).forEach(function(item){ %>
       <!-- Small news -->
       <div class="single-news mb-4">
 
@@ -134,7 +134,7 @@
                 <a href="#!" class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos
                   ducimus qui blanditiis</a>
               </div>
-              <a href="/former"><i class="fas fa-angle-double-right"></i></a>
+                <a href="/former#<%=item.id%>"><i class="fas fa-angle-double-right"></i></a>
             </div>
 
           </div>

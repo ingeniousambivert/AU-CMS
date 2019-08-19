@@ -1,0 +1,180 @@
+<!-- views/pages/upcoming.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partials/head %>
+  </head>
+
+  <body>
+    <!-- Start your project here-->
+
+    <!--Main Navigation-->
+    <header>
+      <% include ../partials/header %>
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-10">
+      <div class="container">
+        <!--EJS Conditions-->
+        <% if (err) { %>
+        <div class="alert alert-danger  mt-5 text-center" role="alert">
+          <h6>Something went wrong.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center alert-success" role="alert">
+          <h6>Registered successfully</h6>
+        </div>
+        <% } %>
+
+        <!-- Jumbotron -->
+        <div
+          class="card card-image mt-5"
+          style="background-image: url(img/upcoming.jpg);"
+        >
+          <div class="text-white text-center rgba-stylish-light py-5 px-4">
+            <div class="py-5">
+              <!-- Content -->
+              <h1 class="h1 white-text">
+                <i class="fas fa-calendar-plus"></i> Upcoming Events
+              </h1>
+
+              <p class="mb-4 pb-2 mt-5 px-md-5 mx-md-5">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Pariatur obcaecati vero aliquid libero doloribus ad, unde
+                tempora maiores, ullam, modi qui quidem minima debitis
+                perferendis vitae cumque et quo impedit.
+              </p>
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn primary-color"
+                data-toggle="modal"
+                data-target="#basicExampleModal"
+              >
+                <i class="fas fa-clone left"></i> Learn More
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="basicExampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header primary-color">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        The Event
+                      </h5>
+                      <button
+                        type="button"
+                        class="close white-text"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body black-text">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Pariatur obcaecati vero aliquid libero doloribus
+                        ad, unde tempora maiores, ullam, modi qui quidem minima
+                        debitis perferendis vitae cumque et quo impedit.
+                      </p>
+                      <p class="lead black-text">Register Below</p>
+                    </div>
+                    <div class="modal-footer "></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Jumbotron -->
+
+        <!--Registration Form-->
+        <!--Section: Contact v.2-->
+        <section class="mb-4">
+          <div class=" mt-5">
+            <!--Card content-->
+            <div class=" px-lg-5">
+              <h4 class="text-center py-4">
+                Register for the event
+              </h4>
+
+              <p class="text-center">
+                <a href="/former" target="_blank">See previous events</a>
+              </p>
+
+              <!-- Form -->
+              <form method="POST" action="/event" class="mt-5">
+                <div class="row">
+                  <div class="col-6">
+                    <input
+                      type="text"
+                      name="user_name"
+                      id="defaultContactFormName"
+                      class="form-control mb-4"
+                      placeholder="Name"
+                      required
+                    />
+                  </div>
+                  <div class="col-6">
+                    <input
+                      type="email"
+                      name="user_email"
+                      id="defaultContactFormEmail"
+                      class="form-control mb-4"
+                      placeholder="E-mail"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <button class="btn unique-color-dark white-text " type="submit">
+                  Register
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!--Grid column-->
+        </section>
+        <!--Section: Contact v.2-->
+        <!---->
+      </div>
+    </main>
+    <!--Main layout-->
+
+    <!-- Footer -->
+    <footer class="page-footer font-small unique-color-dark">
+      <% include ../partials/footer %>
+    </footer>
+    <!-- Footer -->
+    <!-- End your project here-->
+
+    <!-- SCRIPTS -->
+    <!-- JavaScript -->
+    <script type="text/javascript">
+      let date = new Date();
+      document.getElementById("copyrightDate").innerHTML = date.getFullYear();
+    </script>
+    <!--  JavaScript -->
+    <script type="text/javascript" src="../js/script.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
+  </body>
+</html>

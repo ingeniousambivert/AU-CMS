@@ -26,11 +26,11 @@
         
   <!-- Card -->
 <div class="row">
-    <% event.forEach(function(item){ %>
+    <% formerEvents.forEach(function(item){ %>
        
   <div class="col-md-6">
     
-  <div class="card mb-5">
+  <div class="card mb-5" id="<%=item.id%>">
     <!-- Card image -->
     <div class="view overlay">
         <div id="carouselExampleControls<%=item.id%>" class="carousel slide" data-ride="carousel">
