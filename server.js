@@ -137,17 +137,37 @@ app.post("/event/:id", (req, res) => {
   check.forEach(element => {
     if (email == element) {
       flag = false;
-      res.render("pages/event/:id", { succ: false, err: true });
+      res.render("pages/event", {
+        succ: false,
+        err: true,
+        eID: eventID,
+        upcomingEvents: upcomingEvents
+      });
     }
   });
   if (flag) {
     addParticipant();
-    res.render("pages/event/:id", { succ: true, err: false });
+    res.render("pages/event", {
+      succ: true,
+      err: false,
+      eID: eventID,
+      upcomingEvents: upcomingEvents
+    });
   } else if (isFull == false) {
     addParticipant();
-    res.render("pages/event/:id", { succ: true, err: false });
+    res.render("pages/event", {
+      succ: true,
+      err: false,
+      eID: eventID,
+      upcomingEvents: upcomingEvents
+    });
   } else {
-    res.render("pages/event/:id", { succ: false, err: true });
+    res.render("pages/event", {
+      succ: false,
+      err: true,
+      eID: eventID,
+      upcomingEvents: upcomingEvents
+    });
   }
 });
 
