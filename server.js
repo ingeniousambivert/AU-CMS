@@ -107,7 +107,8 @@ app.post("/upcoming", (req, res) => {
       .assign({ id: Date.now().toString() })
       .write();
   };
-
+  
+  let flag = new Boolean(false);
   const isFull = pDB.has("participants").value();
   const check = pDB
     .get("participants")
@@ -116,14 +117,16 @@ app.post("/upcoming", (req, res) => {
 
   check.forEach(element => {
     if (email != element) {
-      addParticipant();
-      res.render("pages/upcoming", { succ: true, err: false });
+      flag = true;
     } else {
+      flag = false;
       res.render("pages/upcoming", { succ: false, err: true });
     }
   });
-
-  if (isFull == false) {
+  if (flag) {
+    addParticipant();
+    res.render("pages/upcoming", { succ: true, err: false });
+  } else if (isFull == false) {
     addParticipant();
     res.render("pages/upcoming", { succ: true, err: false });
   } else {
