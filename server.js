@@ -121,7 +121,7 @@ app.post("/event/:id", (req, res) => {
   addParticipant = () => {
     pDB
       .get("participants")
-      .push({ name: name, email: email })
+      .push({ name: name, email: email, eventID: eventID })
       .last()
       .assign({ id: Date.now().toString() })
       .write();
