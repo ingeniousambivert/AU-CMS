@@ -11,10 +11,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 // Set the view engine to ejs
 app.set("view engine", "ejs");
-// Use CSS and Images
+// Use CSS and Media
 app.use(express.static(__dirname + "/public"));
 
-// LowDB Config
+// Create database instance and start server
 //See https://github.com/typicode/lowdb
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
@@ -98,13 +98,23 @@ app.get("/visit/:id", (req, res) => {
 app.post("/upcoming", (req, res) => {
   let name = req.body.user_name;
   let email = req.body.user_email;
-  pDB
+
+  const check = pDB
     .get("participants")
-    .push({ name: name, email: email })
-    .last()
-    .assign({ id: Date.now().toString() })
-    .write();
-  res.render("pages/upcoming", { succ: true, err: false });
+    .find({ email })
+    .value();
+
+  if (email != check) {
+    pDB
+      .get("participants")
+      .push({ name: name, email: email })
+      .last()
+      .assign({ id: Date.now().toString() })
+      .write();
+    res.render("pages/upcoming", { succ: true, err: false });
+  } else {
+    res.render("pages/upcoming", { succ: true, err: false });
+  }
 });
 
 // app.post(
