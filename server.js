@@ -18,11 +18,8 @@ app.use(express.static(__dirname + "/public"));
 //See https://github.com/typicode/lowdb
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
-
 const adapter = new FileSync("./data/participants.json");
 const pDB = low(adapter);
-
-console.log(pDB.value());
 
 // DB Config
 // const mongoose = require("mongoose");
@@ -97,7 +94,7 @@ app.get("/visit/:id", (req, res) => {
   res.render("pages/visit", { visit: visits, vID: visitID });
 });
 
-// Participant Registeration
+// Participant Registration
 app.post("/upcoming", (req, res) => {
   let name = req.body.user_name;
   let email = req.body.user_email;

@@ -91,43 +91,6 @@ a:hover {
   margin: 0 auto;
 }
 
-/* Gallery CSS*/
-
-.thumbnail {
-  margin: 1%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.img-thumbnail {
-  background-position: fixed;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.modal-body {
-  margin: 0 auto;
-}
-
-#modal-close {
-  text-align: right;
-  padding-right: 1%;
-  margin-right: 1%;
-  margin-top: 1%;
-}
-
-.blur {
-  transform: scale(0.9);
-  opacity: 0.6;
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -o-filter: blur(2px);
-  -ms-filter: blur(2px);
-  filter: blur(2px);
-}
 .pt-text {
   font-family: "PT Serif", serif;
 }
