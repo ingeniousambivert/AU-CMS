@@ -1,6 +1,19 @@
 {
-  "id": 3,
-  "name": "test",
-  "email": "test@test.com",
-  "status": "coming"
+  "participants": [
+    {
+      "name": "test",
+      "email": "test@test.com",
+      "id": "1566192136717"
+    },
+    {
+      "name": "john",
+      "email": "does@work.com",
+      "id": "1566192230168"
+    },
+    {
+      "name": "john",
+      "email": "does@work.com",
+      "id": "1566192246851"
+    }
+  ]
 }

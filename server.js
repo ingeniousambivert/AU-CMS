@@ -14,6 +14,16 @@ app.set("view engine", "ejs");
 // Use CSS and Images
 app.use(express.static(__dirname + "/public"));
 
+// LowDB Config
+//See https://github.com/typicode/lowdb
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
+
+const adapter = new FileSync("./data/participants.json");
+const pDB = low(adapter);
+
+console.log(pDB.value());
+
 // DB Config
 // const mongoose = require("mongoose");
 // const db = "mongodb://localhost:27017/AU_DB";
@@ -88,44 +98,16 @@ app.get("/visit/:id", (req, res) => {
 });
 
 // Participant Registeration
-
-// Alternative approach using FileSystem in Node
-// const fs = require("fs");
-// fs.readFile("./data/participants.json", (err, data) => {
-//   if (err) throw err;
-//   let participant = JSON.parse(data);
-//   console.log(participant);
-// });
-
-const editJsonFile = require("edit-json-file");
-let file = editJsonFile("./data/participants.json", {
-  autosave: true
-});
-//console.log(file.get());
-
-const user = {
-  id: 3,
-  name: "Jane Doe",
-  email: "jane@doe.com",
-  status: "coming"
-};
-
-app.post("/register", (req, res) => {
-  // fs.readFile("./data/participants.json", (err, data) => {
-  //   let json = JSON.parse(data);
-  //   json.push(user);
-  //   fs.writeFile("./data/participants.json", JSON.stringify(user), function(
-  //     err
-  //   ) {
-  //     if (err) throw err;
-  //     console.log('The "data to append" was appended to file!');
-  //   });
-  // });
+app.post("/upcoming", (req, res) => {
   let name = req.body.user_name;
   let email = req.body.user_email;
-  file.set("name", name);
-  file.set("email", email);
-  file.set("status", "coming");
+  pDB
+    .get("participants")
+    .push({ name: name, email: email })
+    .last()
+    .assign({ id: Date.now().toString() })
+    .write();
+  res.render("pages/upcoming", { succ: true, err: false });
 });
 
 // app.post(
