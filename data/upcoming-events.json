@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Random Event #1",
+    "Date": "29th September 2019",
+    "details": "It was the first event of AIChE Ahmedabad University student chapter on 29thAugust 2018. We had welcome Dr. Jaimin Vasa who is President of Gujarat Chamber of commerce and industry and Dr. Unnat Pandit who is head of operation Atal Innovation Mission. Both of our chief guest’s gave an insight about the future of chemical engineers and the developing field. It was followed by our Dean Dr Sunil Kale who was so glad to have these two legends in our campus.",
+    "images": ["1_2"],
+    "active": "upcoming.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Random Event #2",
+    "Date": "29th November 2019",
+    "details": "After Inauguration we had organized an event which was based on the most additive game of all time i.e. PUBG. In this event it was a mixture of treasure hunt with PUBG elements and chemistry. This was planning to be a great event and a huge event where exact 100 students participated. All the 4 years were invited and the whole campus was the playfield. We had a total of 20~30 Volunteers and only because of them It was possible.<br>Students were overwhelmed with the management and they were glad they could participate in an event like this.",
+    "images": [],
+    "active": "upcoming.jpg"
+  }
+]

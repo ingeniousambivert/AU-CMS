@@ -19,8 +19,8 @@
 
   <!-- Section heading -->
   <h1 class="h1-responsive font-weight-bold text-center my-5">
-  <i class="fas fa-industry"></i>
-  Industrial Visits</h1>
+   <i class="fas fa-calendar-plus"></i> 
+ Upcoming Events</h1>
   <!-- Section description -->
  
   <!-- Grid row -->
@@ -28,11 +28,11 @@
 
     <!-- Grid column -->
     <div class="col-md-12 mb-4">
-     <% visit.forEach(function(item){ %>
+     <% upcomingEvents.forEach(function(item){ %>
      
     <!-- Grid column -->
     <div class="col-md-12 mb-5">
-      <div class="card card-image" style="background-image: url(img/industrial/<%= item.active %>);">
+      <div class="card card-image" style="background-image: url(img/upcoming/<%= item.active %>);">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div class=" text-center">
             <h3 class="font-weight-bold text-center mb-5">
@@ -42,7 +42,7 @@
             </p>
             <p style="visibility:hidden;"><%= item.details %>
             </p>
-            <a class="btn btn-secondary btn-rounded btn-md" href="visit/<%= item.id %>"><i class="fas fa-clone left"></i>Learn More</a>
+            <a class="btn btn-secondary btn-rounded btn-md" href="event/<%= item.id %>"><i class="fas fa-clone left"></i>Learn More</a>
           </div>
         </div>
       </div>

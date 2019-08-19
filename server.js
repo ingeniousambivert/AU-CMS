@@ -36,6 +36,7 @@ const pDB = low(adapter);
 
 // Data for views
 const formerEvents = require("./data/former-events.json");
+const upcomingEvents = require("./data/upcoming-events.json");
 const team = require("./data/team.json");
 const visits = require("./data/industrial-visits.json");
 
@@ -71,13 +72,19 @@ app.get("/former", (req, res) => {
 app.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
-  res.render("pages/upcoming");
+  res.render("pages/upcoming", { upcomingEvents: upcomingEvents });
 });
 
-app.get("/event", (req, res) => {
+app.get("/event/:id", (req, res) => {
   // use res.render to load up an ejs view file
-  // upcoming events page
-  res.render("pages/event", { succ: false, err: false });
+  // upcoming event page
+  let eventID = req.params.id;
+  res.render("pages/event", {
+    succ: false,
+    err: false,
+    eID: eventID,
+    upcomingEvents: upcomingEvents
+  });
 });
 
 app.get("/chemecar", (req, res) => {
