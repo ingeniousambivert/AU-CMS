@@ -14,7 +14,7 @@ app.set("view engine", "ejs");
 // Use CSS and Media
 app.use(express.static(__dirname + "/public"));
 
-// Create database instance and start server
+// Create database instance for LowDB
 //See https://github.com/typicode/lowdb
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
