@@ -16,6 +16,7 @@ app.use(express.static(__dirname + "/public"));
 
 // Create database instance for LowDB
 //See https://github.com/typicode/lowdb
+// DB for participants list
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const adapter = new FileSync("./data/participants.json");
