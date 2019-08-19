@@ -108,7 +108,7 @@ app.post("/upcoming", (req, res) => {
       .write();
   };
 
-  let flag = new Boolean(false);
+  let flag = new Boolean(true);
   const isFull = pDB.has("participants").value();
   const check = pDB
     .get("participants")
