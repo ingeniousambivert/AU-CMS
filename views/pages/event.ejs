@@ -33,20 +33,17 @@
         <!-- Jumbotron -->
         <div
           class="card card-image mt-5"
-          style="background-image: url(img/upcoming.jpg);"
+          style="background-image: url(/img/upcoming/<%= item.active%>);"
         >
-          <div class="text-white text-center rgba-stylish-light py-5 px-4">
+          <div class="text-white text-center rgba-stylish-strong py-5 px-4">
             <div class="py-5">
               <!-- Content -->
               <h1 class="h1 white-text">
-                <i class="fas fa-calendar-plus"></i> Upcoming Events
+                <i class="fas fa-calendar-plus"></i> <%= item.title %>
               </h1>
 
               <p class="mb-4 pb-2 mt-5 px-md-5 mx-md-5">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Pariatur obcaecati vero aliquid libero doloribus ad, unde
-                tempora maiores, ullam, modi qui quidem minima debitis
-                perferendis vitae cumque et quo impedit.
+                <%= item.details  %>
               </p>
 
              
@@ -59,7 +56,7 @@
         <!--Registration Form-->
         <!--Section: Contact v.2-->
         <section class="mb-4">
-          <div class=" mt-5">
+          <div class="container mt-5">
             <!--Card content-->
             <div class=" px-lg-5">
               <h4 class="text-center py-4">
@@ -71,7 +68,7 @@
               </p>
 
               <!-- Form -->
-              <form method="POST" action="/event" class="mt-5">
+              <form method="POST" action="/event/<%= item.id %>" class="mt-5">
                 <div class="row">
                   <div class="col-6">
                     <input

@@ -113,9 +113,10 @@ app.get("/visit/:id", (req, res) => {
 });
 
 // Participant Registration
-app.post("/event", (req, res) => {
+app.post("/event/:id", (req, res) => {
   let name = req.body.user_name;
   let email = req.body.user_email;
+  let eventID = req.params.id;
 
   addParticipant = () => {
     pDB
@@ -136,17 +137,17 @@ app.post("/event", (req, res) => {
   check.forEach(element => {
     if (email == element) {
       flag = false;
-      res.render("pages/upcoming", { succ: false, err: true });
+      res.render("pages/event/:id", { succ: false, err: true });
     }
   });
   if (flag) {
     addParticipant();
-    res.render("pages/upcoming", { succ: true, err: false });
+    res.render("pages/event/:id", { succ: true, err: false });
   } else if (isFull == false) {
     addParticipant();
-    res.render("pages/upcoming", { succ: true, err: false });
+    res.render("pages/event/:id", { succ: true, err: false });
   } else {
-    res.render("pages/upcoming", { succ: false, err: true });
+    res.render("pages/event/:id", { succ: false, err: true });
   }
 });
 
