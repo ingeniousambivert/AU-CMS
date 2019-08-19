@@ -1,4 +1,4 @@
-// Express App
+// Express App Starts Here
 const express = require("express");
 const app = express();
 
@@ -94,15 +94,13 @@ app.get("/visit/:id", (req, res) => {
   res.render("pages/visit", { visit: visits, vID: visitID });
 });
 
+const check = pDB.has("participants").value();
+console.log(check);
+
 // Participant Registration
 app.post("/upcoming", (req, res) => {
   let name = req.body.user_name;
   let email = req.body.user_email;
-
-  const check = pDB
-    .get("participants")
-    .find({ email })
-    .value();
 
   if (email != check) {
     pDB
@@ -113,7 +111,7 @@ app.post("/upcoming", (req, res) => {
       .write();
     res.render("pages/upcoming", { succ: true, err: false });
   } else {
-    res.render("pages/upcoming", { succ: true, err: false });
+    res.render("pages/upcoming", { succ: false, err: true });
   }
 });
 
