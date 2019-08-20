@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../../admin/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../../admin/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../../admin/css/style.css" rel="stylesheet">
+   <link href="../../admin/css/style.min.css" rel="stylesheet">
+  
+</head>
+
+<body class="grey lighten-3">
+
+<div class="container mt-5 text-center">
+    <div class="jumbotron text-center border border-light col-md-8" style="margin:0 auto;">
+
+    <form class="p-5">
+
+    <p class="h4 mb-10 text-center"> Access The Admin Dashboard </p>
+
+    <input type="text" id="username" name="adminUsername" class="form-control mb-4 p-4" placeholder="Username">
+
+    <input type="password" id="password" name="adminPassword" class="form-control mb-4 p-4" placeholder="Password">
+
+      <div class="custom-control custom-checkbox mb-4">
+        <input type="checkbox" onclick="ShowPassword()"class="custom-control-input" id="checkbox">
+        <label class="custom-control-label" for="checkbox">Show Password</label>
+    </div>
+
+    <div class="d-flex justify-content-between">
+    <button class="btn btn-primary my-4" type="submit">Sign in</button>    
+    </div>
+    
+</form>
+   
+    </div>
+</div>
+
+    <!--  JavaScript -->
+    <script type="text/javascript">
+         ShowPassword = () => {
+      let ele = document.getElementById("password");
+        if (ele.type === "password") {
+            ele.type = "text";
+        } else {
+            ele.type = "password";
+        }
+     }
+    </script>
+    <!-- JavaScript -->
+    
+  <!-- JQuery -->
+  <script type="text/javascript" src="../../admin/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../../admin/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
+  
+
+</body>
+
+</html>

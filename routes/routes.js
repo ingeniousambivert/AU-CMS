@@ -278,6 +278,13 @@ router.get("/dashboard", (req, res) => {
   // admin panel
   res.render("admin/dashboard");
 });
+
+//Admin Auth
+router.get("/login", (req, res) => {
+  // use res.render to load up an ejs view file
+  // admin panel
+  res.render("admin/login");
+});
 //Admin panel
 router.get("/backup", (req, res) => {
   // use res.render to load up an ejs view file
