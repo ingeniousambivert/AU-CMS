@@ -30,6 +30,7 @@ app.use("/", routes);
 // Load Participant model
 //const Participant = require("./models/participant.model");
 
+// Listen to the port
 app.listen(process.env.PORT || 8000, function() {
   console.log(
     "Express Server - http://localhost:%d in %s mode",

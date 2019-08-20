@@ -211,11 +211,15 @@ router.get("/backup", (req, res) => {
   res.render("admin/backup");
 });
 
-//Newsletter
+//Newsletter Signup
 router.post("/", (req, res) => {
   const { user_email } = req.body;
   if (!user_email) {
-    res.render("pages/newsletter", { succ: false, err: true });
+    res.render("pages/index", {
+      succ: false,
+      err: true,
+      formerEvents: formerEvents
+    });
     res.status(400);
   } else {
     if (res.statusCode === 200) {
@@ -232,16 +236,25 @@ router.post("/", (req, res) => {
       const postData = JSON.stringify(data);
 
       if (res.statusCode === 200) {
-        res.render("pages/index", { succ: true, err: false });
+        res.render("pages/index", {
+          succ: true,
+          err: false,
+          formerEvents: formerEvents
+        });
       } else {
         res.status(400);
-        res.render("pages/index", { succ: false, err: true });
+        res.render("pages/index", {
+          succ: false,
+          err: true,
+          formerEvents: formerEvents
+        });
       }
 
       const options = {
         url: "https://us18.api.mailchimp.com/3.0/lists/8bd6f842d1",
         // Temp URL
-        // Replace with Owner's lists
+        // Replace with Owner's list URL
+
         method: "POST",
         headers: {
           Authorization: "auth deed85fccbcc5e5f0f54d7acb8629242-us18"
