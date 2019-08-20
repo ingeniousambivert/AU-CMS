@@ -14,6 +14,8 @@ const upcomingEvents = require("../data/upcoming-events.json");
 const team = require("../data/team.json");
 const visits = require("../data/industrial-visits.json");
 
+//----- CLIENT ROUTES -----//
+
 // GET and POST Routes for the router
 router.get("/", (req, res) => {
   // use res.render to load up an ejs view file
@@ -160,67 +162,6 @@ router.post("/event/:id", (req, res) => {
   }
 });
 
-// router.post(
-//   "/register",
-//   [
-//     check("user_email")
-//       .isEmail()
-//       .custom((value, { req }) => {
-//         return new Promise((resolve, reject) => {
-//           Participant.findOne({ email: req.body.email }, function(
-//             err,
-//             participant
-//           ) {
-//             if (err) {
-//               reject(console.log("Error"));
-//             }
-//             if (Boolean(participant)) {
-//               reject(console.log("Error in Email"));
-//             }
-//             resolve(true);
-//           });
-//         });
-//       })
-//   ],
-//   (req, res) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(422).json({ errors: errors.array() });
-//     }
-//     // Save the participant in MongoDB
-//     let name = req.body.user_name;
-//     let email = req.body.user_email;
-//     const newParticipant = new Participant({
-//       name: name,
-//       email: email
-//     });
-//     newParticipant
-//       .save()
-//       .then(() => {
-//         res.render("pages/upcoming", { succ: true, err: false });
-//       })
-//       .catch(
-//         err => console.log(err),
-//         () => {
-//           res.render("pages/upcoming", { succ: false, err: true });
-//         }
-//       );
-//   }
-// );
-
-//Admin panel
-router.get("/dashboard", (req, res) => {
-  // use res.render to load up an ejs view file
-  // admin panel
-  res.render("admin/dashboard");
-});
-//Admin panel
-router.get("/backup", (req, res) => {
-  // use res.render to load up an ejs view file
-  // admin panel
-  res.render("admin/backup");
-});
-
 //Newsletter Signup
 router.post("/", (req, res) => {
   const { user_email } = req.body;
@@ -278,6 +219,69 @@ router.post("/", (req, res) => {
       }
     }
   }
+});
+
+// router.post(
+//   "/register",
+//   [
+//     check("user_email")
+//       .isEmail()
+//       .custom((value, { req }) => {
+//         return new Promise((resolve, reject) => {
+//           Participant.findOne({ email: req.body.email }, function(
+//             err,
+//             participant
+//           ) {
+//             if (err) {
+//               reject(console.log("Error"));
+//             }
+//             if (Boolean(participant)) {
+//               reject(console.log("Error in Email"));
+//             }
+//             resolve(true);
+//           });
+//         });
+//       })
+//   ],
+//   (req, res) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(422).json({ errors: errors.array() });
+//     }
+//     // Save the participant in MongoDB
+//     let name = req.body.user_name;
+//     let email = req.body.user_email;
+//     const newParticipant = new Participant({
+//       name: name,
+//       email: email
+//     });
+//     newParticipant
+//       .save()
+//       .then(() => {
+//         res.render("pages/upcoming", { succ: true, err: false });
+//       })
+//       .catch(
+//         err => console.log(err),
+//         () => {
+//           res.render("pages/upcoming", { succ: false, err: true });
+//         }
+//       );
+//   }
+// );
+
+//----- ADMIN ROUTES -----//
+
+//Admin panel
+router.get("/dashboard", (req, res) => {
+  // use res.render to load up an ejs view file
+  // admin panel
+  res.render("admin/dashboard");
+});
+//Admin panel
+router.get("/backup", (req, res) => {
+  // use res.render to load up an ejs view file
+  // admin panel
+  res.render("admin/backup");
 });
 
 module.exports = router;
