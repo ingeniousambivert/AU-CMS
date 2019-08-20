@@ -1,11 +1,6 @@
 // Express App Starts Here
 const express = require("express");
 const app = express();
-
-//Express-Validator for basic validations
-//const { check, validationResult } = require("express-validator");
-
-const request = require("request");
 // Set the bodyparser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
