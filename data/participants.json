@@ -17,6 +17,12 @@
       "email": "it@work.com",
       "eventID": "1",
       "id": "1566204880972"
+    },
+    {
+      "name": "thor",
+      "email": "thor@odinson.com",
+      "eventID": "2",
+      "id": "1566301249454"
     }
   ]
 }
