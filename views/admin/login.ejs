@@ -22,14 +22,23 @@
 
 <div class="container mt-5 text-center">
     <div class="jumbotron text-center border border-light col-md-8" style="margin:0 auto;">
-
-    <form class="p-5">
+        <!--EJS Conditions-->
+        <% if (err) { %>
+        <div class="alert alert-danger  mt-5 text-center" role="alert">
+          <h6>Something went wrong.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center alert-success" role="alert">
+          <h6>Logged In successfully</h6>
+        </div>
+        <% } %>
+    <form class="p-5" method="POST" action="/login">
 
     <p class="h4 mb-10 text-center"> Access The Admin Dashboard </p>
 
-    <input type="text" id="username" name="adminUsername" class="form-control mb-4 p-4" placeholder="Username">
+    <input type="text" id="username" name="adminUsername" required class="form-control mb-4 p-4" placeholder="Username">
 
-    <input type="password" id="password" name="adminPassword" class="form-control mb-4 p-4" placeholder="Password">
+    <input type="password" id="password" name="adminPassword" required class="form-control mb-4 p-4" placeholder="Password">
 
       <div class="custom-control custom-checkbox mb-4">
         <input type="checkbox" onclick="ShowPassword()"class="custom-control-input" id="checkbox">

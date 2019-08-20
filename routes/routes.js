@@ -91,8 +91,7 @@ router.get("/visit/:id", (req, res) => {
 
 // Participant Registration
 router.post("/event/:id", (req, res) => {
-  let name = req.body.user_name;
-  let email = req.body.user_email;
+  let { name, email } = req.body;
   let eventID = req.params.id;
 
   addParticipant = () => {
@@ -272,24 +271,24 @@ router.post("/", (req, res) => {
 
 //----- ADMIN ROUTES -----//
 
-//Admin panel
-router.get("/dashboard", (req, res) => {
-  // use res.render to load up an ejs view file
-  // admin panel
-  res.render("admin/dashboard");
-});
+// //Admin panel
+// router.get("/dashboard", (req, res) => {
+//   // use res.render to load up an ejs view file
+//   // admin panel
+//   res.render("admin/dashboard");
+// });
 
-//Admin Auth
-router.get("/login", (req, res) => {
-  // use res.render to load up an ejs view file
-  // admin panel
-  res.render("admin/login");
-});
-//Admin panel
-router.get("/backup", (req, res) => {
-  // use res.render to load up an ejs view file
-  // admin panel
-  res.render("admin/backup");
-});
+// //Admin Auth
+// router.get("/login", (req, res) => {
+//   // use res.render to load up an ejs view file
+//   // admin panel
+//   res.render("admin/login", { succ: false, err: false });
+// });
+// //Admin panel
+// router.get("/backup", (req, res) => {
+//   // use res.render to load up an ejs view file
+//   // admin panel
+//   res.render("admin/backup");
+// });
 
 module.exports = router;
