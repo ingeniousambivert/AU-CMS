@@ -226,16 +226,10 @@ app.post("/event/:id", (req, res) => {
 // );
 
 //Admin panel
-app.get("/adminpanel", (req, res) => {
+app.get("/dashboard", (req, res) => {
   // use res.render to load up an ejs view file
-  // contact page
-  res.render("adminform/admin");
-});
-
-app.get("/adminpanel/addevent", (req, res) => {
-  // use res.render to load up an ejs view file
-  // contact page
-  res.render("adminform/addevent");
+  // admin panel
+  res.render("admin/dashboard");
 });
 
 //Newsletter
