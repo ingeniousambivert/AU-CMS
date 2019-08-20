@@ -1,9 +1,10 @@
 const express = require("express");
 const request = require("request");
 const router = express.Router();
-// Create database instance for LowDB
-//See https://github.com/typicode/lowdb
-// DB for participants list
+
+// LowDB for participants list
+//See https://github.com/typicode/lowdb for docs
+
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const adapter = new FileSync("./data/participants.json");
