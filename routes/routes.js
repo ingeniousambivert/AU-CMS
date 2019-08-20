@@ -99,23 +99,56 @@ router.post("/event/:id", (req, res) => {
       .assign({ id: Date.now().toString() })
       .write();
   };
+  if (!name || !email) {
+    res.render("pages/event", {
+      succ: false,
+      err: true,
+      eID: eventID,
+      upcomingEvents: upcomingEvents
+    });
+    res.status(400);
+  } else {
+    let flag = new Boolean(true);
+    const isFull = pDB.has("participants").value();
 
-  let flag = new Boolean(true);
-  const isFull = pDB.has("participants").value();
+    const checkEvent = pDB
+      .get("participants")
+      .map("eventID")
+      .value();
 
-  const checkEvent = pDB
-    .get("participants")
-    .map("eventID")
-    .value();
+    const checkEmail = pDB
+      .get("participants")
+      .map("email")
+      .value();
 
-  const checkEmail = pDB
-    .get("participants")
-    .map("email")
-    .value();
-
-  checkEmail.forEach(element => {
-    if (email == element && eventID == eventID) {
-      flag = false;
+    checkEmail.forEach(element => {
+      if (email == element && eventID == eventID) {
+        flag = false;
+        res.render("pages/event", {
+          succ: false,
+          err: true,
+          eID: eventID,
+          upcomingEvents: upcomingEvents
+        });
+      }
+    });
+    if (flag) {
+      addParticipant();
+      res.render("pages/event", {
+        succ: true,
+        err: false,
+        eID: eventID,
+        upcomingEvents: upcomingEvents
+      });
+    } else if (isFull == false) {
+      addParticipant();
+      res.render("pages/event", {
+        succ: true,
+        err: false,
+        eID: eventID,
+        upcomingEvents: upcomingEvents
+      });
+    } else {
       res.render("pages/event", {
         succ: false,
         err: true,
@@ -123,30 +156,6 @@ router.post("/event/:id", (req, res) => {
         upcomingEvents: upcomingEvents
       });
     }
-  });
-  if (flag) {
-    addParticipant();
-    res.render("pages/event", {
-      succ: true,
-      err: false,
-      eID: eventID,
-      upcomingEvents: upcomingEvents
-    });
-  } else if (isFull == false) {
-    addParticipant();
-    res.render("pages/event", {
-      succ: true,
-      err: false,
-      eID: eventID,
-      upcomingEvents: upcomingEvents
-    });
-  } else {
-    res.render("pages/event", {
-      succ: false,
-      err: true,
-      eID: eventID,
-      upcomingEvents: upcomingEvents
-    });
   }
 });
 
