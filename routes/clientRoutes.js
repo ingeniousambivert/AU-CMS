@@ -1,6 +1,6 @@
 const express = require("express");
 const request = require("request");
-const router = express.Router();
+const clientRouter = express.Router();
 
 // LowDB for participants list
 //See https://github.com/typicode/lowdb for docs
@@ -17,8 +17,8 @@ const visits = require("../data/industrial-visits.json");
 
 //----- CLIENT ROUTES -----//
 
-// GET and POST Routes for the router
-router.get("/", (req, res) => {
+// GET and POST Routes for the clientRouter
+clientRouter.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
   res.render("pages/index", {
@@ -28,31 +28,31 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/about", (req, res) => {
+clientRouter.get("/about", (req, res) => {
   // use res.render to load up an ejs view file
   // about page
   res.render("pages/about", { team: team });
 });
 
-router.get("/contact", (req, res) => {
+clientRouter.get("/contact", (req, res) => {
   // use res.render to load up an ejs view file
   // contact page
   res.render("pages/contact");
 });
 
-router.get("/former", (req, res) => {
+clientRouter.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // former events page
   res.render("pages/former", { formerEvents: formerEvents });
 });
 
-router.get("/upcoming", (req, res) => {
+clientRouter.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
   res.render("pages/upcoming", { upcomingEvents: upcomingEvents });
 });
 
-router.get("/event/:id", (req, res) => {
+clientRouter.get("/event/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming event page
   let eventID = req.params.id;
@@ -64,25 +64,25 @@ router.get("/event/:id", (req, res) => {
   });
 });
 
-router.get("/chemecar", (req, res) => {
+clientRouter.get("/chemecar", (req, res) => {
   // use res.render to load up an ejs view file
   // chemecar events page
   res.render("pages/chemecar");
 });
 
-router.get("/show-tell", (req, res) => {
+clientRouter.get("/show-tell", (req, res) => {
   // use res.render to load up an ejs view file
   // show and tell events page
   res.render("pages/show-tell");
 });
 
-router.get("/industrial-visits", (req, res) => {
+clientRouter.get("/industrial-visits", (req, res) => {
   // use res.render to load up an ejs view file
   // industrial visits page
   res.render("pages/industrial-visits", { visit: visits });
 });
 
-router.get("/visit/:id", (req, res) => {
+clientRouter.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // individual visit info page
   let visitID = req.params.id;
@@ -90,7 +90,7 @@ router.get("/visit/:id", (req, res) => {
 });
 
 // Participant Registration
-router.post("/event/:id", (req, res) => {
+clientRouter.post("/event/:id", (req, res) => {
   let { user_email, user_name, user_phone } = req.body;
   let eventID = req.params.id;
 
@@ -176,7 +176,7 @@ router.post("/event/:id", (req, res) => {
 });
 
 //Newsletter Signup
-router.post("/", (req, res) => {
+clientRouter.post("/", (req, res) => {
   const { user_email } = req.body;
   if (!user_email) {
     res.render("pages/index", {
@@ -234,7 +234,7 @@ router.post("/", (req, res) => {
   }
 });
 
-// router.post(
+// clientRouter.post(
 //   "/register",
 //   [
 //     check("user_email")
@@ -282,4 +282,4 @@ router.post("/", (req, res) => {
 //   }
 // );
 
-module.exports = router;
+module.exports = clientRouter;
