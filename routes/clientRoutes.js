@@ -192,19 +192,6 @@ clientRouter.post("/event/:id", (req, res) => {
       }
     });
 
-    /*checkEmail.forEach(element => {
-  
-    if (email == element && eventID == eventID) {
-      flag = false;
-      res.render("pages/event", {
-        succ: false,
-        err: true,
-        eID: eventID,
-        upcomingEvents: upcomingEvents
-      });
-    }
-  });*/
-
     if (flag) {
       addParticipant();
       res.render("pages/event", {
