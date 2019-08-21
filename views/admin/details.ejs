@@ -8,7 +8,7 @@
 <head>
    <% include ./head %>
 </head>
-
+ 
 <body class="grey lighten-3">
 
   <!--Main Navigation-->
@@ -23,20 +23,78 @@
 
     <section class="">
       
-       <div class="jumbotron">
+    <%# CRUD For Industrial Visits %> 
 <% if (event == "industrial") { %>
- <h2 class="display-4 text-center"> Industrial Visits</h2>
+  <div class="jumbotron">
+  <h2 class="text-center mb-4"> Industrial Visits</h2>
+  </div>
 <% } %>
+
+  <%# CRUD For Upcoming Events %> 
 <% if (event == "upcoming") { %>
- <h2 class="display-4 text-center"> Upcoming Events</h2>
-<% } %>
-<% if (event == "former") { %>
- <h2 class="display-4 text-center"> Former Events</h2>
-<% } %>
+ <div class="jumbotron">
+ <h2 class="text-center mb-4"> Upcoming Events</h2>
+
+    <!-- CRUD FORM -->
+    <form class="container" method="POST" action="/details/upcoming">
+
+    <p class="h4 text-center dark-grey-text mb-4">Add a new event</p>
+
+    <div class="row">
+
+    <div class="col-md-6">
+    <input type="text" id="titleForEvent" name="titleForUpcoming" class="form-control rounded-1 mb-4" placeholder="Title">
+    </div>
+
+    <div class="col-md-6">
+    <input type="text" id="briefForEvent" name="briefForUpcoming" class="form-control rounded-1 mb-4" placeholder="Brief">
+    </div>
+
+    </div>
 
 
-
+    <div class="row">
+    
+      <div class="col-md-12">
+      <div class="form-group">
+        <textarea class="form-control rounded-1" id="detailsForUpcoming" name="detailsForUpcoming" rows="3" placeholder="Details"></textarea>
       </div>
+      </div>
+
+    </div>
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+
+      <div class="custom-file">
+          <input type="file" multiple class="custom-file-input" id="fileForUpcoming"
+          name="fileForUpcoming"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose files to upload</label>
+      </div>
+      
+    </div>
+    </div>
+    </div>
+    <button class="btn btn-primary my-4" type="submit">Submit</button>
+
+    </form>
+    <!-- CRUD FORM -->
+    </div>
+
+<% } %>
+
+ <%# CRUD For Former Events %> 
+<% if (event == "former") { %>
+  <div class="jumbotron">
+  <h2 class="text-center mb-4"> Former Events</h2>
+  </div>
+<% } %>
 
     </section>
 
