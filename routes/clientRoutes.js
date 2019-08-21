@@ -255,6 +255,7 @@ clientRouter.post("/event/:id", (req, res) => {
     }
   }
 });
+
 //Newsletter Signup
 clientRouter.post("/", (req, res) => {
   const { user_email } = req.body;

@@ -26,12 +26,12 @@
       
        <div class="jumbotron">
         <h1 class=" text-center">Upcoming Events</h1>
-       <ul class="list-group mt-4 mb-4">
+       <ul class="list-group mt-4 mb-4 p-4">
         <% upcomingEvents.forEach(function(item){ %>
         <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
          <% }) %>
         </ul>
-        <a class="btn btn-indigo btn-sm" href="/details/upcoming" role="button">add new</a>
+        <a class="btn btn-indigo btn-sm " href="/details/upcoming" role="button">add new</a>
       </div>
 
     </section>
@@ -41,7 +41,7 @@
       
        <div class="jumbotron">
         <h1 class="text-center">Industrial Visits</h1>
-        <ul class="list-group mt-4 mb-4">
+        <ul class="list-group mt-4 mb-4 p-4">
         <% visits.forEach(function(item){ %>
         <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
          <% }) %>
@@ -55,7 +55,7 @@
       
        <div class="jumbotron">
         <h1 class=" text-center">Former Events</h1>
-        <ul class="list-group mt-4 mb-4">
+        <ul class="list-group mt-4 mb-4 p-4">
          <% formerEvents.forEach(function(item){ %>
          <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
          <% }) %>
