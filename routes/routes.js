@@ -107,7 +107,15 @@ router.post("/event/:id", (req, res) => {
       .assign({ id: Date.now().toString() })
       .write();
   };
-  if (!name || !email) {
+  if (!user_name || !user_email || !user_phone) {
+    res.render("pages/event", {
+      succ: false,
+      err: true,
+      eID: eventID,
+      upcomingEvents: upcomingEvents
+    });
+    res.status(400);
+  } else if (user_phone.length < 10) {
     res.render("pages/event", {
       succ: false,
       err: true,
@@ -130,7 +138,7 @@ router.post("/event/:id", (req, res) => {
       .value();
 
     checkEmail.forEach(element => {
-      if (email == element && eventID == eventID) {
+      if (user_email == element && eventID == eventID) {
         flag = false;
         res.render("pages/event", {
           succ: false,

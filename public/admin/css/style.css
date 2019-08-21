@@ -3,7 +3,9 @@ html,
 body {
   height: 100%;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .mt-10 {
   margin-top: 10%;
 }
