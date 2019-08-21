@@ -28,8 +28,10 @@ const team = require("../data/team.json");
 clientRouter.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
+  const former = formerDB.get("former").value();
+
   res.render("pages/index", {
-    formerEvents: formerEvents,
+    formerEvents: former,
     swalsucc: false,
     swalerr: false
   });
@@ -132,7 +134,7 @@ clientRouter.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // individual visit info page
   const visitID = req.params.id;
-  //console.log(visitID);
+
   const visit = industrialDB
     .get("industrial")
     .filter({ id: visitID })
