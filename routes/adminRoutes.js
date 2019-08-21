@@ -81,7 +81,7 @@ adminRouter.get("/dashboard", checkSignIn, (req, res) => {
   });
 });
 
-//  Details Route
+// Modify Route
 adminRouter.get("/modify/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
@@ -96,8 +96,23 @@ adminRouter.get("/modify/:event", checkSignIn, (req, res) => {
   });
 });
 
+//  Add Route
+adminRouter.get("/add/:event", checkSignIn, (req, res) => {
+  // use res.render to load up an ejs view file
+  // admin panel
+
+  res.render("admin/add", {
+    formerEvents: former,
+    upcomingEvents: upcoming,
+    visits: industrial,
+    event: req.params.event,
+    succ: false,
+    err: false
+  });
+});
+
 // Add New Items
-adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
+adminRouter.post("/add/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
   let checkEvent = req.params.event;
@@ -117,7 +132,7 @@ adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
       !detailsForUpcoming ||
       !dateForUpcoming
     ) {
-      res.render("admin/modify", {
+      res.render("admin/add", {
         formerEvents: former,
         upcomingEvents: upcoming,
         visits: industrial,
@@ -139,7 +154,7 @@ adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
         .assign({ id: Date.now().toString() })
         .write();
 
-      res.render("admin/modify", {
+      res.render("admin/add", {
         formerEvents: former,
         upcomingEvents: upcoming,
         visits: industrial,
@@ -168,7 +183,7 @@ adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
       !dateForVisit ||
       !detailsForVisit
     ) {
-      res.render("admin/modify", {
+      res.render("admin/add", {
         formerEvents: former,
         upcomingEvents: upcoming,
         visits: industrial,
@@ -191,7 +206,7 @@ adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
         .assign({ id: time })
         .write();
 
-      res.render("admin/modify", {
+      res.render("admin/add", {
         formerEvents: former,
         upcomingEvents: upcoming,
         visits: industrial,
@@ -212,7 +227,7 @@ adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
       .value();
 
     if (!itemtoMove) {
-      res.render("admin/modify", {
+      res.render("admin/add", {
         formerEvents: former,
         upcomingEvents: upcoming,
         visits: industrial,
@@ -232,7 +247,7 @@ adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
         .push(getUpcoming)
         .write();
 
-      res.render("admin/modify", {
+      res.render("admin/add", {
         formerEvents: former,
         upcomingEvents: upcoming,
         visits: industrial,

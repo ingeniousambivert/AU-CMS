@@ -28,10 +28,10 @@
         <h1 class=" text-center">Upcoming Events</h1>
        <ul class="list-group mt-4 mb-4 p-4">
         <% upcomingEvents.forEach(function(item){ %>
-        <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
+        <li class="list-group-item hoverable"><a href="/modify/<%= item.title %>"><%= item.title %></a></li>
          <% }) %>
         </ul>
-        <a class="btn btn-indigo btn-sm " href="/modify/upcoming" role="button">add new</a>
+        <a class="btn btn-indigo btn-sm " href="/add/upcoming" role="button">add new</a>
         <small class="grey-text" style="float:right;margin-right:2%;">Click on the title to view more.</small>
       </div>
 
@@ -44,10 +44,10 @@
         <h1 class="text-center">Industrial Visits</h1>
         <ul class="list-group mt-4 mb-4 p-4">
         <% visits.forEach(function(item){ %>
-        <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
+        <li class="list-group-item hoverable"><a href="/modify/<%= item.title %>"><%= item.title %></a></li>
          <% }) %>
         </ul>
-        <a class="btn btn-indigo btn-sm" href="/modify/industrial" role="button">add new</a>
+        <a class="btn btn-indigo btn-sm" href="/add/industrial" role="button">add new</a>
          <small class="grey-text" style="float:right;margin-right:2%;">Click on the title to view more.</small>
       </div>
 
@@ -59,10 +59,10 @@
         <h1 class=" text-center">Former Events</h1>
         <ul class="list-group mt-4 mb-4 p-4">
          <% formerEvents.forEach(function(item){ %>
-         <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
+         <li class="list-group-item hoverable"><a href="/modify/<%= item.title %>"><%= item.title %></a></li>
          <% }) %>
         </ul>
-        <a class="btn btn-indigo btn-sm" href="/modify/former" role="button">add new</a>
+        <a class="btn btn-indigo btn-sm" href="/add/former" role="button">add new</a>
          <small class="grey-text" style="float:right;margin-right:2%;">Click on the title to view more.</small>
       </div>
 

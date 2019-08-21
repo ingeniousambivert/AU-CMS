@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    WEBSITE AUTHORS : 
+    MONARCH MAISURIYA 
+    HIMANSHU JOSHI
+-->
+<head>
+   <% include ./head %>
+</head>
+ 
+<body class="grey lighten-3">
+
+  <!--Main Navigation-->
+  <header>
+ <% include ./header %>
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+
+    <section class="">
+      
+    <%# CRUD For Industrial Visits %> 
+<% if (event == "industrial") { %>
+  <div class="jumbotron">
+  <h2 class="text-center mb-4"> Industrial Visits</h2>
+   <!--EJS Conditions-->
+        <% if (err) { %>
+        <div class="alert alert-danger col-md-4 center-element mt-5 mb-5  text-center" role="alert">
+          <h6>An error has occured.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center col-md-4 center-element mt-5 mb-5 alert-success" role="alert">
+          <h6>Visit added successfully</h6>
+        </div>
+        <% } %>
+    <!-- CRUD FORM -->
+    <form class="container" method="POST" action="/add/industrial">
+
+    <p class="h4 text-center dark-grey-text mb-4">Add a new visit</p>
+
+    <div class="row">
+
+    <div class="col-md-6">
+    <input type="text" id="titleForVisit" REQUIRED name="titleForVisit" class="form-control rounded-1 mb-4" placeholder="Title">
+    </div>
+
+    <div class="col-md-6">
+    <input type="text" id="stagesForVisit" REQUIRED name="stagesForVisit" class="form-control rounded-1 mb-4" placeholder="Stages">
+    </div>
+
+    </div>
+
+
+    <div class="row">
+    
+      <div class="col-md-12">
+      <div class="form-group">
+        <textarea class="form-control rounded-1" REQUIRED id="detailsForVisit" name="detailsForVisit" rows="3" placeholder="Details"></textarea>
+      </div>
+      </div>
+
+    </div>
+
+  <div class="row">
+
+    <div class="col-md-5">
+    <input type="date" id="date-picker-example" id="dateForVisit" name="dateForVisit" class="form-control datepicker">
+    </div>
+
+    <div class="col-md-7">
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+
+      <div class="custom-file">
+          <input type="file" multiple class="custom-file-input" id="fileForUpcoming"
+          name="fileForUpcoming"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose images to upload</label>
+      </div>
+      
+    </div>
+    </div>  
+  </div>
+
+    <button class="btn btn-primary my-4" type="submit">Submit</button>
+
+    </form>
+    <!-- CRUD FORM -->
+    </div>
+
+
+
+  </div>
+<% } %>
+
+  <%# CRUD For Upcoming Events %> 
+<% if (event == "upcoming") { %>
+
+ <div class="jumbotron">
+
+ <h2 class="text-center mb-4"> Upcoming Events</h2>
+
+        <!--EJS Conditions-->
+        <% if (err) { %>
+        <div class="alert alert-danger col-md-4 center-element mt-5 mb-5  text-center" role="alert">
+          <h6>An error has occured.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center col-md-4 center-element mt-5 mb-5 alert-success" role="alert">
+          <h6>Event added successfully</h6>
+        </div>
+        <% } %>
+    <!-- CRUD FORM -->
+    <form class="container" method="POST" action="/add/upcoming">
+
+    <p class="h4 text-center dark-grey-text mb-4">Add a new event</p>
+
+    <div class="row">
+
+    <div class="col-md-6">
+    <input type="text" id="titleForEvent" REQUIRED name="titleForUpcoming" class="form-control rounded-1 mb-4" placeholder="Title">
+    </div>
+
+    <div class="col-md-6">
+    <input type="text" id="briefForEvent" REQUIRED name="briefForUpcoming" class="form-control rounded-1 mb-4" placeholder="Brief">
+    </div>
+
+    </div>
+
+
+    <div class="row">
+    
+      <div class="col-md-12">
+      <div class="form-group">
+        <textarea class="form-control rounded-1" REQUIRED id="detailsForUpcoming" name="detailsForUpcoming" rows="3" placeholder="Details"></textarea>
+      </div>
+      </div>
+
+    </div>
+
+  <div class="row">
+
+    <div class="col-md-5">
+    <input type="date" id="date-picker-example" REQUIRED id="dateForUpcoming" name="dateForUpcoming" class="form-control datepicker">
+    </div>
+
+    <div class="col-md-7">
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+
+      <div class="custom-file">
+          <input type="file" multiple class="custom-file-input" id="fileForUpcoming"
+          name="fileForUpcoming"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose images to upload</label>
+      </div>
+      
+    </div>
+    </div>  
+  </div>
+
+    <button class="btn btn-primary my-4" type="submit">Submit</button>
+
+    </form>
+    <!-- CRUD FORM -->
+    </div>
+
+<% } %>
+
+ <%# CRUD For Former Events %> 
+<% if (event == "former") { %>
+  <div class="jumbotron">
+  <h2 class="text-center mb-4"> Former Events</h2>
+  <p class="grey-text text-center">These are the upcoming/ongoing events. Select any of these to move to Former Events.</p>
+        <!--EJS Conditions-->
+        <% if (err) { %>
+        <div class="alert alert-danger col-md-4 center-element mt-5 mb-5  text-center" role="alert">
+          <h6>An error has occured.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center col-md-4 center-element mt-5 mb-5 alert-success" role="alert">
+          <h6>Event moved successfully</h6>
+        </div>
+        <% } %>
+   <form class="container" method="POST" action="/add/former">
+  <ul class="list-group mt-4 mb-4 p-4">
+        <% upcomingEvents.forEach(function(item){ %>
+        <li class="list-group-item "><div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" name="itemtoMove" value="<%= item.title %>" id="<%= item.id %>">
+    <label class="custom-control-label" for="<%= item.id %>"><%= item.title %></label>
+        </div>
+        </li>
+         <% }) %>
+        </ul>
+        <button class="btn btn-primary my-4" type="submit">Move</button>
+        </form>
+  </div>
+<% } %>
+
+    </section>
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="text-center font-small ">
+  <% include ./footer %>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+
+    <!--  JavaScript -->
+    <script type="text/javascript">
+      let date = new Date();
+      document.getElementById("copyrightDate").innerHTML = date.getFullYear();
+    </script>
+    <!-- JavaScript -->
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="../../admin/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../../admin/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
+
+</body>
+
+</html>
+
