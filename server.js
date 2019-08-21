@@ -1,11 +1,13 @@
 // Express App Starts Here
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+// set morgan to log info about our requests for development use.
+app.use(morgan("dev"));
 // Set the bodyparser
 const bodyParser = require("body-parser");
+
 // Required for authentication
-const multer = require("multer");
-const upload = multer();
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
@@ -13,14 +15,17 @@ const cookieParser = require("cookie-parser");
 const checkSignIn = require("./middlewares/checkSignIn");
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(upload.array());
 app.use(cookieParser());
 app.use(
   session({
+    key: "admin",
     secret: "mySecret",
     proxy: true,
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000
+    }
   })
 );
 
@@ -67,7 +72,7 @@ app.post("/login", (req, res) => {
 });
 
 //  Dashboard Route
-app.get("/dashboard", (req, res) => {
+app.get("/dashboard", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
   res.render("admin/dashboard");
