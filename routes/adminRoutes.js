@@ -137,7 +137,11 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         })
         .last()
         .assign({ id: Date.now().toString() })
-        .write();
+        .write()
+        .then(() => console.log("Upcoming Event has been added"))
+        .catch(error => {
+          throw error;
+        });
 
       res.render("admin/details", {
         formerEvents: former,
@@ -185,7 +189,11 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         })
         .last()
         .assign({ id: Date.now().toString() })
-        .write();
+        .write()
+        .then(() => console.log("Visit has been added"))
+        .catch(error => {
+          throw error;
+        });
 
       res.render("admin/details", {
         formerEvents: former,

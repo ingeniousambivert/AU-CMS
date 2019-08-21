@@ -169,7 +169,11 @@ clientRouter.post("/event/:id", (req, res) => {
       })
       .last()
       .assign({ id: Date.now().toString() })
-      .write();
+      .write()
+      .then(() => console.log("Participant has been added"))
+      .catch(error => {
+        throw error;
+      });
   };
   if (!user_name || !user_email || !user_phone) {
     res.render("pages/event", {
