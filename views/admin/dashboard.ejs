@@ -28,7 +28,7 @@
         <h2 class="display-4 text-center">Upcoming Events</h2>
        <ul class="list-group mt-4 mb-4">
         <% upcomingEvents.forEach(function(item){ %>
-        <li class="list-group-item"><a href=""><%= item.title %></a></li>
+        <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
          <% }) %>
         </ul>
         <a class="btn btn-indigo btn-sm" href="/details/upcoming" role="button">add new</a>
@@ -43,7 +43,7 @@
         <h2 class="display-4 text-center">Industrial Visits</h2>
         <ul class="list-group mt-4 mb-4">
         <% visits.forEach(function(item){ %>
-        <li class="list-group-item"><a href=""><%= item.title %></a></li>
+        <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
          <% }) %>
         </ul>
         <a class="btn btn-indigo btn-sm" href="/details/industrial" role="button">add new</a>
@@ -57,7 +57,7 @@
         <h2 class="display-4 text-center">Former Events</h2>
         <ul class="list-group mt-4 mb-4">
          <% formerEvents.forEach(function(item){ %>
-         <li class="list-group-item"><a href=""><%= item.title %></a></li>
+         <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
          <% }) %>
         </ul>
         <a class="btn btn-indigo btn-sm" href="/details/former" role="button">add new</a>
