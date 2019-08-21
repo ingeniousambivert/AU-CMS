@@ -68,9 +68,23 @@
               </p>
 
               <!-- Form -->
-              <form method="POST" action="/event/<%= item.id %>" class="mt-5">
+              <form method="POST" action="/event/<%= item.id %>" class="mt-5" >
                 <div class="row">
-                  <div class="col-6">
+                  
+                  <div class="col-10 ">
+                    <input
+                      type="email"
+                      name="user_email"
+                      id="defaultContactFormEmail"
+                      class="form-control mb-4"
+                      placeholder="E-mail"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                <div class="col-8">
                     <input
                       type="text"
                       name="user_name"
@@ -80,13 +94,16 @@
                       required
                     />
                   </div>
+                </div>
+
+                <div class="row">
                   <div class="col-6">
                     <input
-                      type="email"
-                      name="user_email"
-                      id="defaultContactFormEmail"
+                      type="number"
+                      name="user_phone"
+                      id="defaultContactFormNumber"
                       class="form-control mb-4"
-                      placeholder="E-mail"
+                      placeholder="Phone number"
                       required
                     />
                   </div>

@@ -17,3 +17,7 @@ body {
 .mb-15 {
   margin-bottom: 15%;
 }
+
+.center-element {
+  margin: 0 auto;
+}
