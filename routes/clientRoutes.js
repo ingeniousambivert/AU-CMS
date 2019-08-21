@@ -255,13 +255,12 @@ clientRouter.post("/event/:id", (req, res) => {
     }
   }
 });
-
-// Newsletter Signup
+//Newsletter Signup
 clientRouter.post("/", (req, res) => {
   const { user_email } = req.body;
   if (!user_email) {
     res.render("pages/index", {
-      formerEvents: formerEvents,
+      formerEvents: former,
       swalsucc: false,
       swalerr: true
     });
@@ -286,49 +285,45 @@ clientRouter.post("/", (req, res) => {
 
         method: "POST",
         headers: {
-          Authorization: "auth 7y978y4rhiuwjbhdafiy"
+          Authorization: "auth dde461ecf68f1bc5df4741297ae870d4-us18"
           // Temp API KEY
-          // dde461ecf68f1bc5df4741297ae870d4-us18
           // Replace with Owner's API Key
         },
         body: postData
       };
       request(options, (err, response, body) => {
+        console.log(response.statusCode);
         res.statusCode = response.statusCode;
-        if (err) {
-          console.log(`ERROR : ${err}`);
-        }
-        console.log(`LOG : ${body}`);
-      });
+        console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
 
-      if (res.statusCode == 200) {
-        res.render("pages/index", {
-          formerEvents: formerEvents,
-          swalsucc: true,
-          swalerr: false
-        });
-      } else if (
-        res.statusCode == 400 ||
-        res.statusCode == 401 ||
-        res.statusCode == 403
-      ) {
-        res.render("pages/index", {
-          formerEvents: formerEvents,
-          swalsucc: false,
-          swalerr: true
-        });
-      } else {
-        res.status(400);
-        res.render("pages/index", {
-          formerEvents: formerEvents,
-          swalsucc: false,
-          swalerr: true
-        });
-      }
+        if (res.statusCode == 200) {
+          res.render("pages/index", {
+            formerEvents: former,
+            swalsucc: true,
+            swalerr: false
+          });
+        } else if (
+          res.statusCode == 400 ||
+          res.statusCode == 401 ||
+          res.statusCode == 403
+        ) {
+          res.render("pages/index", {
+            formerEvents: former,
+            swalsucc: false,
+            swalerr: true
+          });
+        } else {
+          res.status(400);
+          res.render("pages/index", {
+            formerEvents: former,
+            swalsucc: false,
+            swalerr: true
+          });
+        }
+      });
     }
   }
 });
-
 // clientRouter.post(
 //   "/register",
 //   [
