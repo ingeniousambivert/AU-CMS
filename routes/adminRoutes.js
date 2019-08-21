@@ -20,6 +20,11 @@ const industrialDB = low(industrialAdapter);
 const formerAdapter = new FileSync("./data/former-events.json");
 const formerDB = low(formerAdapter);
 
+// LowDB Instances
+const upcoming = upcomingDB.get("upcoming").value();
+const former = formerDB.get("former").value();
+const industrial = industrialDB.get("industrial").value();
+
 //----- ADMIN ROUTES -----//
 
 adminRouter.use((req, res, next) => {
@@ -68,9 +73,7 @@ adminRouter.post("/login", (req, res) => {
 adminRouter.get("/dashboard", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
-  const upcoming = upcomingDB.get("upcoming").value();
-  const former = formerDB.get("former").value();
-  const industrial = industrialDB.get("industrial").value();
+
   res.render("admin/dashboard", {
     formerEvents: former,
     upcomingEvents: upcoming,
@@ -83,9 +86,6 @@ adminRouter.get("/details/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
 
-  const upcoming = upcomingDB.get("upcoming").value();
-  const former = formerDB.get("former").value();
-  const industrial = industrialDB.get("industrial").value();
   res.render("admin/details", {
     formerEvents: former,
     upcomingEvents: upcoming,
@@ -113,9 +113,6 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
       .assign({ id: Date.now().toString() })
       .write();
   }
-  const upcoming = upcomingDB.get("upcoming").value();
-  const former = formerDB.get("former").value();
-  const industrial = industrialDB.get("industrial").value();
 
   res.render("admin/details", {
     formerEvents: former,

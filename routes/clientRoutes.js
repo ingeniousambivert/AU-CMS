@@ -2,6 +2,7 @@ const express = require("express");
 const request = require("request");
 const clientRouter = express.Router();
 
+const moment = require("moment");
 // LowDB for participants list
 //See https://github.com/typicode/lowdb for docs
 const low = require("lowdb");
@@ -19,6 +20,11 @@ const industrialDB = low(industrialAdapter);
 const formerAdapter = new FileSync("./data/former-events.json");
 const formerDB = low(formerAdapter);
 
+// LowDB Instances
+const upcoming = upcomingDB.get("upcoming").value();
+const former = formerDB.get("former").value();
+const industrial = industrialDB.get("industrial").value();
+
 // Data for views
 const team = require("../data/team.json");
 
@@ -28,7 +34,6 @@ const team = require("../data/team.json");
 clientRouter.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
-  const former = formerDB.get("former").value();
 
   res.render("pages/index", {
     formerEvents: former,
@@ -59,7 +64,6 @@ clientRouter.get("/contact", (req, res) => {
 clientRouter.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // former events page
-  const former = formerDB.get("former").value();
 
   res.render("pages/former", {
     formerEvents: former,
@@ -71,7 +75,6 @@ clientRouter.get("/former", (req, res) => {
 clientRouter.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
-  const upcoming = upcomingDB.get("upcoming").value();
 
   res.render("pages/upcoming", {
     upcomingEvents: upcoming,
@@ -121,7 +124,6 @@ clientRouter.get("/show-tell", (req, res) => {
 clientRouter.get("/industrial-visits", (req, res) => {
   // use res.render to load up an ejs view file
   // industrial visits page
-  const industrial = industrialDB.get("industrial").value();
 
   res.render("pages/industrial-visits", {
     visit: industrial,
@@ -162,6 +164,7 @@ clientRouter.post("/event/:id", (req, res) => {
         name: user_name,
         email: user_email,
         phone: user_phone,
+        registeredOn: moment().format("MMMM Do YYYY, h:mm:ss a"),
         eventID: eventID
       })
       .last()
