@@ -20,10 +20,12 @@
     <section id="former-events" class="">
       
        <div class="jumbotron">
-        <h2 class="display-4">Former Events</h2>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <h2 class="display-4 text-center">Former Events</h2>
+        <ul class="list-group mt-4 mb-4">
+         <% formerEvents.forEach(function(item){ %>
+        <li class="list-group-item"><%= item.title %></li>
+         <% }) %>
+        </ul>
         <a class="btn btn-primary " href="#" role="button">Details</a>
       </div>
 
@@ -32,10 +34,12 @@
      <section id="upcoming-events" class="">
       
        <div class="jumbotron">
-        <h2 class="display-4">Upcoming Events</h2>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <h2 class="display-4 text-center">Upcoming Events</h2>
+       <ul class="list-group mt-4 mb-4">
+        <% upcomingEvents.forEach(function(item){ %>
+        <li class="list-group-item"><%= item.title %></li>
+         <% }) %>
+        </ul>
         <a class="btn btn-primary " href="#" role="button">Details</a>
       </div>
 
@@ -45,10 +49,12 @@
        <section id="industrial-visits" class="">
       
        <div class="jumbotron">
-        <h2 class="display-4">Industrial Visits</h2>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <h2 class="display-4 text-center">Industrial Visits</h2>
+        <ul class="list-group mt-4 mb-4">
+        <% visits.forEach(function(item){ %>
+        <li class="list-group-item"><%= item.title %></li>
+         <% }) %>
+        </ul>
         <a class="btn btn-primary " href="#" role="button">Details</a>
       </div>
 

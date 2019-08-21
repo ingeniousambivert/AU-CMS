@@ -15,6 +15,11 @@ const cookieParser = require("cookie-parser");
 const checkSignIn = require("./middlewares/checkSignIn");
 const returnToDash = require("./middlewares/returnToDash");
 
+// Data for views
+const formerEvents = require("./data/former-events.json");
+const upcomingEvents = require("./data/upcoming-events.json");
+const visits = require("./data/industrial-visits.json");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
@@ -87,7 +92,11 @@ app.post("/login", (req, res) => {
 app.get("/dashboard", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
-  res.render("admin/dashboard", {});
+  res.render("admin/dashboard", {
+    formerEvents: formerEvents,
+    upcomingEvents: upcomingEvents,
+    visits: visits
+  });
 });
 
 app.get("/logout", function(req, res) {
