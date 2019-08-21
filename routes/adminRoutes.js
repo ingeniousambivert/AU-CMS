@@ -137,8 +137,7 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         })
         .last()
         .assign({ id: Date.now().toString() })
-        .write()
-        .console.log("ADDED");
+        .write();
 
       res.render("admin/details", {
         formerEvents: former,
@@ -152,36 +151,51 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
   }
 
   // For Industrial Visits
-  else if (checkEvent == "industrial") {
+
+  if (checkEvent == "industrial") {
     let {
       titleForindustrial,
       stagesForindustrial,
       detailsForindustrial,
       dateForindustrial
     } = req.body;
+    if (
+      !titleForindustrial ||
+      !stagesForindustrial ||
+      !detailsForindustrial ||
+      !dateForindustrial
+    ) {
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: false,
+        err: true
+      });
+      res.status(400);
+    } else {
+      industrialDB
+        .get("industrial")
+        .push({
+          title: titleForindustrial,
+          date: dateForindustrial,
+          stages: stagesForindustrial,
+          details: detailsForindustrial
+        })
+        .last()
+        .assign({ id: Date.now().toString() })
+        .write();
 
-    console.log(req.body);
-    industrialDB
-      .get("industrial")
-      .push({
-        title: titleForindustrial,
-        date: dateForindustrial,
-        stages: stagesForindustrial,
-        details: detailsForindustrial
-      })
-      .last()
-      .assign({ id: Date.now().toString() })
-      .write()
-      .console.log("ADDED");
-
-    res.render("admin/details", {
-      formerEvents: former,
-      upcomingEvents: upcoming,
-      visits: industrial,
-      event: checkEvent,
-      succ: true,
-      err: false
-    });
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: true,
+        err: false
+      });
+    }
   }
 });
 
