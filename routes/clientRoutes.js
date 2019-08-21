@@ -269,7 +269,7 @@ clientRouter.post("/", (req, res) => {
           succ: true,
           err: false,
           formerEvents: formerEvents,
-          swalsucc: false,
+          swalsucc: true,
           swalerr: false
         });
       } else {
@@ -279,7 +279,7 @@ clientRouter.post("/", (req, res) => {
           err: true,
           formerEvents: formerEvents,
           swalsucc: false,
-          swalerr: false
+          swalerr: true
         });
       }
     }
