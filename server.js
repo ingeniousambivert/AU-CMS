@@ -71,9 +71,8 @@ app.post("/login", (req, res) => {
         }
       ];
       req.session.admin = adminValues;
-      // console.log(req.body);
       res.redirect("/dashboard");
-      // console.log("Admin logged in.");
+      console.log("Admin logged in.");
     } else {
       res.render("admin/login", {
         succ: false,
