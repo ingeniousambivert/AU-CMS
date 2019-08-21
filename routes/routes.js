@@ -269,26 +269,4 @@ router.post("/", (req, res) => {
 //   }
 // );
 
-//----- ADMIN ROUTES -----//
-
-// //Admin panel
-// router.get("/dashboard", (req, res) => {
-//   // use res.render to load up an ejs view file
-//   // admin panel
-//   res.render("admin/dashboard");
-// });
-
-// //Admin Auth
-// router.get("/login", (req, res) => {
-//   // use res.render to load up an ejs view file
-//   // admin panel
-//   res.render("admin/login", { succ: false, err: false });
-// });
-// //Admin panel
-// router.get("/backup", (req, res) => {
-//   // use res.render to load up an ejs view file
-//   // admin panel
-//   res.render("admin/backup");
-// });
-
 module.exports = router;

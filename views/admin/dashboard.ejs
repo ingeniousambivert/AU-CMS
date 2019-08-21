@@ -13,7 +13,7 @@
   <!-- Material Design Bootstrap -->
   <link href="../../admin/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="../../admin/css/style.min.css" rel="stylesheet">
+  <link href="../../admin/css/style.css" rel="stylesheet">
   
 </head>
 
@@ -26,6 +26,10 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
       <div class="container-fluid">
 
+        <!-- Brand -->
+        <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+          <strong class="blue-text">Admin</strong>
+        </a>
 
         <!-- Collapse -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -38,38 +42,27 @@
 
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a class="nav-link waves-effect" href="#">Home
-                <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About
+              <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" >About
                 MDB</a>
             </li>
             <li class="nav-item">
               <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-                target="_blank">Free
+               >Free
                 download</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">Free
+              <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" >Free
                 tutorials</a>
             </li>
           </ul>
 
           <!-- Right -->
           <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-              <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="/logout" class="nav-link border border-light rounded waves-effect">
                 <i class="fas fa-sign-out-alt"></i>Logout
@@ -83,30 +76,6 @@
     </nav>
     <!-- Navbar -->
 
-    <!-- Sidebar -->
-    <div class="sidebar-fixed position-fixed">
-
-      <a class="logo-wrapper waves-effect">
-        <img src="https://mdbootstrap.com/img/logo/mdb-email.png" class="img-fluid" alt="">
-      </a>
-
-      <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item active waves-effect">
-          <i class="fas fa-chart-pie mr-3"></i>Dashboard
-        </a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-user mr-3"></i>Profile</a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-table mr-3"></i>Tables</a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-map mr-3"></i>Maps</a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-money-bill-alt mr-3"></i>Orders</a>
-      </div>
-
-    </div>
-    <!-- Sidebar -->
-
   </header>
   <!--Main Navigation-->
 
@@ -114,13 +83,20 @@
   <main class="pt-5 mx-lg-5">
     <div class="container-fluid mt-5">
 
+  <div class="jumbotron">
+  <h2 class="display-4">Hello, world!</h2>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
 
     </div>
   </main>
   <!--Main layout-->
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn">
+  <footer class="text-center font-small ">
 
 <!-- Copyright -->
 <div class="footer-copyright text-center py-3">
@@ -141,6 +117,7 @@
       document.getElementById("copyrightDate").innerHTML = date.getFullYear();
     </script>
     <!-- JavaScript -->
+
   <!-- JQuery -->
   <script type="text/javascript" src="../../admin/js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -149,13 +126,6 @@
   <script type="text/javascript" src="../../admin/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-
-  </script>
-
 
 </body>
 

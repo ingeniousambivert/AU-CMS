@@ -1,7 +1,7 @@
 // Express App Starts Here
 const express = require("express");
 const app = express();
-const morgan = require("morgan");
+//const morgan = require("morgan");
 // set morgan to log info about our requests for development use.
 //app.use(morgan("dev"));
 // Set the bodyparser
@@ -13,6 +13,7 @@ const cookieParser = require("cookie-parser");
 
 // Middlewares for Auth
 const checkSignIn = require("./middlewares/checkSignIn");
+const returnToDash = require("./middlewares/returnToDash");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -50,11 +51,11 @@ app.use((req, res, next) => {
 
 app.get("/login", (req, res) => {
   // use res.render to load up an ejs view file
-  // admin panel
+  // login page
   res.render("admin/login", { succ: false, err: false });
 });
 
-//  Dashboard Route
+// Login Route
 app.post("/login", (req, res) => {
   let { adminUsername, adminPassword } = req.body;
 
