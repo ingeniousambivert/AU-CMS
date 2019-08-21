@@ -3,6 +3,19 @@
     MONARCH MAISURIYA 
     HIMANSHU JOSHI
 -->
+
+<% if(swalsucc){ %>
+  <script>
+swal("Success", "Sucessfully subscribed", "success");
+</script>
+<%}%>
+<% if(swalerr){ %>
+<script>
+swal("Error!", "An error has occured", "error");
+</script>
+<%}%>
+
+
 <!-- views/pages/footer.ejs -->
 <!-- Social buttons -->
 <div class="primary-color mt-5">
@@ -111,3 +124,4 @@
   reserved.
 </div>
 <!-- Copyright -->
+

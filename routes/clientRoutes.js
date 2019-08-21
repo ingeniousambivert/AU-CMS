@@ -24,7 +24,9 @@ clientRouter.get("/", (req, res) => {
   res.render("pages/index", {
     succ: false,
     err: false,
-    formerEvents: formerEvents
+    formerEvents: formerEvents,
+    swalsucc: false,
+    swalerr: false
   });
 });
 
