@@ -125,7 +125,7 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         succ: false,
         err: true
       });
-      res.status(400);
+      //res.status(400);
     } else {
       upcomingDB
         .get("upcoming")
@@ -137,11 +137,7 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         })
         .last()
         .assign({ id: Date.now().toString() })
-        .write()
-        .then(() => console.log("Upcoming Event has been added"))
-        .catch(error => {
-          throw error;
-        });
+        .write();
 
       res.render("admin/details", {
         formerEvents: former,
@@ -158,16 +154,19 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
 
   if (checkEvent == "industrial") {
     let {
-      titleForindustrial,
-      stagesForindustrial,
-      detailsForindustrial,
-      dateForindustrial
+      titleForVisit,
+      stagesForVisit,
+      detailsForVisit,
+      dateForVisit
     } = req.body;
+
+    let time = Date.now().toString();
+
     if (
-      !titleForindustrial ||
-      !stagesForindustrial ||
-      !detailsForindustrial ||
-      !dateForindustrial
+      !titleForVisit ||
+      !stagesForVisit ||
+      !dateForVisit ||
+      !detailsForVisit
     ) {
       res.render("admin/details", {
         formerEvents: former,
@@ -177,23 +176,20 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         succ: false,
         err: true
       });
-      res.status(400);
+      // res.status(400);
     } else {
       industrialDB
         .get("industrial")
         .push({
-          title: titleForindustrial,
-          date: dateForindustrial,
-          stages: stagesForindustrial,
-          details: detailsForindustrial
+          title: titleForVisit,
+          date: dateForVisit,
+          stages: stagesForVisit,
+          details: detailsForVisit,
+          key: "IV" + time
         })
         .last()
-        .assign({ id: Date.now().toString() })
-        .write()
-        .then(() => console.log("Visit has been added"))
-        .catch(error => {
-          throw error;
-        });
+        .assign({ id: time })
+        .write();
 
       res.render("admin/details", {
         formerEvents: former,
