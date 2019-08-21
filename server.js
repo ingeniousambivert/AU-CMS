@@ -30,8 +30,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 3600000
-      // An hour i.e 3600000 ms
+      expires: 36000000 // Time in ms
     }
   })
 );
@@ -54,6 +53,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// Login Route
 app.get("/login", (req, res) => {
   // use res.render to load up an ejs view file
   // login page
@@ -93,6 +93,17 @@ app.get("/dashboard", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
   res.render("admin/dashboard", {
+    formerEvents: formerEvents,
+    upcomingEvents: upcomingEvents,
+    visits: visits
+  });
+});
+
+//  Details Route
+app.get("/details", checkSignIn, (req, res) => {
+  // use res.render to load up an ejs view file
+  // admin panel
+  res.render("admin/details", {
     formerEvents: formerEvents,
     upcomingEvents: upcomingEvents,
     visits: visits
