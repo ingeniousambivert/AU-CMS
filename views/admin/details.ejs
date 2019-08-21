@@ -34,7 +34,16 @@
 <% if (event == "upcoming") { %>
  <div class="jumbotron">
  <h2 class="text-center mb-4"> Upcoming Events</h2>
-
+ <!--EJS Conditions-->
+        <% if (err) { %>
+        <div class="alert alert-danger container mt-5 text-center" role="alert">
+          <h6>An error has occured.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center container alert-success" role="alert">
+          <h6>Event added successfully</h6>
+        </div>
+        <% } %>
     <!-- CRUD FORM -->
     <form class="container" method="POST" action="/details/upcoming">
 
@@ -66,7 +75,7 @@
   <div class="row">
 
     <div class="col-md-5">
-    <input type="date" id="date-picker-example" REQUIRED class="form-control datepicker">
+    <input type="date" id="date-picker-example" REQUIRED id="dateForUpcoming" name="dateForUpcoming" class="form-control datepicker">
     </div>
 
     <div class="col-md-7">

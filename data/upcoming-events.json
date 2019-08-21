@@ -17,6 +17,15 @@
       "details": "After Inauguration we had organized an event which was based on the most additive game of all time i.e. PUBG. In this event it was a mixture of treasure hunt with PUBG elements and chemistry. This was planning to be a great event and a huge event where exact 100 students participated. All the 4 years were invited and the whole campus was the playfield. We had a total of 20~30 Volunteers and only because of them It was possible.<br>Students were overwhelmed with the management and they were glad they could participate in an event like this.",
       "images": [],
       "active": "upcoming.jpg"
+    },
+    {
+      "title": "MomentsJS",
+      "date": "2019-10-11",
+      "brief": "Moment was designed to work both in the browser and in Node.js.",
+      "details": "Moment was designed to work both in the browser and in Node.js.\r\n\r\nAll code should work in both of these environments, and all unit tests are run in both of these environments.\r\n\r\nCurrently the following browsers are used for the ci system: Chrome on Windows XP, IE 8, 9, and 10 on Windows 7, IE 11 on Windows 10, latest Firefox on Linux, and latest Safari on OSX 10.8 and 10.11.",
+      "id": "1566395608751",
+      "images": [],
+      "active": "upcoming.jpg"
     }
   ]
 }

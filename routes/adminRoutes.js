@@ -90,7 +90,9 @@ adminRouter.get("/details/:event", checkSignIn, (req, res) => {
     formerEvents: former,
     upcomingEvents: upcoming,
     visits: industrial,
-    event: req.params.event
+    event: req.params.event,
+    succ: false,
+    err: false
   });
 });
 // Add New Items
@@ -100,26 +102,50 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
   let checkEvent = req.params.event;
 
   if (checkEvent == "upcoming") {
-    let { titleForUpcoming, briefForUpcoming, detailsForUpcoming } = req.body;
-    upcomingDB
-      .get("participants")
-      .push({
-        name: user_name,
-        email: user_email,
-        phone: user_phone,
-        eventID: eventID
-      })
-      .last()
-      .assign({ id: Date.now().toString() })
-      .write();
-  }
+    let {
+      titleForUpcoming,
+      briefForUpcoming,
+      detailsForUpcoming,
+      dateForUpcoming
+    } = req.body;
+    if (
+      !titleForUpcoming ||
+      !briefForUpcoming ||
+      !detailsForUpcoming ||
+      !dateForUpcoming
+    ) {
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: false,
+        err: true
+      });
+      res.status(400);
+    } else {
+      upcomingDB
+        .get("upcoming")
+        .push({
+          title: titleForUpcoming,
+          date: dateForUpcoming,
+          brief: briefForUpcoming,
+          details: detailsForUpcoming
+        })
+        .last()
+        .assign({ id: Date.now().toString() })
+        .write();
 
-  res.render("admin/details", {
-    formerEvents: former,
-    upcomingEvents: upcoming,
-    visits: industrial,
-    event: checkEvent
-  });
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: true,
+        err: false
+      });
+    }
+  }
 });
 
 adminRouter.get("/logout", function(req, res) {
