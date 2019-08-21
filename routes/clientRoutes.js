@@ -123,7 +123,8 @@ clientRouter.get("/visit/:id", (req, res) => {
 
 // Participant Registration
 clientRouter.post("/event/:id", (req, res) => {
-  let { user_email, user_name, user_phone } = req.body;
+  let { user_name, user_email, user_phone } = req.body;
+
   let eventID = req.params.id;
 
   addParticipant = () => {
@@ -163,29 +164,47 @@ clientRouter.post("/event/:id", (req, res) => {
     let flag = new Boolean(true);
     const isFull = pDB.has("participants").value();
 
-    const checkEvent = pDB
-      .get("participants")
-      .map("eventID")
-      .value();
-
     const checkEmail = pDB
       .get("participants")
       .map("email")
       .value();
 
     checkEmail.forEach(element => {
-      if (user_email == element && eventID == eventID) {
-        flag = false;
-        res.render("pages/event", {
-          succ: false,
-          err: true,
-          eID: eventID,
-          upcomingEvents: upcomingEvents,
-          swalsucc: false,
-          swalerr: false
+      if (user_email == element) {
+        const checkEvent = pDB
+          .get("participants")
+          .filter({ email: user_email })
+          .map("eventID")
+          .value();
+        checkEvent.forEach(element => {
+          if (eventID == element) {
+            flag = false;
+            res.render("pages/event", {
+              succ: false,
+              err: true,
+              eID: eventID,
+              upcomingEvents: upcomingEvents,
+              swalsucc: false,
+              swalerr: false
+            });
+          }
         });
       }
     });
+
+    /*checkEmail.forEach(element => {
+  
+    if (email == element && eventID == eventID) {
+      flag = false;
+      res.render("pages/event", {
+        succ: false,
+        err: true,
+        eID: eventID,
+        upcomingEvents: upcomingEvents
+      });
+    }
+  });*/
+
     if (flag) {
       addParticipant();
       res.render("pages/event", {
