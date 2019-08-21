@@ -22,8 +22,6 @@ clientRouter.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
   res.render("pages/index", {
-    succ: false,
-    err: false,
     formerEvents: formerEvents,
     swalsucc: false,
     swalerr: false
@@ -226,15 +224,13 @@ clientRouter.post("/", (req, res) => {
   const { user_email } = req.body;
   if (!user_email) {
     res.render("pages/index", {
-      succ: false,
-      err: true,
       formerEvents: formerEvents,
       swalsucc: false,
-      swalerr: false
+      swalerr: true
     });
     res.status(400);
   } else {
-    if (res.statusCode === 200) {
+    if (res.statusCode == 200) {
       //Mailchimp Integration
       const data = {
         members: [
@@ -253,7 +249,7 @@ clientRouter.post("/", (req, res) => {
 
         method: "POST",
         headers: {
-          Authorization: "auth dde461ecf68f1bc5df4741297ae870d4-us18"
+          Authorization: "auth 7y978y4rhiuwjbhdafiy"
           // Temp API KEY
           // Replace with Owner's API Key
         },
@@ -261,25 +257,32 @@ clientRouter.post("/", (req, res) => {
       };
       request(options, (err, response, body) => {
         console.log(response.statusCode);
+        res.statusCode = response.statusCode;
         console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
       });
 
-      if (res.statusCode === 200) {
+      if (res.statusCode == 200) {
         res.render("pages/index", {
-          succ: true,
-          err: false,
+          formerEvents: formerEvents,
+          swalsucc: true,
+          swalerr: false
+        });
+      } else if (
+        res.statusCode == 400 ||
+        res.statusCode == 401 ||
+        res.statusCode == 403
+      ) {
+        res.render("pages/index", {
           formerEvents: formerEvents,
           swalsucc: false,
-          swalerr: false
+          swalerr: true
         });
       } else {
         res.status(400);
         res.render("pages/index", {
-          succ: false,
-          err: true,
           formerEvents: formerEvents,
           swalsucc: false,
-          swalerr: false
+          swalerr: true
         });
       }
     }
