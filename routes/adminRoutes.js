@@ -95,6 +95,7 @@ adminRouter.get("/details/:event", checkSignIn, (req, res) => {
     err: false
   });
 });
+
 // Add New Items
 adminRouter.post("/details/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
@@ -136,7 +137,8 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         })
         .last()
         .assign({ id: Date.now().toString() })
-        .write();
+        .write()
+        .console.log("ADDED");
 
       res.render("admin/details", {
         formerEvents: former,
@@ -150,51 +152,36 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
   }
 
   // For Industrial Visits
-
-  if (checkEvent == "industrial") {
+  else if (checkEvent == "industrial") {
     let {
       titleForindustrial,
       stagesForindustrial,
       detailsForindustrial,
       dateForindustrial
     } = req.body;
-    if (
-      !titleForindustrial ||
-      !stagesForindustrial ||
-      !detailsForindustrial ||
-      !dateForindustrial
-    ) {
-      res.render("admin/details", {
-        formerEvents: former,
-        upcomingEvents: upcoming,
-        visits: industrial,
-        event: checkEvent,
-        succ: false,
-        err: true
-      });
-      res.status(400);
-    } else {
-      industrialDB
-        .get("industrial")
-        .push({
-          title: titleForindustrial,
-          date: dateForindustrial,
-          stages: stagesForindustrial,
-          details: detailsForindustrial
-        })
-        .last()
-        .assign({ id: Date.now().toString() })
-        .write();
 
-      res.render("admin/details", {
-        formerEvents: former,
-        upcomingEvents: upcoming,
-        visits: industrial,
-        event: checkEvent,
-        succ: true,
-        err: false
-      });
-    }
+    console.log(req.body);
+    industrialDB
+      .get("industrial")
+      .push({
+        title: titleForindustrial,
+        date: dateForindustrial,
+        stages: stagesForindustrial,
+        details: detailsForindustrial
+      })
+      .last()
+      .assign({ id: Date.now().toString() })
+      .write()
+      .console.log("ADDED");
+
+    res.render("admin/details", {
+      formerEvents: former,
+      upcomingEvents: upcoming,
+      visits: industrial,
+      event: checkEvent,
+      succ: true,
+      err: false
+    });
   }
 });
 
