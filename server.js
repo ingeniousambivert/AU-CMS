@@ -25,12 +25,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000
+      expires: 3600000
+      // An hour i.e 3600000 ms
     }
   })
 );
 
-let admin = [];
 // Set the view engine to ejs
 app.set("view engine", "ejs");
 // Use CSS and Media
@@ -73,7 +73,7 @@ app.post("/login", (req, res) => {
       ];
       req.session.admin = adminValues;
       res.redirect("/dashboard");
-      console.log("Admin logged in.");
+      // console.log("Admin logged in.");
     } else {
       res.render("admin/login", {
         succ: false,
@@ -87,12 +87,12 @@ app.post("/login", (req, res) => {
 app.get("/dashboard", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
-  res.render("admin/dashboard");
+  res.render("admin/dashboard", {});
 });
 
 app.get("/logout", function(req, res) {
   req.session.destroy(() => {
-    console.log("Admin logged out.");
+    // console.log("Admin logged out.");
   });
   res.redirect("/login");
 });

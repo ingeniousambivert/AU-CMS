@@ -2,72 +2,14 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Admin Dashboard</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="../../admin/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="../../admin/css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="../../admin/css/style.css" rel="stylesheet">
-  
+   <% include ./head %>
 </head>
 
 <body class="grey lighten-3">
 
   <!--Main Navigation-->
   <header>
-
-    <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-      <div class="container-fluid">
-
-        <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-          <strong class="blue-text">Admin</strong>
-        </a>
-
-        <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-          <!-- Left -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#former-events">Former Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#upcoming-events">Upcoming Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#industrial-visits">Industrial Visits</a>
-            </li>
-          </ul>
-
-          <!-- Right -->
-          <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-              <a href="/logout" class="nav-link border border-light rounded waves-effect">
-                <i class="fas fa-sign-out-alt"></i>Logout
-              </a>
-            </li>
-          </ul>
-
-        </div>
-
-      </div>
-    </nav>
-    <!-- Navbar -->
-
+ <% include ./header %>
   </header>
   <!--Main Navigation-->
 
@@ -82,7 +24,7 @@
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <a class="btn btn-primary " href="#" role="button">Details</a>
       </div>
 
     </section>
@@ -94,7 +36,7 @@
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <a class="btn btn-primary " href="#" role="button">Details</a>
       </div>
 
     </section>
@@ -107,7 +49,7 @@
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <a class="btn btn-primary " href="#" role="button">Details</a>
       </div>
 
     </section>
@@ -118,15 +60,7 @@
 
   <!--Footer-->
   <footer class="text-center font-small ">
-
-<!-- Copyright -->
-<div class="footer-copyright text-center py-3">
-  © <span id="copyrightDate"></span>
-  <a href="https://ahduni.edu.in/"> Ahmedabad University</a> All rights
-  reserved.
-</div>
-<!-- Copyright -->
-
+  <% include ./footer %>
   </footer>
   <!--/.Footer-->
 
