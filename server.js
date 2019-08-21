@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 // set morgan to log info about our requests for development use.
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 // Set the bodyparser
 const bodyParser = require("body-parser");
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   session({
-    key: "admin",
+    key: "admin_key",
     secret: "mySecret",
     proxy: true,
     resave: false,
@@ -41,6 +41,13 @@ app.use("/", routes);
 
 //----- ADMIN ROUTES -----//
 
+app.use((req, res, next) => {
+  if (req.cookies.admin_key && !req.session.admin) {
+    res.clearCookie("admin_key");
+  }
+  next();
+});
+
 app.get("/login", (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
@@ -58,7 +65,12 @@ app.post("/login", (req, res) => {
     });
   } else {
     if (adminUsername == "admin" && adminPassword == "admin") {
-      // req.session.admin = admin;
+      let adminValues = [
+        {
+          username: adminUsername
+        }
+      ];
+      req.session.admin = adminValues;
       // console.log(req.body);
       res.redirect("/dashboard");
       // console.log("Admin logged in.");
