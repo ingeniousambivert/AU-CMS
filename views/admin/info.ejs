@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    WEBSITE AUTHORS : 
+    MONARCH MAISURIYA 
+    HIMANSHU JOSHI
+-->
+<head>
+   <% include ./head %>
+</head>
+ 
+<body class="grey lighten-3">
+
+  <!--Main Navigation-->
+  <header>
+ <% include ./header %>
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+
+        <div class="jumbotron">
+         <h2 class="text-center mb-4"> Former Events</h2>
+        </div>
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="text-center font-small ">
+  <% include ./footer %>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+
+    <!--  JavaScript -->
+    <script type="text/javascript">
+      let date = new Date();
+      document.getElementById("copyrightDate").innerHTML = date.getFullYear();
+    </script>
+    <!-- JavaScript -->
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="../../admin/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../../admin/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
+
+</body>
+
+</html>
+

@@ -19,6 +19,20 @@
       "details": "After Inauguration we had organized an event which was based on the most additive game of all time i.e. PUBG. In this event it was a mixture of treasure hunt with PUBG elements and chemistry. This was planning to be a great event and a huge event where exact 100 students participated. All the 4 years were invited and the whole campus was the playfield. We had a total of 20~30 Volunteers and only because of them It was possible.<br>Students were overwhelmed with the management and they were glad they could participate in an event like this.",
       "images": [],
       "active": "upcoming.jpg"
+    },
+    {
+      "title": "MomentsJS",
+      "date": "2019-05-27",
+      "brief": "Moment was designed to work both in the browser and in Node.js.",
+      "details": "Moment was designed to work both in the browser and in Node.js.Moment was designed to work both in the browser and in Node.js.Moment was designed to work both in the browser and in Node.js.",
+      "id": "1566410877405"
+    },
+    {
+      "title": "How to Upload Multiple Files Using Node.js",
+      "date": "2019-05-28",
+      "brief": "We use Node.js to build web application backend and one of the use cases that comes often is a file upload feature.",
+      "details": "We use Node.js to build web application backend and one of the use cases that comes often is a file upload feature.",
+      "id": "1566410958649"
     }
   ]
 }
