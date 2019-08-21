@@ -11,15 +11,6 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
-// Middlewares for Auth
-const checkSignIn = require("./middlewares/checkSignIn");
-const returnToDash = require("./middlewares/returnToDash");
-
-// Data for views
-const formerEvents = require("./data/former-events.json");
-const upcomingEvents = require("./data/upcoming-events.json");
-const visits = require("./data/industrial-visits.json");
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
@@ -41,82 +32,12 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 //Routes for the app
-const routes = require("./routes/routes");
-app.use("/", routes);
+const clientRoutes = require("./routes/clientRoutes");
+app.use("/", clientRoutes);
 
-//----- ADMIN ROUTES -----//
-
-app.use((req, res, next) => {
-  if (req.cookies.admin_key && !req.session.admin) {
-    res.clearCookie("admin_key");
-  }
-  next();
-});
-
-// Login Route
-app.get("/login", (req, res) => {
-  // use res.render to load up an ejs view file
-  // login page
-  res.render("admin/login", { succ: false, err: false });
-});
-
-// Login Route
-app.post("/login", (req, res) => {
-  let { adminUsername, adminPassword } = req.body;
-
-  if (!adminUsername || !adminPassword) {
-    res.render("admin/login", {
-      succ: false,
-      err: true
-    });
-  } else {
-    if (adminUsername == "admin" && adminPassword == "admin") {
-      let adminValues = [
-        {
-          username: adminUsername
-        }
-      ];
-      req.session.admin = adminValues;
-      res.redirect("/dashboard");
-      // console.log("Admin logged in.");
-    } else {
-      res.render("admin/login", {
-        succ: false,
-        err: true
-      });
-    }
-  }
-});
-
-//  Dashboard Route
-app.get("/dashboard", checkSignIn, (req, res) => {
-  // use res.render to load up an ejs view file
-  // admin panel
-  res.render("admin/dashboard", {
-    formerEvents: formerEvents,
-    upcomingEvents: upcomingEvents,
-    visits: visits
-  });
-});
-
-//  Details Route
-app.get("/details/:event", checkSignIn, (req, res) => {
-  // use res.render to load up an ejs view file
-  // admin panel
-  res.render("admin/details", {
-    formerEvents: formerEvents,
-    upcomingEvents: upcomingEvents,
-    visits: visits,
-    event: req.params.event
-  });
-});
-
-app.get("/logout", function(req, res) {
-  req.session.destroy(() => {
-    // console.log("Admin logged out.");
-  });
-  res.redirect("/login");
-});
+// Routes for Admin Panel
+const adminRoutes = require("./routes/adminRoutes");
+app.use("/", adminRoutes);
 
 // DB Config
 // const mongoose = require("mongoose");
