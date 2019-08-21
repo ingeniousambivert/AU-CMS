@@ -183,7 +183,7 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
         .push({
           title: titleForVisit,
           date: dateForVisit,
-          stages: stagesForVisit,
+          stages: [stagesForVisit],
           details: detailsForVisit,
           key: "IV" + time
         })

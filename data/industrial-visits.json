@@ -5,13 +5,8 @@
       "title": "1st Industrial Visit – Narayan industry, Naroda ",
       "date": "27th October 2019",
       "details": "Energy of the students was at the utmost level as it was the first industrial visit of AIChE Ahmedabad University. We have shown the outline of the Narayan industry so that students understand in better way and solve their doubts during the industrial visit. The reason why we have set this industrial visit was that students had perform few experiments on dye during their academy year and we want to show them in the large scale. We want our students to know the importance, classification and uses of dye. On the day of the industrial visit it was great to see massive response from the students. Students had taken major initiative to learn about industry and process. Industrial visit had completed smoothly and students had learned a lot from this visit.",
-      "stages": [
-        "HELLO",
-        "HEY"
-      ],
-      "images": [
-        "slide-1.png"
-      ],
+      "stages": ["HELLO", "HEY"],
+      "images": ["slide-1.png"],
       "active": "slide-2.png",
       "key": "IV1"
     },
@@ -20,13 +15,8 @@
       "title": "2nd Industrial Visit – Paryavaran Mandir and NEPL effluent plant",
       "date": "2nd March 2019",
       "details": "It was the second biggest success for the chapter as there was great enthusiasm among the student for the “AIChE weekend”. We have planned industrial visit on Saturday. On Sunday, there was interbatch cricket tournament. This time we want our students to know about water treatment plant and how to reduce the TDS of the acidic water, which is release from the industry. First of all we had attended a small seminar regarding uses and conservation of water at Paryavaran Mandir. Further we went to NEPL effluent plant were we had seen how to minimize the TDS of water and from where the this water had been supplied from the different industry. ",
-      "stages": [
-        "",
-        ""
-      ],
-      "images": [
-        "slide-2.png"
-      ],
+      "stages": ["", ""],
+      "images": ["slide-2.png"],
       "active": "slide-3.png",
       "key": "IV2"
     },
@@ -36,7 +26,9 @@
       "stages": "trial",
       "details": "Moment was designed to work both in the browser and in Node.js.\r\n\r\nAll code should work in both of these environments, and all unit tests are run in both of these environments.\r\n",
       "key": "IV1566406302582",
-      "id": "1566406302582"
+      "id": "1566406302582",
+      "images": ["slide-2.png"],
+      "active": "slide-1.png"
     }
   ]
 }
