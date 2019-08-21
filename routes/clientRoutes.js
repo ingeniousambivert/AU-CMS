@@ -251,14 +251,17 @@ clientRouter.post("/", (req, res) => {
         headers: {
           Authorization: "auth 7y978y4rhiuwjbhdafiy"
           // Temp API KEY
+          // dde461ecf68f1bc5df4741297ae870d4-us18
           // Replace with Owner's API Key
         },
         body: postData
       };
       request(options, (err, response, body) => {
-        console.log(response.statusCode);
         res.statusCode = response.statusCode;
-        console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
+        if (err) {
+          console.log(`ERROR : ${err}`);
+        }
+        console.log(`LOG : ${body}`);
       });
 
       if (res.statusCode == 200) {
