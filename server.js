@@ -1,9 +1,7 @@
 // Express App Starts Here
 const express = require("express");
 const app = express();
-//const morgan = require("morgan");
-// set morgan to log info about our requests for development use.
-//app.use(morgan("dev"));
+
 // Set the bodyparser
 const bodyParser = require("body-parser");
 
@@ -28,10 +26,11 @@ app.use(
 
 // Set the view engine to ejs
 app.set("view engine", "ejs");
+
 // Use CSS and Media
 app.use(express.static(__dirname + "/public"));
 
-//Routes for the app
+// Routes for the app
 const clientRoutes = require("./routes/clientRoutes");
 app.use("/", clientRoutes);
 

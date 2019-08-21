@@ -4,16 +4,23 @@ const clientRouter = express.Router();
 
 // LowDB for participants list
 //See https://github.com/typicode/lowdb for docs
-
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
-const adapter = new FileSync("./data/participants.json");
-const pDB = low(adapter);
+// Participants DB
+const participantAdapter = new FileSync("./data/participants.json");
+const participantDB = low(participantAdapter);
+// Upcoming Events DB
+const upcomingAdapter = new FileSync("./data/upcoming-events.json");
+const upcomingDB = low(upcomingAdapter);
+// Industrial Visit DB
+const industrialAdapter = new FileSync("./data/industrial-visits.json");
+const industrialDB = low(industrialAdapter);
+// Former Events DB
+const formerAdapter = new FileSync("./data/former-events.json");
+const formerDB = low(formerAdapter);
+
 // Data for views
-const formerEvents = require("../data/former-events.json");
-const upcomingEvents = require("../data/upcoming-events.json");
 const team = require("../data/team.json");
-const visits = require("../data/industrial-visits.json");
 
 //----- CLIENT ROUTES -----//
 
@@ -50,8 +57,10 @@ clientRouter.get("/contact", (req, res) => {
 clientRouter.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // former events page
+  const former = formerDB.get("former").value();
+
   res.render("pages/former", {
-    formerEvents: formerEvents,
+    formerEvents: former,
     swalsucc: false,
     swalerr: false
   });
@@ -60,8 +69,10 @@ clientRouter.get("/former", (req, res) => {
 clientRouter.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
+  const upcoming = upcomingDB.get("upcoming").value();
+
   res.render("pages/upcoming", {
-    upcomingEvents: upcomingEvents,
+    upcomingEvents: upcoming,
     swalsucc: false,
     swalerr: false
   });
@@ -71,11 +82,17 @@ clientRouter.get("/event/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming event page
   let eventID = req.params.id;
+
+  const event = upcomingDB
+    .get("industrial")
+    .filter({ id: eventID })
+    .value();
+
   res.render("pages/event", {
     succ: false,
     err: false,
     eID: eventID,
-    upcomingEvents: upcomingEvents,
+    upcomingEvents: event,
     swalsucc: false,
     swalerr: false
   });
@@ -102,8 +119,10 @@ clientRouter.get("/show-tell", (req, res) => {
 clientRouter.get("/industrial-visits", (req, res) => {
   // use res.render to load up an ejs view file
   // industrial visits page
+  const industrial = industrialDB.get("industrial").value();
+
   res.render("pages/industrial-visits", {
-    visit: visits,
+    visit: industrial,
     swalsucc: false,
     swalerr: false
   });
@@ -112,9 +131,15 @@ clientRouter.get("/industrial-visits", (req, res) => {
 clientRouter.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // individual visit info page
-  let visitID = req.params.id;
+  const visitID = req.params.id;
+  //console.log(visitID);
+  const visit = industrialDB
+    .get("industrial")
+    .filter({ id: visitID })
+    .value();
+
   res.render("pages/visit", {
-    visit: visits,
+    visit: visit,
     vID: visitID,
     swalsucc: false,
     swalerr: false
@@ -128,7 +153,7 @@ clientRouter.post("/event/:id", (req, res) => {
   let eventID = req.params.id;
 
   addParticipant = () => {
-    pDB
+    participantDB
       .get("participants")
       .push({
         name: user_name,
@@ -162,16 +187,16 @@ clientRouter.post("/event/:id", (req, res) => {
     res.status(400);
   } else {
     let flag = new Boolean(true);
-    const isFull = pDB.has("participants").value();
+    const isFull = participantDB.has("participants").value();
 
-    const checkEmail = pDB
+    const checkEmail = participantDB
       .get("participants")
       .map("email")
       .value();
 
     checkEmail.forEach(element => {
       if (user_email == element) {
-        const checkEvent = pDB
+        const checkEvent = participantDB
           .get("participants")
           .filter({ email: user_email })
           .map("eventID")
@@ -225,7 +250,7 @@ clientRouter.post("/event/:id", (req, res) => {
   }
 });
 
-//Newsletter Signup
+// Newsletter Signup
 clientRouter.post("/", (req, res) => {
   const { user_email } = req.body;
   if (!user_email) {
