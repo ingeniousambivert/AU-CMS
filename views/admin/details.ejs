@@ -34,7 +34,7 @@
         </div>
         <% } %> <% if (succ) { %>
         <div class="alert text-center col-md-4 center-element mt-5 mb-5 alert-success" role="alert">
-          <h6>Event added successfully</h6>
+          <h6>Visit added successfully</h6>
         </div>
         <% } %>
     <!-- CRUD FORM -->
@@ -181,6 +181,29 @@
 <% if (event == "former") { %>
   <div class="jumbotron">
   <h2 class="text-center mb-4"> Former Events</h2>
+  <p class="grey-text text-center">These are the upcoming/ongoing events. Select any of these to move to Former Events.</p>
+        <!--EJS Conditions-->
+        <% if (err) { %>
+        <div class="alert alert-danger col-md-4 center-element mt-5 mb-5  text-center" role="alert">
+          <h6>An error has occured.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center col-md-4 center-element mt-5 mb-5 alert-success" role="alert">
+          <h6>Event moved successfully</h6>
+        </div>
+        <% } %>
+   <form class="container" method="POST" action="/details/former">
+  <ul class="list-group mt-4 mb-4 p-4">
+        <% upcomingEvents.forEach(function(item){ %>
+        <li class="list-group-item "><div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" name="itemtoMove" value="<%= item.title %>" id="<%= item.id %>">
+    <label class="custom-control-label" for="<%= item.id %>"><%= item.title %></label>
+        </div>
+        </li>
+         <% }) %>
+        </ul>
+        <button class="btn btn-primary my-4" type="submit">Move</button>
+        </form>
   </div>
 <% } %>
 

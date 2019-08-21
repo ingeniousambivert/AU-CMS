@@ -201,6 +201,47 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
       });
     }
   }
+
+  // For Former Events
+
+  if (checkEvent == "former") {
+    let { itemtoMove } = req.body;
+    const getUpcoming = upcomingDB
+      .get("upcoming")
+      .find({ title: itemtoMove })
+      .value();
+
+    if (!itemtoMove) {
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: false,
+        err: true
+      });
+      // res.status(400);
+    } else {
+      upcomingDB
+        .get("upcoming")
+        .remove({ title: itemtoMove })
+        .write();
+
+      formerDB
+        .get("former")
+        .push(getUpcoming)
+        .write();
+
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: true,
+        err: false
+      });
+    }
+  }
 });
 
 adminRouter.get("/logout", function(req, res) {

@@ -20,6 +20,9 @@ html {
   margin-bottom: 15%;
 }
 
+.m-5 {
+  margin: 5%;
+}
 .center-element {
   margin: 0 auto;
 }
