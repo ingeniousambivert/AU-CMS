@@ -101,6 +101,8 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
   // admin panel
   let checkEvent = req.params.event;
 
+  // For Upcoming Events
+
   if (checkEvent == "upcoming") {
     let {
       titleForUpcoming,
@@ -131,6 +133,54 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
           date: dateForUpcoming,
           brief: briefForUpcoming,
           details: detailsForUpcoming
+        })
+        .last()
+        .assign({ id: Date.now().toString() })
+        .write();
+
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: true,
+        err: false
+      });
+    }
+  }
+
+  // For Industrial Visits
+
+  if (checkEvent == "industrial") {
+    let {
+      titleForindustrial,
+      stagesForindustrial,
+      detailsForindustrial,
+      dateForindustrial
+    } = req.body;
+    if (
+      !titleForindustrial ||
+      !stagesForindustrial ||
+      !detailsForindustrial ||
+      !dateForindustrial
+    ) {
+      res.render("admin/details", {
+        formerEvents: former,
+        upcomingEvents: upcoming,
+        visits: industrial,
+        event: checkEvent,
+        succ: false,
+        err: true
+      });
+      res.status(400);
+    } else {
+      industrialDB
+        .get("industrial")
+        .push({
+          title: titleForindustrial,
+          date: dateForindustrial,
+          stages: stagesForindustrial,
+          details: detailsForindustrial
         })
         .last()
         .assign({ id: Date.now().toString() })

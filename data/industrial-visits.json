@@ -8,7 +8,7 @@
       "stages": ["HELLO", "HEY"],
       "images": ["slide-1.png"],
       "active": "slide-2.png",
-      "key": "IVone"
+      "key": "IV1"
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "stages": ["", ""],
       "images": ["slide-2.png"],
       "active": "slide-3.png",
-      "key": "IVtwo"
+      "key": "IV2"
     }
   ]
 }
