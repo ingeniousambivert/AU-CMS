@@ -24,7 +24,17 @@
     <section class="">
       
        <div class="jumbotron">
-        <h2 class="display-4 text-center"></h2>
+<% if (event == "industrial") { %>
+ <h2 class="display-4 text-center"> Industrial Visits</h2>
+<% } %>
+<% if (event == "upcoming") { %>
+ <h2 class="display-4 text-center"> Upcoming Events</h2>
+<% } %>
+<% if (event == "former") { %>
+ <h2 class="display-4 text-center"> Former Events</h2>
+<% } %>
+
+
       </div>
 
     </section>
@@ -60,3 +70,4 @@
 </body>
 
 </html>
+

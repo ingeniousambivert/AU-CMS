@@ -100,13 +100,14 @@ app.get("/dashboard", checkSignIn, (req, res) => {
 });
 
 //  Details Route
-app.get("/details", checkSignIn, (req, res) => {
+app.get("/details/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
   res.render("admin/details", {
     formerEvents: formerEvents,
     upcomingEvents: upcomingEvents,
-    visits: visits
+    visits: visits,
+    event: req.params.event
   });
 });
 

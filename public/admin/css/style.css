@@ -23,3 +23,13 @@ html {
 .center-element {
   margin: 0 auto;
 }
+
+a {
+  color: rgb(68, 68, 68);
+  transition: 500ms all ease-in-out;
+}
+
+a:hover {
+  color: #212121;
+  font-weight: 500;
+}
