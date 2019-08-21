@@ -91,13 +91,18 @@ router.get("/visit/:id", (req, res) => {
 
 // Participant Registration
 router.post("/event/:id", (req, res) => {
-  let { name, email } = req.body;
+  let { user_email, user_name, user_phone } = req.body;
   let eventID = req.params.id;
 
   addParticipant = () => {
     pDB
       .get("participants")
-      .push({ name: name, email: email, eventID: eventID })
+      .push({
+        name: user_name,
+        email: user_email,
+        phone: user_phone,
+        eventID: eventID
+      })
       .last()
       .assign({ id: Date.now().toString() })
       .write();
