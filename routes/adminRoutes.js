@@ -5,15 +5,11 @@ const adminRouter = express.Router();
 const checkSignIn = require("../middlewares/checkSignIn");
 const returnToDash = require("../middlewares/returnToDash");
 
-// Data for views
-const formerEvents = require("../data/former-events.json");
-const upcomingEvents = require("../data/upcoming-events.json");
-const visits = require("../data/industrial-visits.json");
-
 // LowDB for participants list
 //See https://github.com/typicode/lowdb for docs
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
+
 // Upcoming Events DB
 const upcomingAdapter = new FileSync("./data/upcoming-events.json");
 const upcomingDB = low(upcomingAdapter);
@@ -72,10 +68,13 @@ adminRouter.post("/login", (req, res) => {
 adminRouter.get("/dashboard", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
+  const upcoming = upcomingDB.get("upcoming").value();
+  const former = formerDB.get("former").value();
+  const industrial = industrialDB.get("industrial").value();
   res.render("admin/dashboard", {
-    formerEvents: formerEvents,
-    upcomingEvents: upcomingEvents,
-    visits: visits
+    formerEvents: former,
+    upcomingEvents: upcoming,
+    visits: industrial
   });
 });
 
@@ -83,10 +82,14 @@ adminRouter.get("/dashboard", checkSignIn, (req, res) => {
 adminRouter.get("/details/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
+
+  const upcoming = upcomingDB.get("upcoming").value();
+  const former = formerDB.get("former").value();
+  const industrial = industrialDB.get("industrial").value();
   res.render("admin/details", {
-    formerEvents: formerEvents,
-    upcomingEvents: upcomingEvents,
-    visits: visits,
+    formerEvents: former,
+    upcomingEvents: upcoming,
+    visits: industrial,
     event: req.params.event
   });
 });
@@ -110,11 +113,14 @@ adminRouter.post("/details/:event", checkSignIn, (req, res) => {
       .assign({ id: Date.now().toString() })
       .write();
   }
+  const upcoming = upcomingDB.get("upcoming").value();
+  const former = formerDB.get("former").value();
+  const industrial = industrialDB.get("industrial").value();
 
   res.render("admin/details", {
-    formerEvents: formerEvents,
-    upcomingEvents: upcomingEvents,
-    visits: visits,
+    formerEvents: former,
+    upcomingEvents: upcoming,
+    visits: industrial,
     event: checkEvent
   });
 });

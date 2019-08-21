@@ -137,6 +137,7 @@ clientRouter.get("/visit/:id", (req, res) => {
 
   const visit = industrialDB
     .get("industrial")
+    .map("id")
     .filter({ id: visitID })
     .value();
 
