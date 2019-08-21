@@ -17,21 +17,26 @@ const visits = require("../data/industrial-visits.json");
 
 //----- CLIENT ROUTES -----//
 
+
+
 // GET and POST Routes for the router
 router.get("/", (req, res) => {
   // use res.render to load up an ejs view file
   // index page
   res.render("pages/index", {
-    succ: false,
-    err: false,
+    swalsucc: false,
+    swalerr: false,
     formerEvents: formerEvents
-  });
+  }
+);
 });
 
 router.get("/about", (req, res) => {
   // use res.render to load up an ejs view file
   // about page
-  res.render("pages/about", { team: team });
+  res.render("pages/about", { team: team,swalsucc:false,
+    swalerr:false
+     });
 });
 
 router.get("/contact", (req, res) => {
@@ -43,13 +48,17 @@ router.get("/contact", (req, res) => {
 router.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // former events page
-  res.render("pages/former", { formerEvents: formerEvents });
+  res.render("pages/former", { formerEvents: formerEvents,swalsucc:false,
+    swalerr:false
+     });
 });
 
 router.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
-  res.render("pages/upcoming", { upcomingEvents: upcomingEvents });
+  res.render("pages/upcoming", { upcomingEvents: upcomingEvents,swalsucc:false,
+    swalerr:false
+     });
 });
 
 router.get("/event/:id", (req, res) => {
@@ -67,64 +76,102 @@ router.get("/event/:id", (req, res) => {
 router.get("/chemecar", (req, res) => {
   // use res.render to load up an ejs view file
   // chemecar events page
-  res.render("pages/chemecar");
+  res.render("pages/chemecar",{swalsucc:false,
+    swalerr:false
+    });
 });
 
 router.get("/show-tell", (req, res) => {
   // use res.render to load up an ejs view file
   // show and tell events page
-  res.render("pages/show-tell");
+  res.render("pages/show-tell",{swalsucc:false,
+    swalerr:false
+    });
 });
 
 router.get("/industrial-visits", (req, res) => {
   // use res.render to load up an ejs view file
   // industrial visits page
-  res.render("pages/industrial-visits", { visit: visits });
+  res.render("pages/industrial-visits", { visit: visits,swalsucc:false,
+    swalerr:false
+     });
 });
 
 router.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // individual visit info page
   let visitID = req.params.id;
-  res.render("pages/visit", { visit: visits, vID: visitID });
+  res.render("pages/visit", { visit: visits, vID: visitID,swalsucc:false,
+    swalerr:false
+     });
 });
+
 
 // Participant Registration
 router.post("/event/:id", (req, res) => {
-  let { name, email } = req.body;
+  let { name, email,phone } = req.body;
+  
   let eventID = req.params.id;
 
   addParticipant = () => {
     pDB
       .get("participants")
-      .push({ name: name, email: email, eventID: eventID })
+      .push({ name: name, email: email,phone:phone, eventID:eventID })
       .last()
       .assign({ id: Date.now().toString() })
       .write();
   };
-  if (!name || !email) {
+  if (!name || !email || !phone) {
     res.render("pages/event", {
       succ: false,
       err: true,
       eID: eventID,
-      upcomingEvents: upcomingEvents
+      upcomingEvents: upcomingEvents,
+      swalsucc:false,
+  swalerr:false
+
     });
     res.status(400);
   } else {
     let flag = new Boolean(true);
     const isFull = pDB.has("participants").value();
 
-    const checkEvent = pDB
-      .get("participants")
-      .map("eventID")
-      .value();
-
+   
     const checkEmail = pDB
       .get("participants")
       .map("email")
       .value();
 
-    checkEmail.forEach(element => {
+        
+      checkEmail.forEach(element=>{
+        if(email == element )
+        {
+          console.log(element);
+          const checkEvent = pDB
+          .get("participants")
+          .filter({email:email})
+          .map("eventID")
+          .value();
+          checkEvent.forEach(element=>{
+            if(eventID==element){
+              flag = false;
+              res.render("pages/event", {
+              succ: false,
+              err: true,
+              eID: eventID,
+              upcomingEvents: upcomingEvents,
+              swalsucc:false,
+              swalerr:false
+
+          });    
+            }
+          });
+           
+        }
+      });
+      
+      /*checkEmail.forEach(element => {
+    
       if (email == element && eventID == eventID) {
         flag = false;
         res.render("pages/event", {
@@ -134,14 +181,17 @@ router.post("/event/:id", (req, res) => {
           upcomingEvents: upcomingEvents
         });
       }
-    });
+    });*/
     if (flag) {
       addParticipant();
       res.render("pages/event", {
         succ: true,
         err: false,
         eID: eventID,
-        upcomingEvents: upcomingEvents
+        upcomingEvents: upcomingEvents,
+        swalsucc:false,
+swalerr:false
+
       });
     } else if (isFull == false) {
       addParticipant();
@@ -149,14 +199,20 @@ router.post("/event/:id", (req, res) => {
         succ: true,
         err: false,
         eID: eventID,
-        upcomingEvents: upcomingEvents
+        upcomingEvents: upcomingEvents,
+        swalsucc:false,
+        swalerr:false
+
       });
     } else {
       res.render("pages/event", {
         succ: false,
         err: true,
         eID: eventID,
-        upcomingEvents: upcomingEvents
+        upcomingEvents: upcomingEvents,
+        swalsucc:false,
+        swalerr:false
+
       });
     }
   }
@@ -165,10 +221,11 @@ router.post("/event/:id", (req, res) => {
 //Newsletter Signup
 router.post("/", (req, res) => {
   const { user_email } = req.body;
+  
   if (!user_email) {
     res.render("pages/index", {
-      succ: false,
-      err: true,
+      swalsucc: false,
+      swalerr: true,
       formerEvents: formerEvents
     });
     res.status(400);
@@ -205,15 +262,15 @@ router.post("/", (req, res) => {
 
       if (res.statusCode === 200) {
         res.render("pages/index", {
-          succ: true,
-          err: false,
+          swalsucc: true,
+          swalerr: false,
           formerEvents: formerEvents
         });
       } else {
         res.status(400);
         res.render("pages/index", {
-          succ: false,
-          err: true,
+          swalsucc: false,
+          swalerr: true,
           formerEvents: formerEvents
         });
       }

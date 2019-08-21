@@ -70,20 +70,20 @@
               <!-- Form -->
               <form method="POST" action="/event/<%= item.id %>" class="mt-5">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-sm-6">
                     <input
                       type="text"
-                      name="user_name"
+                      name="name"
                       id="defaultContactFormName"
                       class="form-control mb-4"
                       placeholder="Name"
                       required
                     />
                   </div>
-                  <div class="col-6">
+                  <div class="col-sm-6">
                     <input
                       type="email"
-                      name="user_email"
+                      name="email"
                       id="defaultContactFormEmail"
                       class="form-control mb-4"
                       placeholder="E-mail"
@@ -91,10 +91,27 @@
                     />
                   </div>
                 </div>
-
-                <button class="btn unique-color-dark white-text " type="submit">
+                <div class="row">
+                  <div class="col-sm-6">
+                      <input
+                      type="nummber"
+                      name="phone"
+                      id="phone"
+                      class="form-control mb-4"
+                      placeholder="phone"
+                      required
+                    />
+                  </div>
+                  
+                  
+                  <div class="col-sm-6">
+                <button class="btn unique-color-dark white-text " style="margin: auto;" type="submit">
                   Register
                 </button>
+                </div>
+              </div>
+              
+              </div>
               </form>
             </div>
           </div>

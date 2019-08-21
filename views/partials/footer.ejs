@@ -106,3 +106,15 @@
   reserved.
 </div>
 <!-- Copyright -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<% if(swalsucc){ %>
+  <script>
+swal("Goo/d job!", "sucessfully suscribed", "success");
+</script>
+<%}%>
+<% if(swalerr){ %>
+<script>
+swal("Error!", "Some thing went wrong", "error");
+</script>
+<%}%>
