@@ -1,81 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--
+    WEBSITE AUTHORS : 
+    MONARCH MAISURIYA 
+    HIMANSHU JOSHI
+-->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Admin Dashboard</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="../../admin/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="../../admin/css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="../../admin/css/style.css" rel="stylesheet">
-  
+   <% include ./head %>
 </head>
 
 <body class="grey lighten-3">
 
   <!--Main Navigation-->
   <header>
-
-    <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-      <div class="container-fluid">
-
-        <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-          <strong class="blue-text">Admin</strong>
-        </a>
-
-        <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-          <!-- Left -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-              <a class="nav-link waves-effect" href="#">Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" >About
-                MDB</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-               >Free
-                download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" >Free
-                tutorials</a>
-            </li>
-          </ul>
-
-          <!-- Right -->
-          <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-              <a href="/logout" class="nav-link border border-light rounded waves-effect">
-                <i class="fas fa-sign-out-alt"></i>Logout
-              </a>
-            </li>
-          </ul>
-
-        </div>
-
-      </div>
-    </nav>
-    <!-- Navbar -->
-
+ <% include ./header %>
   </header>
   <!--Main Navigation-->
 
@@ -83,13 +21,49 @@
   <main class="pt-5 mx-lg-5">
     <div class="container-fluid mt-5">
 
-  <div class="jumbotron">
-  <h2 class="display-4">Hello, world!</h2>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-</div>
+
+     <section id="upcoming-events" class="">
+      
+       <div class="jumbotron">
+        <h2 class="display-4 text-center">Upcoming Events</h2>
+       <ul class="list-group mt-4 mb-4">
+        <% upcomingEvents.forEach(function(item){ %>
+        <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
+         <% }) %>
+        </ul>
+        <a class="btn btn-indigo btn-sm" href="/details/upcoming" role="button">add new</a>
+      </div>
+
+    </section>
+
+
+       <section id="industrial-visits" class="">
+      
+       <div class="jumbotron">
+        <h2 class="display-4 text-center">Industrial Visits</h2>
+        <ul class="list-group mt-4 mb-4">
+        <% visits.forEach(function(item){ %>
+        <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
+         <% }) %>
+        </ul>
+        <a class="btn btn-indigo btn-sm" href="/details/industrial" role="button">add new</a>
+      </div>
+
+    </section>
+
+     <section id="former-events" class="">
+      
+       <div class="jumbotron">
+        <h2 class="display-4 text-center">Former Events</h2>
+        <ul class="list-group mt-4 mb-4">
+         <% formerEvents.forEach(function(item){ %>
+         <li class="list-group-item hoverable"><a href=""><%= item.title %></a></li>
+         <% }) %>
+        </ul>
+        <a class="btn btn-indigo btn-sm" href="/details/former" role="button">add new</a>
+      </div>
+
+    </section>
 
     </div>
   </main>
@@ -97,15 +71,7 @@
 
   <!--Footer-->
   <footer class="text-center font-small ">
-
-<!-- Copyright -->
-<div class="footer-copyright text-center py-3">
-  © <span id="copyrightDate"></span>
-  <a href="https://ahduni.edu.in/"> Ahmedabad University</a> All rights
-  reserved.
-</div>
-<!-- Copyright -->
-
+  <% include ./footer %>
   </footer>
   <!--/.Footer-->
 

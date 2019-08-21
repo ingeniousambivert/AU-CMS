@@ -109,19 +109,44 @@ router.get("/visit/:id", (req, res) => {
 
 // Participant Registration
 router.post("/event/:id", (req, res) => {
+<<<<<<< HEAD:routes/routes.js
   let { name, email,phone } = req.body;
   
+=======
+  let { user_email, user_name, user_phone } = req.body;
+>>>>>>> 0024bb76c1ede359494df4f7e35183c371e09c51:routes/clientRoutes.js
   let eventID = req.params.id;
 
   addParticipant = () => {
     pDB
       .get("participants")
+<<<<<<< HEAD:routes/routes.js
       .push({ name: name, email: email,phone:phone, eventID:eventID })
+=======
+      .push({
+        name: user_name,
+        email: user_email,
+        phone: user_phone,
+        eventID: eventID
+      })
+>>>>>>> 0024bb76c1ede359494df4f7e35183c371e09c51:routes/clientRoutes.js
       .last()
       .assign({ id: Date.now().toString() })
       .write();
   };
+<<<<<<< HEAD:routes/routes.js
   if (!name || !email || !phone) {
+=======
+  if (!user_name || !user_email || !user_phone) {
+    res.render("pages/event", {
+      succ: false,
+      err: true,
+      eID: eventID,
+      upcomingEvents: upcomingEvents
+    });
+    res.status(400);
+  } else if (user_phone.length < 10) {
+>>>>>>> 0024bb76c1ede359494df4f7e35183c371e09c51:routes/clientRoutes.js
     res.render("pages/event", {
       succ: false,
       err: true,
@@ -142,6 +167,7 @@ router.post("/event/:id", (req, res) => {
       .map("email")
       .value();
 
+<<<<<<< HEAD:routes/routes.js
         
       checkEmail.forEach(element=>{
         if(email == element )
@@ -173,6 +199,10 @@ router.post("/event/:id", (req, res) => {
       /*checkEmail.forEach(element => {
     
       if (email == element && eventID == eventID) {
+=======
+    checkEmail.forEach(element => {
+      if (user_email == element && eventID == eventID) {
+>>>>>>> 0024bb76c1ede359494df4f7e35183c371e09c51:routes/clientRoutes.js
         flag = false;
         res.render("pages/event", {
           succ: false,

@@ -2,6 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<!--
+    WEBSITE AUTHORS : 
+    MONARCH MAISURIYA 
+    HIMANSHU JOSHI
+-->
   <head>
     <% include ../partials/head %>
   </head>
@@ -68,9 +73,27 @@
               </p>
 
               <!-- Form -->
-              <form method="POST" action="/event/<%= item.id %>" class="mt-5">
+              <form method="POST" action="/event/<%= item.id %>" class="mt-5" >
                 <div class="row">
+<<<<<<< HEAD
                   <div class="col-sm-6">
+=======
+                  
+                  <div class="col-10 ">
+                    <input
+                      type="email"
+                      name="user_email"
+                      id="defaultContactFormEmail"
+                      class="form-control mb-4"
+                      placeholder="E-mail"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                <div class="col-8">
+>>>>>>> 0024bb76c1ede359494df4f7e35183c371e09c51
                     <input
                       type="text"
                       name="name"
@@ -80,13 +103,24 @@
                       required
                     />
                   </div>
+<<<<<<< HEAD
                   <div class="col-sm-6">
                     <input
                       type="email"
                       name="email"
                       id="defaultContactFormEmail"
+=======
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <input
+                      type="number"
+                      name="user_phone"
+                      id="defaultContactFormNumber"
+>>>>>>> 0024bb76c1ede359494df4f7e35183c371e09c51
                       class="form-control mb-4"
-                      placeholder="E-mail"
+                      placeholder="Phone number"
                       required
                     />
                   </div>

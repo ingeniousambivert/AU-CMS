@@ -3,7 +3,9 @@ html,
 body {
   height: 100%;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .mt-10 {
   margin-top: 10%;
 }
@@ -16,4 +18,18 @@ body {
 }
 .mb-15 {
   margin-bottom: 15%;
+}
+
+.center-element {
+  margin: 0 auto;
+}
+
+a {
+  color: rgb(68, 68, 68);
+  transition: 500ms all ease-in-out;
+}
+
+a:hover {
+  color: #212121;
+  font-weight: 500;
 }

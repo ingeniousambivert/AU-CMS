@@ -7,7 +7,9 @@ body {
   height: 100%;
   font-family: "PT Sans", sans-serif;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 nav {
   background-color: #4285f4;
   color: #fff;
