@@ -31,25 +31,40 @@ clientRouter.get("/", (req, res) => {
 clientRouter.get("/about", (req, res) => {
   // use res.render to load up an ejs view file
   // about page
-  res.render("pages/about", { team: team });
+  res.render("pages/about", {
+    team: team,
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 clientRouter.get("/contact", (req, res) => {
   // use res.render to load up an ejs view file
   // contact page
-  res.render("pages/contact");
+  res.render("pages/contact", {
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 clientRouter.get("/former", (req, res) => {
   // use res.render to load up an ejs view file
   // former events page
-  res.render("pages/former", { formerEvents: formerEvents });
+  res.render("pages/former", {
+    formerEvents: formerEvents,
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 clientRouter.get("/upcoming", (req, res) => {
   // use res.render to load up an ejs view file
   // upcoming events page
-  res.render("pages/upcoming", { upcomingEvents: upcomingEvents });
+  res.render("pages/upcoming", {
+    upcomingEvents: upcomingEvents,
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 clientRouter.get("/event/:id", (req, res) => {
@@ -60,33 +75,50 @@ clientRouter.get("/event/:id", (req, res) => {
     succ: false,
     err: false,
     eID: eventID,
-    upcomingEvents: upcomingEvents
+    upcomingEvents: upcomingEvents,
+    swalsucc: false,
+    swalerr: false
   });
 });
 
 clientRouter.get("/chemecar", (req, res) => {
   // use res.render to load up an ejs view file
   // chemecar events page
-  res.render("pages/chemecar");
+  res.render("pages/chemecar", {
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 clientRouter.get("/show-tell", (req, res) => {
   // use res.render to load up an ejs view file
   // show and tell events page
-  res.render("pages/show-tell");
+  res.render("pages/show-tell", {
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 clientRouter.get("/industrial-visits", (req, res) => {
   // use res.render to load up an ejs view file
   // industrial visits page
-  res.render("pages/industrial-visits", { visit: visits });
+  res.render("pages/industrial-visits", {
+    visit: visits,
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 clientRouter.get("/visit/:id", (req, res) => {
   // use res.render to load up an ejs view file
   // individual visit info page
   let visitID = req.params.id;
-  res.render("pages/visit", { visit: visits, vID: visitID });
+  res.render("pages/visit", {
+    visit: visits,
+    vID: visitID,
+    swalsucc: false,
+    swalerr: false
+  });
 });
 
 // Participant Registration
@@ -112,7 +144,9 @@ clientRouter.post("/event/:id", (req, res) => {
       succ: false,
       err: true,
       eID: eventID,
-      upcomingEvents: upcomingEvents
+      upcomingEvents: upcomingEvents,
+      swalsucc: false,
+      swalerr: false
     });
     res.status(400);
   } else if (user_phone.length < 10) {
@@ -120,7 +154,9 @@ clientRouter.post("/event/:id", (req, res) => {
       succ: false,
       err: true,
       eID: eventID,
-      upcomingEvents: upcomingEvents
+      upcomingEvents: upcomingEvents,
+      swalsucc: false,
+      swalerr: false
     });
     res.status(400);
   } else {
@@ -144,7 +180,9 @@ clientRouter.post("/event/:id", (req, res) => {
           succ: false,
           err: true,
           eID: eventID,
-          upcomingEvents: upcomingEvents
+          upcomingEvents: upcomingEvents,
+          swalsucc: false,
+          swalerr: false
         });
       }
     });
@@ -154,7 +192,9 @@ clientRouter.post("/event/:id", (req, res) => {
         succ: true,
         err: false,
         eID: eventID,
-        upcomingEvents: upcomingEvents
+        upcomingEvents: upcomingEvents,
+        swalsucc: false,
+        swalerr: false
       });
     } else if (isFull == false) {
       addParticipant();
@@ -162,14 +202,18 @@ clientRouter.post("/event/:id", (req, res) => {
         succ: true,
         err: false,
         eID: eventID,
-        upcomingEvents: upcomingEvents
+        upcomingEvents: upcomingEvents,
+        swalsucc: false,
+        swalerr: false
       });
     } else {
       res.render("pages/event", {
         succ: false,
         err: true,
         eID: eventID,
-        upcomingEvents: upcomingEvents
+        upcomingEvents: upcomingEvents,
+        swalsucc: false,
+        swalerr: false
       });
     }
   }
@@ -182,7 +226,9 @@ clientRouter.post("/", (req, res) => {
     res.render("pages/index", {
       succ: false,
       err: true,
-      formerEvents: formerEvents
+      formerEvents: formerEvents,
+      swalsucc: false,
+      swalerr: false
     });
     res.status(400);
   } else {
@@ -220,14 +266,18 @@ clientRouter.post("/", (req, res) => {
         res.render("pages/index", {
           succ: true,
           err: false,
-          formerEvents: formerEvents
+          formerEvents: formerEvents,
+          swalsucc: false,
+          swalerr: false
         });
       } else {
         res.status(400);
         res.render("pages/index", {
           succ: false,
           err: true,
-          formerEvents: formerEvents
+          formerEvents: formerEvents,
+          swalsucc: false,
+          swalerr: false
         });
       }
     }
