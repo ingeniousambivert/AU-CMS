@@ -23,6 +23,12 @@ html {
 .ml-5 {
   margin-left: 5%;
 }
+.mr-5 {
+  margin-right: 5%;
+}
+.m-5 {
+  margin: 5%;
+}
 .center-element {
   margin: 0 auto;
 }

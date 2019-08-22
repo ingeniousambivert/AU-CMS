@@ -112,7 +112,36 @@
         <tr> 
               <td><%= item.title %></td>
               <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
-              <a class="btn btn-danger btn-sm " href="/modify/<%= item.title %>" role="button">Delete</a></td>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
+               Delete
+              </button>
+              </td>
+           
+
+              <!-- Modal -->
+              <div class="modal fade" id="<%= item.key %>" tabindex="-1" role="dialog" aria-labelledby="<%= item.key %>"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header danger-color">
+                      <h5 class="modal-title white-text" id="exampleModalLabel">Confirm</h5>
+                      <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST" action="/delete/<%= item.key %>">
+                    <div class="modal-body">
+                    Are you sure you want to delete <span class="font-weight-bold"><%= item.title %></span> ?
+                    <div class="mt-3">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger btn-sm" name="deleteBtn" type="submit">Delete</button>
+                    </div>
+                       </form>
+                    </div>
+                  </div>
+                </div>
+              </div></td>
             </tr>
              <% }) %>
           </tbody>
@@ -149,7 +178,36 @@
          <tr> 
               <td><%= item.title %></td>
               <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
-              <a class="btn btn-danger btn-sm " href="/modify/<%= item.title %>" role="button">Delete</a></td>
+               <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
+               Delete
+              </button>
+              </td>
+           
+
+              <!-- Modal -->
+              <div class="modal fade" id="<%= item.key %>" tabindex="-1" role="dialog" aria-labelledby="<%= item.key %>"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header danger-color">
+                      <h5 class="modal-title white-text" id="exampleModalLabel">Confirm</h5>
+                      <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST" action="/delete/<%= item.key %>">
+                    <div class="modal-body">
+                    Are you sure you want to delete <span class="font-weight-bold"><%= item.title %></span> ?
+                    <div class="mt-3">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger btn-sm" name="deleteBtn" type="submit">Delete</button>
+                    </div>
+                       </form>
+                    </div>
+                  </div>
+                </div>
+              </div></td>
             </tr>
              <% }) %>
           </tbody>
