@@ -228,14 +228,24 @@ low(formerAdapter).then(formerDB => {
             .filter({ title: checkEvent })
             .map("title")
             .value();
-          let { titleForEvent, briefForEvent } = req.body;
+          let {
+            titleForEvent,
+            briefForEvent,
+            dateForEvent,
+            detailsForEvent
+          } = req.body;
           const upcomingTitle = getUpcoming.toString();
 
           if (checkEvent == upcomingTitle) {
             const getUpcoming = upcomingDB
               .get("upcoming")
               .find({ title: upcomingTitle })
-              .assign({ title: titleForEvent, brief: briefForEvent })
+              .assign({
+                title: titleForEvent,
+                date: dateForEvent,
+                brief: briefForEvent,
+                details: detailsForEvent
+              })
               .write();
             res.render("admin/modify", {
               formerEvents: former,

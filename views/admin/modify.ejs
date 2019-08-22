@@ -37,7 +37,7 @@
      
       <% if (item.title == event) { %>
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
-       <input type="text" id="titleForEvent" REQUIRED name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
+       <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
        <label for="briefForEvent"><h6 class="font-weight-bold">Brief:</h6></label>
        <input type="text" id="briefForEvent" name="briefForEvent" class="form-control mb-4" value="<%= item.brief %>">
        <label for="detailForEvent"><h6 class="font-weight-bold">Details:</h6></label>
@@ -45,8 +45,23 @@
       <label for="dateForEvent"><h6 class="font-weight-bold">Current Date:</h6></label>
        <div class="row">
        <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= item.date%>">
-       <input type="date" id="dateForEvent"  name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
+       <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
        </div>
+      <label for="fileForEvent"><h6 class="font-weight-bold mt-4">Upload Images:</h6></label>
+      <div class="input-group col-md-5 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+
+      <div class="custom-file ">
+          <input type="file" multiple class="custom-file-input" id="fileForEvent"
+          name="fileForEvent"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose images to upload</label>
+      </div>
+      
+    </div>
+       
       <% } %>
      <% }) %>
      <button class="btn btn-primary btn-sm my-4" type="submit">Update</button>
