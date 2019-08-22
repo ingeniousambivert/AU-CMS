@@ -21,7 +21,18 @@
 
         <div class="jumbotron">
          <h2 class="text-center mb-4">Modify the contents of : <%= event %></h2>
-         <form method="POST" class="container p-5" action="modify/<%= event %>">
+          
+        <% if (err) { %>
+        <div class="alert alert-danger text-center center-element w-50" role="alert">
+          <h6>An error has occured.</h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center alert-success center-element w-50" role="alert">
+          <h6>Event updated successfully</h6>
+          <a href="/dashboard">Go back</a>
+        </div>
+        <% } %>
+         <form method="POST" class="container p-5" action="/modify/<%= event %>">
        <% upcomingEvents.forEach(function(item){ %>
      
       <% if (item.title == event) { %>

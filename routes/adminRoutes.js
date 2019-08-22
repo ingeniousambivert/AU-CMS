@@ -140,7 +140,7 @@ low(formerAdapter).then(formerDB => {
             .get("upcoming")
             .find({ title: itemtoDelete })
             .value();
-          //console.log(getUpcoming);
+
           const getFormer = formerDB
             .get("former")
             .find({ title: itemtoDelete })
@@ -218,6 +218,43 @@ low(formerAdapter).then(formerDB => {
             succ: false,
             err: false
           });
+        });
+
+        // Modify Route
+        adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
+          let checkEvent = req.params.event;
+          const getUpcoming = upcomingDB
+            .get("upcoming")
+            .filter({ title: checkEvent })
+            .map("title")
+            .value();
+          let { titleForEvent, briefForEvent } = req.body;
+          const upcomingTitle = getUpcoming.toString();
+
+          if (checkEvent == upcomingTitle) {
+            const getUpcoming = upcomingDB
+              .get("upcoming")
+              .find({ title: upcomingTitle })
+              .assign({ title: titleForEvent, brief: briefForEvent })
+              .write();
+            res.render("admin/modify", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              visits: industrial,
+              event: req.params.event,
+              succ: true,
+              err: false
+            });
+          } else {
+            res.render("admin/modify", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              visits: industrial,
+              event: req.params.event,
+              succ: false,
+              err: true
+            });
+          }
         });
 
         //  Add Route
