@@ -85,6 +85,7 @@ low(formerAdapter).then(formerDB => {
         const upcoming = upcomingDB.get("upcoming").value();
         const former = formerDB.get("former").value();
         const industrial = industrialDB.get("industrial").value();
+        const participants = participantDB.get("participants").value();
 
         //  Dashboard Route
         adminRouter.get("/dashboard", checkSignIn, (req, res) => {
@@ -99,10 +100,35 @@ low(formerAdapter).then(formerDB => {
 
         //  Info Route
         adminRouter.get("/info/:event", checkSignIn, (req, res) => {
-          res.render("admin/info", {
-            upcomingEvents: upcoming,
-            event: req.params.event
-          });
+          const checkEventID = upcomingDB
+            .get("upcoming")
+            .filter({ title: req.params.event })
+            .map("id")
+            .value();
+
+          const eventIDforParticipants = checkEventID.toString();
+
+          const participantsToDisplay = participantDB
+            .get("participants")
+            .filter({ eventID: eventIDforParticipants })
+            .value();
+
+          if (participantsToDisplay) {
+            res.render("admin/info", {
+              err: false,
+              succ: true,
+              upcomingEvents: upcoming,
+              event: req.params.event,
+              participants: participantsToDisplay
+            });
+          } else {
+            res.render("admin/info", {
+              err: true,
+              succ: false,
+              upcomingEvents: upcoming,
+              event: req.params.event
+            });
+          }
         });
 
         //  Delete Route
