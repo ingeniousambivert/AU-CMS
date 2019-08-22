@@ -87,12 +87,13 @@ adminRouter.get("/dashboard", checkSignIn, (req, res) => {
 adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
+  let itemtoDelete = req.params.event;
 
-  let { itemtoDelete } = req.body;
   const getUpcoming = upcomingDB
     .get("upcoming")
     .find({ title: itemtoDelete })
     .value();
+  //console.log(getUpcoming);
   const getFormer = formerDB
     .get("former")
     .find({ title: itemtoDelete })
@@ -107,7 +108,6 @@ adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
       formerEvents: former,
       upcomingEvents: upcoming,
       visits: industrial,
-      event: checkEvent,
       swalsucc: false,
       swalerr: true
     });
@@ -121,7 +121,6 @@ adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
       formerEvents: former,
       upcomingEvents: upcoming,
       visits: industrial,
-      event: checkEvent,
       swalsucc: true,
       swalerr: false
     });
@@ -135,7 +134,6 @@ adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
       formerEvents: former,
       upcomingEvents: upcoming,
       visits: industrial,
-      event: checkEvent,
       swalsucc: true,
       swalerr: false
     });
@@ -149,7 +147,6 @@ adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
       formerEvents: former,
       upcomingEvents: upcoming,
       visits: industrial,
-      event: checkEvent,
       swalsucc: true,
       swalerr: false
     });
@@ -158,7 +155,6 @@ adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
       formerEvents: former,
       upcomingEvents: upcoming,
       visits: industrial,
-      event: checkEvent,
       swalsucc: false,
       swalerr: true
     });

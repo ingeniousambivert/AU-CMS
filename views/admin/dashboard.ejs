@@ -83,8 +83,8 @@ swal("Error!", "An error has occured", "error");
                     <div class="modal-body">
                     Are you sure you want to delete <span class="font-weight-bold"><%= item.title %></span> ?
                     <div class="mt-3">
-                    
-                      <button type="button" class="btn btn-danger btn-sm" name="itemToDelete" value="<%= item.title %>" type="submit">Delete</button>
+                    <input type="hidden" name="itemToDelete" value="<%= item.title %>" />
+                      <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                       <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                     </div>
                        </form>
@@ -100,7 +100,7 @@ swal("Error!", "An error has occured", "error");
         </table>
         <!--Table-->
       <a class="btn primary-color-dark white-text btn-sm ml-5 " href="/add/upcoming" role="button">add new</a>
-      <small class="grey-text mr-5" style="float:right;">Click on the title to view participant's list.</small>
+      <small class="grey-text mt-4 mr-5" style="float:right;">Click on the title to view participant's list.</small>
       </div>
 
     </section>
@@ -152,7 +152,7 @@ swal("Error!", "An error has occured", "error");
                     Are you sure you want to delete <span class="font-weight-bold"><%= item.title %></span> ?
                     <div class="mt-3">
                     
-                      <button type="button" class="btn btn-danger btn-sm" name="itemToDelete" value="<%= item.title %>" type="submit">Delete</button>
+                      <button class="btn btn-danger btn-sm" name="itemToDelete" value="<%= item.title %>" type="submit">Delete</button>
                       <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                     </div>
                        </form>
@@ -219,7 +219,7 @@ swal("Error!", "An error has occured", "error");
                     Are you sure you want to delete <span class="font-weight-bold"><%= item.title %></span> ?
                     <div class="mt-3">
                    
-                      <button type="button" class="btn btn-danger btn-sm" name="itemToDelete" value="<%= item.title %>" type="submit">Delete</button>
+                      <button class="btn btn-danger btn-sm" name="itemToDelete" value="<%= item.title %>" type="submit">Delete</button>
                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                     </div>
                        </form>
