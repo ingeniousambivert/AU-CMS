@@ -81,6 +81,20 @@ adminRouter.get("/dashboard", checkSignIn, (req, res) => {
   });
 });
 
+//  Delete Route
+adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
+  // use res.render to load up an ejs view file
+  // admin panel
+
+  res.render("admin/dashboard", {
+    formerEvents: former,
+    upcomingEvents: upcoming,
+    visits: industrial,
+    swalsucc: false,
+    swalerr: false
+  });
+});
+
 // Modify Route
 adminRouter.get("/modify/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file

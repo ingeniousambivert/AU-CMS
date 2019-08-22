@@ -164,11 +164,14 @@ clientRouter.post("/event/:id", (req, res) => {
         name: user_name,
         email: user_email,
         phone: user_phone,
-        registeredOn: moment().format("MMMM Do YYYY, h:mm:ss a"),
+        date: moment().format("MMMM Do YYYY, h:mm:ss a"),
         eventID: eventID
       })
       .last()
       .assign({ id: Date.now().toString() })
+      .push({
+        key: "PARTICIPANT" + id
+      })
       .write();
   };
   if (!user_name || !user_email || !user_phone) {
