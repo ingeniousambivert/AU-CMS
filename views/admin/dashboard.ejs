@@ -24,15 +24,66 @@
 
      <section id="upcoming-events" class="">
       
-       <div class="jumbotron">
+       <div class="jumbotron p-5 ">
         <h1 class=" text-center">Upcoming Events</h1>
-       <ul class="list-group mt-4 mb-4 p-4">
-        <% upcomingEvents.forEach(function(item){ %>
-        <li class="list-group-item "><a href="/modify/<%= item.title %>"><%= item.title %></a></li>
-         <% }) %>
-        </ul>
-        <a class="btn btn-indigo btn-sm " href="/add/upcoming" role="button">add new</a>
-        <small class="grey-text" style="float:right;margin-right:2%;">Click on the title to view more.</small>
+        <div class="table-responsive text-nowrap">
+        <!--Table-->
+        <table class="table container table-hover center-element ">
+
+          <!--Table head-->
+          <thead>
+            <tr>
+             
+              <th>Name</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+           <% upcomingEvents.forEach(function(item){ %>
+            <tr> 
+              <td><%= item.title %></td>
+              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
+               Delete
+              </button>
+              </td>
+           
+
+              <!-- Modal -->
+              <div class="modal fade" id="<%= item.key %>" tabindex="-1" role="dialog" aria-labelledby="<%= item.key %>"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header danger-color">
+                      <h5 class="modal-title white-text" id="exampleModalLabel">Confirm</h5>
+                      <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST" action="/delete/<%= item.key %>">
+                    <div class="modal-body">
+                    Are you sure you want to delete <span class="font-weight-bold"><%= item.title %></span> ?
+                    <div class="mt-3">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger btn-sm" name="deleteBtn" type="submit">Delete</button>
+                    </div>
+                       </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+             <% }) %>
+          </tbody>
+          <!--Table body-->
+          
+        </table>
+        <!--Table-->
+      <a class="btn btn-indigo btn-sm ml-5 " href="/add/upcoming" role="button">add new</a>
       </div>
 
     </section>
@@ -40,15 +91,37 @@
 
        <section id="industrial-visits" class="">
       
-       <div class="jumbotron">
+       <div class="jumbotron ">
         <h1 class="text-center">Industrial Visits</h1>
-        <ul class="list-group mt-4 mb-4 p-4">
+       <!--Table-->
+        <table class="table container table-hover center-element ">
+
+          <!--Table head-->
+          <thead>
+            <tr>
+             
+              <th>Name</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
         <% visits.forEach(function(item){ %>
-        <li class="list-group-item "><a href="/modify/<%= item.title %>"><%= item.title %></a></li>
-         <% }) %>
-        </ul>
-        <a class="btn btn-indigo btn-sm" href="/add/industrial" role="button">add new</a>
-         <small class="grey-text" style="float:right;margin-right:2%;">Click on the title to view more.</small>
+        <tr> 
+              <td><%= item.title %></td>
+              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
+              <a class="btn btn-danger btn-sm " href="/modify/<%= item.title %>" role="button">Delete</a></td>
+            </tr>
+             <% }) %>
+          </tbody>
+          <!--Table body-->
+          
+        </table>
+        <!--Table-->
+        <a class="btn btn-indigo btn-sm ml-5 " href="/add/industrial" role="button">add new</a>
+         
       </div>
 
     </section>
@@ -57,17 +130,42 @@
       
        <div class="jumbotron">
         <h1 class=" text-center">Former Events</h1>
-        <ul class="list-group mt-4 mb-4 p-4">
+        <!--Table-->
+        <table class="table container table-hover center-element ">
+
+          <!--Table head-->
+          <thead>
+            <tr>
+             
+              <th>Name</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
          <% formerEvents.forEach(function(item){ %>
-         <li class="list-group-item "><a href="/modify/<%= item.title %>"><%= item.title %></a></li>
-         <% }) %>
-        </ul>
-        <a class="btn btn-indigo btn-sm" href="/add/former" role="button">add new</a>
-         <small class="grey-text" style="float:right;margin-right:2%;">Click on the title to view more.</small>
+         <tr> 
+              <td><%= item.title %></td>
+              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
+              <a class="btn btn-danger btn-sm " href="/modify/<%= item.title %>" role="button">Delete</a></td>
+            </tr>
+             <% }) %>
+          </tbody>
+          <!--Table body-->
+          
+        </table>
+        <!--Table-->
+        <a class="btn btn-indigo btn-sm ml-5 " href="/add/former" role="button">add new</a>
+         
       </div>
 
     </section>
 
+      </div>
+</section>
+<!--Section: Live preview-->
     </div>
   </main>
   <!--Main layout-->
