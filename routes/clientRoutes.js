@@ -6,24 +6,18 @@ const moment = require("moment");
 // LowDB for participants list
 //See https://github.com/typicode/lowdb for docs
 const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
+const FileAsync = require("lowdb/adapters/FileAsync");
+
 // Participants DB
-const participantAdapter = new FileSync("./data/participants.json");
-const participantDB = low(participantAdapter);
+const participantAdapter = new FileAsync("./data/participants.json");
 // Upcoming Events DB
-const upcomingAdapter = new FileSync("./data/upcoming-events.json");
-const upcomingDB = low(upcomingAdapter);
+const upcomingAdapter = new FileAsync("./data/upcoming-events.json");
 // Industrial Visit DB
-const industrialAdapter = new FileSync("./data/industrial-visits.json");
-const industrialDB = low(industrialAdapter);
+const industrialAdapter = new FileAsync("./data/industrial-visits.json");
 // Former Events DB
-const formerAdapter = new FileSync("./data/former-events.json");
-const formerDB = low(formerAdapter);
+const formerAdapter = new FileAsync("./data/former-events.json");
 
 // LowDB Instances
-const upcoming = upcomingDB.get("upcoming").value();
-const former = formerDB.get("former").value();
-const industrial = industrialDB.get("industrial").value();
 
 // Data for views
 const team = require("../data/team.json");
@@ -31,20 +25,31 @@ const team = require("../data/team.json");
 //----- CLIENT ROUTES -----//
 
 // GET and POST Routes for the clientRouter
-clientRouter.get("/", (req, res) => {
-  // use res.render to load up an ejs view file
-  // index page
 
-  res.render("pages/index", {
-    formerEvents: former,
-    swalsucc: false,
-    swalerr: false
+low(formerAdapter).then(formerDB => {
+  // Index Route
+  clientRouter.get("/", (req, res) => {
+    const former = formerDB.get("former").value();
+    res.render("pages/index", {
+      formerEvents: former,
+      swalsucc: false,
+      swalerr: false
+    });
+  });
+
+  // Former Route
+  clientRouter.get("/former", (req, res) => {
+    const former = formerDB.get("former").value();
+    res.render("pages/former", {
+      formerEvents: former,
+      swalsucc: false,
+      swalerr: false
+    });
   });
 });
 
+// About Route
 clientRouter.get("/about", (req, res) => {
-  // use res.render to load up an ejs view file
-  // about page
   res.render("pages/about", {
     team: team,
     swalsucc: false,
@@ -52,211 +57,200 @@ clientRouter.get("/about", (req, res) => {
   });
 });
 
+// Contact Route
 clientRouter.get("/contact", (req, res) => {
-  // use res.render to load up an ejs view file
-  // contact page
   res.render("pages/contact", {
     swalsucc: false,
     swalerr: false
   });
 });
 
-clientRouter.get("/former", (req, res) => {
-  // use res.render to load up an ejs view file
-  // former events page
+low(upcomingAdapter).then(upcomingDB => {
+  // Upcoming Route
+  clientRouter.get("/upcoming", (req, res) => {
+    const upcoming = upcomingDB.get("upcoming").value();
 
-  res.render("pages/former", {
-    formerEvents: former,
-    swalsucc: false,
-    swalerr: false
+    res.render("pages/upcoming", {
+      upcomingEvents: upcoming,
+      swalsucc: false,
+      swalerr: false
+    });
+  });
+
+  // Event Route
+  clientRouter.get("/event/:id", (req, res) => {
+    let eventID = req.params.id;
+    const event = upcomingDB
+      .get("upcoming")
+      .filter({
+        id: 1
+      })
+      .value();
+
+    res.render("pages/event", {
+      succ: false,
+      err: false,
+      eID: eventID,
+      upcomingEvents: event,
+      swalsucc: false,
+      swalerr: false
+    });
   });
 });
 
-clientRouter.get("/upcoming", (req, res) => {
-  // use res.render to load up an ejs view file
-  // upcoming events page
-
-  res.render("pages/upcoming", {
-    upcomingEvents: upcoming,
-    swalsucc: false,
-    swalerr: false
-  });
-});
-
-clientRouter.get("/event/:id", (req, res) => {
-  // use res.render to load up an ejs view file
-  // upcoming event page
-  let eventID = req.params.id;
-
-  const event = upcomingDB
-    .get("industrial")
-    .filter({ id: eventID })
-    .value();
-
-  res.render("pages/event", {
-    succ: false,
-    err: false,
-    eID: eventID,
-    upcomingEvents: event,
-    swalsucc: false,
-    swalerr: false
-  });
-});
-
+// Chemecar Route
 clientRouter.get("/chemecar", (req, res) => {
-  // use res.render to load up an ejs view file
-  // chemecar events page
   res.render("pages/chemecar", {
     swalsucc: false,
     swalerr: false
   });
 });
 
+// Show & Tell Route
 clientRouter.get("/show-tell", (req, res) => {
-  // use res.render to load up an ejs view file
-  // show and tell events page
   res.render("pages/show-tell", {
     swalsucc: false,
     swalerr: false
   });
 });
 
-clientRouter.get("/industrial-visits", (req, res) => {
-  // use res.render to load up an ejs view file
-  // industrial visits page
-
-  res.render("pages/industrial-visits", {
-    visit: industrial,
-    swalsucc: false,
-    swalerr: false
+low(industrialAdapter).then(industrialDB => {
+  // Industrial Visit Route
+  clientRouter.get("/industrial-visits", (req, res) => {
+    const industrial = industrialDB.get("industrial").value();
+    res.render("pages/industrial-visits", {
+      visit: industrial,
+      swalsucc: false,
+      swalerr: false
+    });
   });
-});
 
-clientRouter.get("/visit/:id", (req, res) => {
-  // use res.render to load up an ejs view file
-  // individual visit info page
-  const visitID = req.params.id;
+  // Individual Visit Route
+  clientRouter.get("/visit/:id", (req, res) => {
+    const visitID = req.params.id;
+    const visit = industrialDB
+      .get("industrial")
+      .map("id")
+      .filter({ id: visitID })
+      .value();
 
-  const visit = industrialDB
-    .get("industrial")
-    .map("id")
-    .filter({ id: visitID })
-    .value();
-
-  res.render("pages/visit", {
-    visit: visit,
-    vID: visitID,
-    swalsucc: false,
-    swalerr: false
+    res.render("pages/visit", {
+      visit: visit,
+      vID: visitID,
+      swalsucc: false,
+      swalerr: false
+    });
   });
 });
 
 // Participant Registration
-clientRouter.post("/event/:id", (req, res) => {
-  let { user_name, user_email, user_phone } = req.body;
+low(participantAdapter).then(participantDB => {
+  low(upcomingAdapter).then(upcomingDB => {
+    clientRouter.post("/event/:id", (req, res) => {
+      let { user_name, user_email, user_phone } = req.body;
+      const upcomingEvents = upcomingDB.get("upcoming").value();
+      let eventID = req.params.id;
+      let time = Date.now().toString();
 
-  let eventID = req.params.id;
-
-  addParticipant = () => {
-    participantDB
-      .get("participants")
-      .push({
-        name: user_name,
-        email: user_email,
-        phone: user_phone,
-        date: moment().format("MMMM Do YYYY, h:mm:ss a"),
-        eventID: eventID
-      })
-      .last()
-      .assign({ id: Date.now().toString() })
-      .push({
-        key: "PARTICIPANT" + id
-      })
-      .write();
-  };
-  if (!user_name || !user_email || !user_phone) {
-    res.render("pages/event", {
-      succ: false,
-      err: true,
-      eID: eventID,
-      upcomingEvents: upcomingEvents,
-      swalsucc: false,
-      swalerr: false
-    });
-    res.status(400);
-  } else if (user_phone.length < 10) {
-    res.render("pages/event", {
-      succ: false,
-      err: true,
-      eID: eventID,
-      upcomingEvents: upcomingEvents,
-      swalsucc: false,
-      swalerr: false
-    });
-    res.status(400);
-  } else {
-    let flag = new Boolean(true);
-    const isFull = participantDB.has("participants").value();
-
-    const checkEmail = participantDB
-      .get("participants")
-      .map("email")
-      .value();
-
-    checkEmail.forEach(element => {
-      if (user_email == element) {
-        const checkEvent = participantDB
+      addParticipant = () => {
+        participantDB
           .get("participants")
-          .filter({ email: user_email })
-          .map("eventID")
+          .push({
+            name: user_name,
+            email: user_email,
+            phone: user_phone,
+            date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+            eventID: eventID,
+            id: time,
+            key: "PARTICIPANT" + time
+          })
+          .write();
+      };
+      if (!user_name || !user_email || !user_phone) {
+        res.render("pages/event", {
+          succ: false,
+          err: true,
+          eID: eventID,
+          upcomingEvents: upcomingEvents,
+          swalsucc: false,
+          swalerr: false
+        });
+        res.status(400);
+      } else if (user_phone.length < 10) {
+        res.render("pages/event", {
+          succ: false,
+          err: true,
+          eID: eventID,
+          upcomingEvents: upcomingEvents,
+          swalsucc: false,
+          swalerr: false
+        });
+        res.status(400);
+      } else {
+        let flag = new Boolean(true);
+        const isFull = participantDB.has("participants").value();
+
+        const checkEmail = participantDB
+          .get("participants")
+          .map("email")
           .value();
-        checkEvent.forEach(element => {
-          if (eventID == element) {
-            flag = false;
-            res.render("pages/event", {
-              succ: false,
-              err: true,
-              eID: eventID,
-              upcomingEvents: upcomingEvents,
-              swalsucc: false,
-              swalerr: false
+
+        checkEmail.forEach(element => {
+          if (user_email == element) {
+            const checkEvent = participantDB
+              .get("participants")
+              .filter({ email: user_email })
+              .map("eventID")
+              .value();
+            checkEvent.forEach(element => {
+              if (eventID == element) {
+                flag = false;
+                res.render("pages/event", {
+                  succ: false,
+                  err: true,
+                  eID: eventID,
+                  upcomingEvents: upcomingEvents,
+                  swalsucc: false,
+                  swalerr: false
+                });
+              }
             });
           }
         });
+
+        if (flag) {
+          addParticipant();
+          res.render("pages/event", {
+            succ: true,
+            err: false,
+            eID: eventID,
+            upcomingEvents: upcomingEvents,
+            swalsucc: false,
+            swalerr: false
+          });
+        } else if (isFull == false) {
+          addParticipant();
+          res.render("pages/event", {
+            succ: true,
+            err: false,
+            eID: eventID,
+            upcomingEvents: upcomingEvents,
+            swalsucc: false,
+            swalerr: false
+          });
+        } else {
+          res.render("pages/event", {
+            succ: false,
+            err: true,
+            eID: eventID,
+            upcomingEvents: upcomingEvents,
+            swalsucc: false,
+            swalerr: false
+          });
+        }
       }
     });
-
-    if (flag) {
-      addParticipant();
-      res.render("pages/event", {
-        succ: true,
-        err: false,
-        eID: eventID,
-        upcomingEvents: upcomingEvents,
-        swalsucc: false,
-        swalerr: false
-      });
-    } else if (isFull == false) {
-      addParticipant();
-      res.render("pages/event", {
-        succ: true,
-        err: false,
-        eID: eventID,
-        upcomingEvents: upcomingEvents,
-        swalsucc: false,
-        swalerr: false
-      });
-    } else {
-      res.render("pages/event", {
-        succ: false,
-        err: true,
-        eID: eventID,
-        upcomingEvents: upcomingEvents,
-        swalsucc: false,
-        swalerr: false
-      });
-    }
-  }
+  });
 });
 
 //Newsletter Signup
