@@ -44,7 +44,7 @@
           <tbody>
            <% upcomingEvents.forEach(function(item){ %>
             <tr> 
-              <td><%= item.title %></td>
+              <th><%= item.title %></th>
               <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
@@ -111,7 +111,7 @@
           <tbody>
         <% visits.forEach(function(item){ %>
         <tr> 
-              <td><%= item.title %></td>
+              <th><%= item.title %></th>
               <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
@@ -178,7 +178,7 @@
           <tbody>
          <% formerEvents.forEach(function(item){ %>
          <tr> 
-              <td><%= item.title %></td>
+              <th><%= item.title %></th>
               <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
                <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
