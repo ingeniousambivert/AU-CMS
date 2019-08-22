@@ -77,7 +77,9 @@ adminRouter.get("/dashboard", checkSignIn, (req, res) => {
   res.render("admin/dashboard", {
     formerEvents: former,
     upcomingEvents: upcoming,
-    visits: industrial
+    visits: industrial,
+    swalsucc: false,
+    swalerr: false
   });
 });
 
@@ -86,13 +88,81 @@ adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
   // use res.render to load up an ejs view file
   // admin panel
 
-  res.render("admin/dashboard", {
-    formerEvents: former,
-    upcomingEvents: upcoming,
-    visits: industrial,
-    swalsucc: false,
-    swalerr: false
-  });
+  let { itemtoDelete } = req.body;
+  const getUpcoming = upcomingDB
+    .get("upcoming")
+    .find({ title: itemtoDelete })
+    .value();
+  const getFormer = formerDB
+    .get("former")
+    .find({ title: itemtoDelete })
+    .value();
+  const getIndustrial = industrialDB
+    .get("industrial")
+    .find({ title: itemtoDelete })
+    .value();
+
+  if (!itemtoDelete) {
+    res.render("admin/dashboard", {
+      formerEvents: former,
+      upcomingEvents: upcoming,
+      visits: industrial,
+      event: checkEvent,
+      swalsucc: false,
+      swalerr: true
+    });
+  } else if (getUpcoming) {
+    upcomingDB
+      .get("upcoming")
+      .remove({ title: itemtoDelete })
+      .write();
+
+    res.render("admin/dashboard", {
+      formerEvents: former,
+      upcomingEvents: upcoming,
+      visits: industrial,
+      event: checkEvent,
+      swalsucc: true,
+      swalerr: false
+    });
+  } else if (getFormer) {
+    formerDB
+      .get("former")
+      .remove({ title: itemtoDelete })
+      .write();
+
+    res.render("admin/dashboard", {
+      formerEvents: former,
+      upcomingEvents: upcoming,
+      visits: industrial,
+      event: checkEvent,
+      swalsucc: true,
+      swalerr: false
+    });
+  } else if (getIndustrial) {
+    industrialDB
+      .get("industrial")
+      .remove({ title: itemtoDelete })
+      .write();
+
+    res.render("admin/dashboard", {
+      formerEvents: former,
+      upcomingEvents: upcoming,
+      visits: industrial,
+      event: checkEvent,
+      swalsucc: true,
+      swalerr: false
+    });
+  } else {
+    res.render("admin/dashboard", {
+      formerEvents: former,
+      upcomingEvents: upcoming,
+      visits: industrial,
+      event: checkEvent,
+      swalsucc: false,
+      swalerr: true
+    });
+  }
 });
 
 // Modify Route
