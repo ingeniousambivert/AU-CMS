@@ -113,20 +113,20 @@ low(formerAdapter).then(formerDB => {
             .filter({ eventID: eventIDforParticipants })
             .value();
 
-          if (participantsToDisplay) {
+          if (!participantsToDisplay) {
+            res.render("admin/info", {
+              err: true,
+              succ: false,
+              upcomingEvents: upcoming,
+              event: req.params.event
+            });
+          } else {
             res.render("admin/info", {
               err: false,
               succ: true,
               upcomingEvents: upcoming,
               event: req.params.event,
               participants: participantsToDisplay
-            });
-          } else {
-            res.render("admin/info", {
-              err: true,
-              succ: false,
-              upcomingEvents: upcoming,
-              event: req.params.event
             });
           }
         });
