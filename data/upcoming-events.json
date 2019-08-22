@@ -1,7 +1,7 @@
 {
   "upcoming": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Random Event 1",
       "date": "29/9/2019",
       "brief": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae odio in risus rutrum sodales. Praesent facilisis ac lectus sed hendrerit.",
@@ -11,7 +11,7 @@
       "key": "UPCOMING1"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Random Event 2",
       "date": "29/10/2019",
       "brief": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae odio in risus rutrum sodales. Praesent facilisis ac lectus sed hendrerit.",

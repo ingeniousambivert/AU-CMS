@@ -65,14 +65,14 @@ clientRouter.get("/contact", (req, res) => {
 low(upcomingAdapter).then(upcomingDB => {
   // Event Route
   clientRouter.get("/event/:id", (req, res) => {
+    let eID = req.params.id;
     const event = upcomingDB
       .get("upcoming")
       .filter({
-        id: req.params.id
+        id: eID
       })
       .value();
 
-    let eID = req.params.id;
     res.render("pages/event", {
       succ: false,
       err: false,
@@ -112,28 +112,29 @@ clientRouter.get("/show-tell", (req, res) => {
 });
 
 low(industrialAdapter).then(industrialDB => {
-  // Industrial Visit Route
-  clientRouter.get("/industrial-visits", (req, res) => {
-    const industrial = industrialDB.get("industrial").value();
-    res.render("pages/industrial-visits", {
-      visit: industrial,
-      swalsucc: false,
-      swalerr: false
-    });
-  });
-
   // Individual Visit Route
   clientRouter.get("/visit/:id", (req, res) => {
     const visitID = req.params.id;
     const visit = industrialDB
       .get("industrial")
-      .map("id")
-      .filter({ id: visitID })
+      .filter({
+        id: visitID
+      })
       .value();
 
     res.render("pages/visit", {
       visit: visit,
       vID: visitID,
+      swalsucc: false,
+      swalerr: false
+    });
+  });
+
+  // Industrial Visit Route
+  clientRouter.get("/industrial-visits", (req, res) => {
+    const industrial = industrialDB.get("industrial").value();
+    res.render("pages/industrial-visits", {
+      visit: industrial,
       swalsucc: false,
       swalerr: false
     });
