@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 const checkSignIn = require("../middlewares/checkSignIn");
 const returnToDash = require("../middlewares/returnToDash");
 
-// LowDB for participants list
+// LowDB Instances
 //See https://github.com/typicode/lowdb for docs
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");

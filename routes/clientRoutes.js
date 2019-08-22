@@ -3,7 +3,8 @@ const request = require("request");
 const clientRouter = express.Router();
 
 const moment = require("moment");
-// LowDB for participants list
+
+// LowDB Instances
 //See https://github.com/typicode/lowdb for docs
 const low = require("lowdb");
 const FileAsync = require("lowdb/adapters/FileAsync");
@@ -17,14 +18,10 @@ const industrialAdapter = new FileAsync("./data/industrial-visits.json");
 // Former Events DB
 const formerAdapter = new FileAsync("./data/former-events.json");
 
-// LowDB Instances
-
 // Data for views
 const team = require("../data/team.json");
 
 //----- CLIENT ROUTES -----//
-
-// GET and POST Routes for the clientRouter
 
 low(formerAdapter).then(formerDB => {
   // Index Route
@@ -66,32 +63,32 @@ clientRouter.get("/contact", (req, res) => {
 });
 
 low(upcomingAdapter).then(upcomingDB => {
+  // Event Route
+  clientRouter.get("/event/:id", (req, res) => {
+    const event = upcomingDB
+      .get("upcoming")
+      .filter({
+        id: req.params.id
+      })
+      .value();
+
+    let eID = req.params.id;
+    res.render("pages/event", {
+      succ: false,
+      err: false,
+      eventID: eID,
+      upcomingEvents: event,
+      swalsucc: false,
+      swalerr: false
+    });
+  });
+
   // Upcoming Route
   clientRouter.get("/upcoming", (req, res) => {
     const upcoming = upcomingDB.get("upcoming").value();
 
     res.render("pages/upcoming", {
       upcomingEvents: upcoming,
-      swalsucc: false,
-      swalerr: false
-    });
-  });
-
-  // Event Route
-  clientRouter.get("/event/:id", (req, res) => {
-    let eventID = req.params.id;
-    const event = upcomingDB
-      .get("upcoming")
-      .filter({
-        id: 1
-      })
-      .value();
-
-    res.render("pages/event", {
-      succ: false,
-      err: false,
-      eID: eventID,
-      upcomingEvents: event,
       swalsucc: false,
       swalerr: false
     });

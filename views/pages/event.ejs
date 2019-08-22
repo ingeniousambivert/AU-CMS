@@ -25,7 +25,7 @@
       <div class="container">
         <!--EJS Conditions-->
         <% if (err) { %>
-        <div class="alert alert-danger  mt-5 text-center" role="alert">
+        <div class="alert alert-danger text-center" role="alert">
           <h6>An error has occured.</h6>
         </div>
         <% } %> <% if (succ) { %>
@@ -34,7 +34,7 @@
         </div>
         <% } %>
    <% upcomingEvents.forEach(function(item){ %>
-     <% if (eID == item.id) { %>
+     <% if (eventID == item.id) { %>
         <!-- Jumbotron -->
         <div
           class="card card-image mt-5"
