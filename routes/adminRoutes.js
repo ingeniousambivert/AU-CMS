@@ -85,7 +85,6 @@ low(formerAdapter).then(formerDB => {
         const upcoming = upcomingDB.get("upcoming").value();
         const former = formerDB.get("former").value();
         const industrial = industrialDB.get("industrial").value();
-        const participants = participantDB.get("participants").value();
 
         //  Dashboard Route
         adminRouter.get("/dashboard", checkSignIn, (req, res) => {
