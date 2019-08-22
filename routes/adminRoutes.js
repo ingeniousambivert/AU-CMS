@@ -78,285 +78,286 @@ adminRouter.post("/login", (req, res) => {
 });
 
 low(formerAdapter).then(formerDB => {
-  low(upcomingAdapter).then(upcomingDB => {
-    low(industrialAdapter).then(industrialDB => {
-      // LowDB API
-      const upcoming = upcomingDB.get("upcoming").value();
-      const former = formerDB.get("former").value();
-      const industrial = industrialDB.get("industrial").value();
+  low(participantAdapter).then(participantDB => {
+    low(upcomingAdapter).then(upcomingDB => {
+      low(industrialAdapter).then(industrialDB => {
+        // LowDB API
+        const upcoming = upcomingDB.get("upcoming").value();
+        const former = formerDB.get("former").value();
+        const industrial = industrialDB.get("industrial").value();
 
-      //  Dashboard Route
-      adminRouter.get("/dashboard", checkSignIn, (req, res) => {
-        res.render("admin/dashboard", {
-          formerEvents: former,
-          upcomingEvents: upcoming,
-          visits: industrial,
-          swalsucc: false,
-          swalerr: false
-        });
-      });
-
-      //  Delete Route
-      adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
-        // use res.render to load up an ejs view file
-        // admin panel
-        let itemtoDelete = req.params.event;
-
-        const getUpcoming = upcomingDB
-          .get("upcoming")
-          .find({ title: itemtoDelete })
-          .value();
-        //console.log(getUpcoming);
-        const getFormer = formerDB
-          .get("former")
-          .find({ title: itemtoDelete })
-          .value();
-        const getIndustrial = industrialDB
-          .get("industrial")
-          .find({ title: itemtoDelete })
-          .value();
-
-        if (!itemtoDelete) {
+        //  Dashboard Route
+        adminRouter.get("/dashboard", checkSignIn, (req, res) => {
           res.render("admin/dashboard", {
             formerEvents: former,
             upcomingEvents: upcoming,
             visits: industrial,
             swalsucc: false,
-            swalerr: true
-          });
-        } else if (getUpcoming) {
-          upcomingDB
-            .get("upcoming")
-            .remove({ title: itemtoDelete })
-            .write();
-
-          res.render("admin/dashboard", {
-            formerEvents: former,
-            upcomingEvents: upcoming,
-            visits: industrial,
-            swalsucc: true,
             swalerr: false
           });
-        } else if (getFormer) {
-          formerDB
-            .get("former")
-            .remove({ title: itemtoDelete })
-            .write();
-
-          res.render("admin/dashboard", {
-            formerEvents: former,
-            upcomingEvents: upcoming,
-            visits: industrial,
-            swalsucc: true,
-            swalerr: false
-          });
-        } else if (getIndustrial) {
-          industrialDB
-            .get("industrial")
-            .remove({ title: itemtoDelete })
-            .write();
-
-          res.render("admin/dashboard", {
-            formerEvents: former,
-            upcomingEvents: upcoming,
-            visits: industrial,
-            swalsucc: true,
-            swalerr: false
-          });
-        } else {
-          res.render("admin/dashboard", {
-            formerEvents: former,
-            upcomingEvents: upcoming,
-            visits: industrial,
-            swalsucc: false,
-            swalerr: true
-          });
-        }
-      });
-
-      // Modify Route
-      adminRouter.get("/modify/:event", checkSignIn, (req, res) => {
-        // use res.render to load up an ejs view file
-        // admin panel
-
-        res.render("admin/modify", {
-          formerEvents: former,
-          upcomingEvents: upcoming,
-          visits: industrial,
-          event: req.params.event,
-          succ: false,
-          err: false
         });
-      });
 
-      //  Add Route
-      adminRouter.get("/add/:event", checkSignIn, (req, res) => {
-        // use res.render to load up an ejs view file
-        // admin panel
-
-        res.render("admin/add", {
-          formerEvents: former,
-          upcomingEvents: upcoming,
-          visits: industrial,
-          event: req.params.event,
-          succ: false,
-          err: false
+        //  Info Route
+        adminRouter.get("/info/:event", checkSignIn, (req, res) => {
+          res.render("admin/info", {
+            upcomingEvents: upcoming,
+            event: req.params.event
+          });
         });
-      });
 
-      // Add New Items
-      adminRouter.post(
-        "/add/:event",
-        checkSignIn,
-        upload.array("myFiles", 12),
-        (req, res) => {
+        //  Delete Route
+        adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
           // use res.render to load up an ejs view file
           // admin panel
-          let checkEvent = req.params.event;
+          let itemtoDelete = req.params.event;
 
-          // For Upcoming Events
+          const getUpcoming = upcomingDB
+            .get("upcoming")
+            .find({ title: itemtoDelete })
+            .value();
+          //console.log(getUpcoming);
+          const getFormer = formerDB
+            .get("former")
+            .find({ title: itemtoDelete })
+            .value();
+          const getIndustrial = industrialDB
+            .get("industrial")
+            .find({ title: itemtoDelete })
+            .value();
 
-          if (checkEvent == "upcoming") {
-            let {
-              titleForUpcoming,
-              briefForUpcoming,
-              detailsForUpcoming,
-              dateForUpcoming
-            } = req.body;
-            const files = req.files;
-            if (
-              !titleForUpcoming ||
-              !briefForUpcoming ||
-              !detailsForUpcoming ||
-              !dateForUpcoming
-            ) {
-              res.render("admin/add", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                visits: industrial,
-                event: checkEvent,
-                succ: false,
-                err: true
-              });
-              //res.status(400);
-            } else {
-              upcomingDB
-                .get("upcoming")
-                .push({
-                  title: titleForUpcoming,
-                  date: dateForUpcoming,
-                  brief: briefForUpcoming,
-                  details: detailsForUpcoming
-                })
-                .last()
-                .assign({ id: Date.now().toString() })
-                .write();
-
-              res.render("admin/add", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                visits: industrial,
-                event: checkEvent,
-                succ: true,
-                err: false
-              });
-            }
-          }
-
-          // For Industrial Visits
-
-          if (checkEvent == "industrial") {
-            let {
-              titleForVisit,
-              stagesForVisit,
-              detailsForVisit,
-              dateForVisit
-            } = req.body;
-            const files = req.files;
-            let time = Date.now().toString();
-
-            if (
-              !titleForVisit ||
-              !stagesForVisit ||
-              !dateForVisit ||
-              !detailsForVisit
-            ) {
-              res.render("admin/add", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                visits: industrial,
-                event: checkEvent,
-                succ: false,
-                err: true
-              });
-              // res.status(400);
-            } else {
-              industrialDB
-                .get("industrial")
-                .push({
-                  title: titleForVisit,
-                  date: dateForVisit,
-                  stages: [stagesForVisit],
-                  details: detailsForVisit,
-                  key: "IV" + time
-                })
-                .last()
-                .assign({ id: time })
-                .write();
-
-              res.render("admin/add", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                visits: industrial,
-                event: checkEvent,
-                succ: true,
-                err: false
-              });
-            }
-          }
-
-          // For Former Events
-
-          if (checkEvent == "former") {
-            let { itemtoMove } = req.body;
-            const getUpcoming = upcomingDB
+          if (!itemtoDelete) {
+            res.render("admin/dashboard", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              visits: industrial,
+              swalsucc: false,
+              swalerr: true
+            });
+          } else if (getUpcoming) {
+            upcomingDB
               .get("upcoming")
-              .find({ title: itemtoMove })
-              .value();
+              .remove({ title: itemtoDelete })
+              .write();
 
-            if (!itemtoMove) {
-              res.render("admin/add", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                visits: industrial,
-                event: checkEvent,
-                succ: false,
-                err: true
-              });
-              // res.status(400);
-            } else {
-              upcomingDB
+            res.render("admin/dashboard", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              visits: industrial,
+              swalsucc: true,
+              swalerr: false
+            });
+          } else if (getFormer) {
+            formerDB
+              .get("former")
+              .remove({ title: itemtoDelete })
+              .write();
+
+            res.render("admin/dashboard", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              visits: industrial,
+              swalsucc: true,
+              swalerr: false
+            });
+          } else if (getIndustrial) {
+            industrialDB
+              .get("industrial")
+              .remove({ title: itemtoDelete })
+              .write();
+
+            res.render("admin/dashboard", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              visits: industrial,
+              swalsucc: true,
+              swalerr: false
+            });
+          } else {
+            res.render("admin/dashboard", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              visits: industrial,
+              swalsucc: false,
+              swalerr: true
+            });
+          }
+        });
+
+        // Modify Route
+        adminRouter.get("/modify/:event", checkSignIn, (req, res) => {
+          res.render("admin/modify", {
+            formerEvents: former,
+            upcomingEvents: upcoming,
+            visits: industrial,
+            event: req.params.event,
+            succ: false,
+            err: false
+          });
+        });
+
+        //  Add Route
+        adminRouter.get("/add/:event", checkSignIn, (req, res) => {
+          res.render("admin/add", {
+            formerEvents: former,
+            upcomingEvents: upcoming,
+            visits: industrial,
+            event: req.params.event,
+            succ: false,
+            err: false
+          });
+        });
+
+        // Add New Items
+        adminRouter.post(
+          "/add/:event",
+          checkSignIn,
+          upload.array("myFiles", 12),
+          (req, res) => {
+            let checkEvent = req.params.event;
+
+            // For Upcoming Events
+
+            if (checkEvent == "upcoming") {
+              let {
+                titleForUpcoming,
+                briefForUpcoming,
+                detailsForUpcoming,
+                dateForUpcoming
+              } = req.body;
+              const files = req.files;
+              if (
+                !titleForUpcoming ||
+                !briefForUpcoming ||
+                !detailsForUpcoming ||
+                !dateForUpcoming
+              ) {
+                res.render("admin/add", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  visits: industrial,
+                  event: checkEvent,
+                  succ: false,
+                  err: true
+                });
+                //res.status(400);
+              } else {
+                upcomingDB
+                  .get("upcoming")
+                  .push({
+                    title: titleForUpcoming,
+                    date: dateForUpcoming,
+                    brief: briefForUpcoming,
+                    details: detailsForUpcoming
+                  })
+                  .last()
+                  .assign({ id: Date.now().toString() })
+                  .write();
+
+                res.render("admin/add", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  visits: industrial,
+                  event: checkEvent,
+                  succ: true,
+                  err: false
+                });
+              }
+            }
+
+            // For Industrial Visits
+
+            if (checkEvent == "industrial") {
+              let {
+                titleForVisit,
+                stagesForVisit,
+                detailsForVisit,
+                dateForVisit
+              } = req.body;
+              const files = req.files;
+              let time = Date.now().toString();
+
+              if (
+                !titleForVisit ||
+                !stagesForVisit ||
+                !dateForVisit ||
+                !detailsForVisit
+              ) {
+                res.render("admin/add", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  visits: industrial,
+                  event: checkEvent,
+                  succ: false,
+                  err: true
+                });
+                // res.status(400);
+              } else {
+                industrialDB
+                  .get("industrial")
+                  .push({
+                    title: titleForVisit,
+                    date: dateForVisit,
+                    stages: [stagesForVisit],
+                    details: detailsForVisit,
+                    key: "IV" + time
+                  })
+                  .last()
+                  .assign({ id: time })
+                  .write();
+
+                res.render("admin/add", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  visits: industrial,
+                  event: checkEvent,
+                  succ: true,
+                  err: false
+                });
+              }
+            }
+
+            // For Former Events
+
+            if (checkEvent == "former") {
+              let { itemtoMove } = req.body;
+              const getUpcoming = upcomingDB
                 .get("upcoming")
-                .remove({ title: itemtoMove })
-                .write();
+                .find({ title: itemtoMove })
+                .value();
 
-              formerDB
-                .get("former")
-                .push(getUpcoming)
-                .write();
+              if (!itemtoMove) {
+                res.render("admin/add", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  visits: industrial,
+                  event: checkEvent,
+                  succ: false,
+                  err: true
+                });
+              } else {
+                upcomingDB
+                  .get("upcoming")
+                  .remove({ title: itemtoMove })
+                  .write();
 
-              res.render("admin/add", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                visits: industrial,
-                event: checkEvent,
-                succ: true,
-                err: false
-              });
+                formerDB
+                  .get("former")
+                  .push(getUpcoming)
+                  .write();
+
+                res.render("admin/add", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  visits: industrial,
+                  event: checkEvent,
+                  succ: true,
+                  err: false
+                });
+              }
             }
           }
-        }
-      );
+        );
+      });
     });
   });
 });

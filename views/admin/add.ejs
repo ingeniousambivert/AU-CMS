@@ -181,7 +181,7 @@
 <% if (event == "former") { %>
   <div class="jumbotron">
   <h2 class="text-center mb-4"> Former Events</h2>
-  <p class="grey-text text-center">These are the upcoming/ongoing events. Select any of these to move to Former Events.</p>
+  <p class="dark-grey-text text-center">These are the upcoming/ongoing events. Select any of these to move to Former Events.</p>
         <!--EJS Conditions-->
         <% if (err) { %>
         <div class="alert alert-danger col-md-4 center-element mt-5 mb-5  text-center" role="alert">
@@ -196,8 +196,8 @@
   <ul class="list-group mt-4 mb-4 p-4">
         <% upcomingEvents.forEach(function(item){ %>
         <li class="list-group-item "><div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" name="itemtoMove" value="<%= item.title %>" id="<%= item.id %>">
-    <label class="custom-control-label" for="<%= item.id %>"><%= item.title %></label>
+    <input type="radio" class="custom-control-input" name="itemtoMove" value="<%= item.title %>" id="<%= item.id %>">
+    <label class="custom-control-label" for="<%= item.id %>"><strong><%= item.title %></strong></label>
         </div>
         </li>
          <% }) %>

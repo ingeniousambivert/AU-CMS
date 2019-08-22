@@ -6,7 +6,9 @@
       "date": "29/9/2019",
       "brief": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae odio in risus rutrum sodales. Praesent facilisis ac lectus sed hendrerit.",
       "details": "It was the first event of AIChE Ahmedabad University student chapter on 29thAugust 2018. We had welcome Dr. Jaimin Vasa who is President of Gujarat Chamber of commerce and industry and Dr. Unnat Pandit who is head of operation Atal Innovation Mission. Both of our chief guest’s gave an insight about the future of chemical engineers and the developing field. It was followed by our Dean Dr Sunil Kale who was so glad to have these two legends in our campus.",
-      "images": ["1_2"],
+      "images": [
+        "1_2"
+      ],
       "active": "upcoming.jpg",
       "key": "UPCOMING1"
     },
@@ -35,14 +37,6 @@
       "details": "We use Node.js to build web application backend and one of the use cases that comes often is a file upload feature.",
       "id": "1566410958649",
       "key": "UPCOMING1566410958649"
-    },
-    {
-      "title": "Random 4",
-      "date": "2019-11-15",
-      "brief": "Moment was designed to work both in the browser and in Node.js.",
-      "details": "Moment was designed to work both in the browser and in Node.js.",
-      "id": "1566411305648",
-      "key": "UPCOMING1566411305648"
     }
   ]
 }
