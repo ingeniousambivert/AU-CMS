@@ -146,6 +146,7 @@ low(industrialAdapter).then(industrialDB => {
 // Participant Registration
 low(participantAdapter).then(participantDB => {
   low(upcomingAdapter).then(upcomingDB => {
+    // Event Route
     clientRouter.post("/event/:id", (req, res) => {
       let { user_name, user_email, user_phone } = req.body;
       const upcomingEvents = upcomingDB.get("upcoming").value();
@@ -175,9 +176,8 @@ low(participantAdapter).then(participantDB => {
           swalsucc: false,
           swalerr: false
         });
-        res.status(400);
       } else if (user_phone.length < 10) {
-        res.render("pages/event", {
+        return res.render("pages/event", {
           succ: false,
           err: true,
           eID: eventID,
@@ -185,7 +185,6 @@ low(participantAdapter).then(participantDB => {
           swalsucc: false,
           swalerr: false
         });
-        res.status(400);
       } else {
         let flag = new Boolean(true);
         const isFull = participantDB.has("participants").value();
@@ -205,7 +204,7 @@ low(participantAdapter).then(participantDB => {
             checkEvent.forEach(element => {
               if (eventID == element) {
                 flag = false;
-                res.render("pages/event", {
+                return res.render("pages/event", {
                   succ: false,
                   err: true,
                   eID: eventID,
@@ -220,7 +219,7 @@ low(participantAdapter).then(participantDB => {
 
         if (flag) {
           addParticipant();
-          res.render("pages/event", {
+          return res.render("pages/event", {
             succ: true,
             err: false,
             eID: eventID,
@@ -230,7 +229,7 @@ low(participantAdapter).then(participantDB => {
           });
         } else if (isFull == false) {
           addParticipant();
-          res.render("pages/event", {
+          return res.render("pages/event", {
             succ: true,
             err: false,
             eID: eventID,
@@ -239,7 +238,7 @@ low(participantAdapter).then(participantDB => {
             swalerr: false
           });
         } else {
-          res.render("pages/event", {
+          return res.render("pages/event", {
             succ: false,
             err: true,
             eID: eventID,
