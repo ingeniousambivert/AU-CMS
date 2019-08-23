@@ -576,6 +576,7 @@ low(formerAdapter).then(formerDB => {
                           "Username is already taken. Please try a different one"
                       });
                     } else {
+                      console.log("admin added");
                       adminDB
                         .get("admins")
                         .push({
