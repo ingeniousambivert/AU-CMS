@@ -1,155 +1,177 @@
 <!-- views/pages/index.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
+<!--
+    WEBSITE AUTHORS : 
+    MONARCH MAISURIYA 
+    HIMANSHU JOSHI
+-->
 
 <head>
-	<meta name="author" content="MONARCH MAISURIYA">
-	<meta name="author" content="HIMANSHU JOSHI">
-	<% include ../partials/head %>
-		<!-- Carousel-->
-		<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
-			<!--Indicators-->
-			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel-example-2" data-slide-to="1"></li>
-				<li data-target="#carousel-example-2" data-slide-to="2"></li>
-			</ol>
-			<!--/.Indicators-->
-			<!--Slides-->
-			<div class="carousel-inner" role="listbox">
-				<div class="carousel-item active">
-					<div class="view">
-						<img class="d-block w-100" src="img/slide-1.png" alt="First slide">
-						<div class="mask rgba-black-light"></div>
-					</div>
-					<div class="carousel-caption">
-						<h3 class="h3-responsive">Light mask</h3>
-						<p>First text</p>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<!--Mask color-->
-					<div class="view">
-						<img class="d-block w-100" src="img/slide-2.png" alt="Second slide">
-						<div class="mask rgba-black-strong"></div>
-					</div>
-					<div class="carousel-caption">
-						<h3 class="h3-responsive">Strong mask</h3>
-						<p>Secondary text</p>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<!--Mask color-->
-					<div class="view">
-						<img class="d-block w-100" src="img/slide-3.png" alt="Third slide">
-						<div class="mask rgba-black-slight"></div>
-					</div>
-					<div class="carousel-caption">
-						<h3 class="h3-responsive">Slight mask</h3>
-						<p>Third text</p>
-					</div>
-				</div>
-			</div>
-			<!--/.Slides-->
-			<!--Controls-->
-			<a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-			<!--/.Controls-->
-		</div>
-		<!--/.Carousel-->
+  <% include ../partials/head %>
+  <!-- MAIN CAROUSEL-->
+<!--Carousel Wrapper-->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <div class="view">
+        <img class="d-block w-100" src="img/slide-1.png" alt="First slide">
+        <div class="mask rgba-black-light"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">Light mask</h3>
+        <p>First text</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="img/slide-2.png" alt="Second slide">
+        <div class="mask rgba-black-strong"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">Strong mask</h3>
+        <p>Secondary text</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="img/slide-3.png" alt="Third slide">
+        <div class="mask rgba-black-slight"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">Slight mask</h3>
+        <p>Third text</p>
+      </div>
+    </div>
+  </div>
+  <!--/.Slides-->
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+  <!-- /MAIN CAROUSEL-->
 </head>
 
 <body>
-	<!-- Start your project here-->
-	<!--Main Navigation-->
-	<header>
-		<% include ../partials/header %>
-	</header>
-	<!--Main Navigation-->
-	<!--Main layout-->
-	<main class="mt-5">
-		<div class="container">
-			<!-- Section: Magazine v.2 -->
-			<section class="magazine-section my-5">
-				<!-- Grid row -->
-				<div class="row mt-5">
-					<!-- Grid column -->
-					<div class="col-lg-8 col-md-12">
-						<!-- Featured news -->
-						<div class="single-news mb-lg-0 mb-4">
-							<p class="dark-grey-text mb-lg-0 mb-md-5 mb-4 pt-text" style="font-size:1.15rem;"><span style="font-size:1.5rem;">Ahmedabad University</span> is a private, non-profit university that offers students a liberal education focused on research and interdiscipxary learning. We seek to mould independent thinkers and compassionate leaders who go on to engage innovatively with the complex challenges of our societies. As a research university, we are committed to the discovery of new ideas, and to the belief that good theory results in good practice. Our academic environment offers students, researchers and faculty the opportunity to participate in a unique learning process, mediated by fieldwork and projects that enable deep creative insight, rigorous analytical experimentation, and fulfilling careers. At Ahmedabad University we believe in practical knowledge more than basic theory knowledge and to accomplish that the college has many research programmes and is constantly taking projects from different companies.</p>
-						</div>
-						<!-- Featured news -->
-					</div>
-					<!-- Grid column -->
-					<!-- Grid column -->
-					<div class="col-lg-4 col-md-12">
-						<% formerEvents.slice(-3).forEach(function(item){ %>
-							<!-- Small news -->
-							<div class="single-news mb-4">
-								<!-- Grid row -->
-								<div class="row">
-									<!-- Grid column -->
-									<div class="col-md-4">
-										<!--Image-->
-										<div class="view overlay rounded z-depth-1 mb-4">
-											<img class="img-fluid" src="img/past/<%= item.active %>" alt="Event Image">
-											<a href="/former#<%=item.id%>">
-												<div class="mask rgba-white-slight"></div>
-											</a>
-										</div>
-									</div>
-									<!-- Grid column -->
-									<!-- Grid column -->
-									<div class="col-md-8">
-										<!-- Excerpt -->
-										<p class="font-weight-bold black-text">
-											<a href="/former#<%=item.id%>">
-												<%=i tem.title %>
-											</a>
-										</p> <small class="font-weight-bold dark-grey-text"><%= item.date %></small>
-									</div>
-									<!-- Grid column -->
-								</div>
-								<!-- Grid row -->
-							</div>
-							<!-- Small news -->
-							<% }) %>
-					</div>
-					<!--Grid column-->
-				</div>
-				<!-- Grid row -->
-			</section>
-			<!-- Section: Magazine v.2 -->
-		</div>
-	</main>
-	<!--Main layout-->
-	<!-- Footer -->
-	<footer class="page-footer font-small unique-color-dark">
-		<% include ../partials/footer %>
-	</footer>
-	<!-- Footer -->
-	<!-- End your project here-->
-	<!-- SCRIPTS -->
-	<!-- Gogogle Maps JavaScript -->
-	<script type="text/javascript">
-		let date = new Date();
-		    document.getElementById("copyrightDate").innerHTML = date.getFullYear();
-	</script>
-	<!-- Gogogle Maps JavaScript -->
-	<script type="text/javascript" src="../js/script.js"></script>
-	<!-- JQuery -->
-	<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="../js/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="../js/mdb.min.js"></script>
+  <!-- Start your project here-->
+  <!--Main Navigation-->
+  <header>
+ <% include ../partials/header %>
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="mt-5">
+    
+    <div class="container">
+    
+<!-- Section: Magazine v.2 -->
+<section class="magazine-section my-5">
+
+  <!-- Grid row -->
+  <div class="row mt-5">
+
+    <!-- Grid column -->
+    <div class="col-lg-8 col-md-12">
+
+      <!-- Featured news -->
+      <div class="single-news mb-lg-0 mb-4">
+        
+        <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4 pt-text" style="font-size:1.15rem;"><span style="font-size:1.5rem;">Ahmedabad University</span> is a private, non-profit university that offers students a liberal education focused on research and interdiscipxary learning. We seek to mould independent thinkers and compassionate leaders who go on to engage innovatively with the complex challenges of our societies. As a research university, we are committed to the discovery of new ideas, and to the belief that good theory results in good practice. Our academic environment offers students, researchers and faculty the opportunity to participate in a unique learning process, mediated by fieldwork and projects that enable deep creative insight, rigorous analytical experimentation, and fulfilling careers. At Ahmedabad University we believe in practical knowledge more than basic theory knowledge and to accomplish that the college has many research programmes and is constantly taking projects from different companies.</p>
+
+      </div>
+      <!-- Featured news -->
+
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-12">
+  <% formerEvents.slice(-3).forEach(function(item){ %>
+      <!-- Small news -->
+      <div class="single-news mb-4">
+        <!-- Grid row -->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-4">
+            <!--Image-->
+            <div class="view overlay rounded z-depth-1 mb-4">
+              <img class="img-fluid" src="img/past/<%= item.active %>" alt="Event Image">
+              <a href="/former#<%=item.id%>">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+          </div>
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-8">
+            <!-- Excerpt -->
+            <p class="font-weight-bold black-text"><a href="/former#<%=item.id%>"><%= item.title %></a></p>
+            <small class="font-weight-bold dark-grey-text"><%= item.date %></small>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+      <!-- Small news -->
+ <% }) %>
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+<!-- Section: Magazine v.2 -->
+    </div>
+
+     
+  </main>
+  <!--Main layout-->
+
+  <!-- Footer -->
+  <footer class="page-footer font-small unique-color-dark">
+  <% include ../partials/footer %>
+  </footer>
+  <!-- Footer -->
+  <!-- End your project here-->
+
+  <!-- SCRIPTS -->
+  <!-- Gogogle Maps JavaScript -->
+  <script type="text/javascript">
+    let date = new Date();
+    document.getElementById("copyrightDate").innerHTML = date.getFullYear();
+  </script>
+  <!-- Gogogle Maps JavaScript -->
+  <script type="text/javascript" src="../js/script.js"></script>
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
 </body>
 
 </html>
