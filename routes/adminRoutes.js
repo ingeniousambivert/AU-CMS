@@ -65,6 +65,16 @@ low(formerAdapter).then(formerDB => {
           // Login Route
           adminRouter.post("/login", (req, res) => {
             let { adminUsername, adminPassword } = req.body;
+            const checkUsername = adminDB
+              .get("admins")
+              .filter({ username: adminUsername })
+              .map("username")
+              .value();
+            const checkPassword = adminDB
+              .get("admins")
+              .filter({ password: adminPassword })
+              .map("password")
+              .value();
 
             if (!adminUsername || !adminPassword) {
               res.render("admin/login", {
@@ -72,21 +82,24 @@ low(formerAdapter).then(formerDB => {
                 err: true
               });
             } else {
-              if (adminUsername == "admin" && adminPassword == "admin") {
-                let adminValues = [
-                  {
-                    username: adminUsername
+              checkUsername.forEach(element => {
+                checkPassword.forEach(item => {
+                  if (adminUsername == element && adminPassword == item) {
+                    let adminValues = [
+                      {
+                        username: adminUsername
+                      }
+                    ];
+                    req.session.admin = adminValues;
+                    res.redirect("/dashboard");
+                  } else {
+                    res.render("admin/login", {
+                      succ: false,
+                      err: true
+                    });
                   }
-                ];
-                req.session.admin = adminValues;
-                res.redirect("/dashboard");
-                // console.log("Admin logged in.");
-              } else {
-                res.render("admin/login", {
-                  succ: false,
-                  err: true
                 });
-              }
+              });
             }
           });
 
