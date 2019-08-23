@@ -24,17 +24,27 @@
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
             
-            <li class="nav-item">
-              <a class="nav-link waves-effect " href="/dashboard#upcoming-events">Upcoming Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="/dashboard#industrial-visits">Industrial Visits</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="/dashboard#former-events">Former Events</a>
-            </li>
+             <!-- Client -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">Client</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="nav-link waves-effect text-center" href="/dashboard#upcoming-events"><strong>Upcoming Events</strong></a>
+                      <a class="nav-link waves-effect text-center" href="/dashboard#industrial-visits"><strong>Industrial Visits</strong></a>
+                      <a class="nav-link waves-effect text-center" href="/dashboard#former-events"><strong>Former Events</strong></a>
+                    </div>
+                  </li>
 
-          </ul>
+                <!-- Admin -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Admin</a>
+                  <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="nav-link waves-effect text-center" href="/dashboard/admins"><strong>Accounts</strong></a>
+                  </div>
+                </li>
+
+         </ul>
 
           <!-- Right -->
           <ul class="navbar-nav nav-flex-icons">

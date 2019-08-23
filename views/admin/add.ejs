@@ -205,6 +205,50 @@
   </div>
 <% } %>
 
+
+<%# ADD For Admins %> 
+<% if (event == "newadmin") { %>
+  <div class="jumbotron">
+  <h2 class="text-center mb-4"> Add a new admin</h2>
+  <% if (err) { %>
+        <div class="alert alert-danger col-md-4 center-element mt-5 mb-5  text-center" role="alert">
+          <h6><%= err %></h6>
+        </div>
+        <% } %> <% if (succ) { %>
+        <div class="alert text-center col-md-4 center-element mt-5 mb-5 alert-success" role="alert">
+          <h6>Admin added successfully</h6>
+        </div>
+        <% } %>
+    <form class="container text-center" method="POST" action="/add/newadmin">
+
+    <div class="w-50 center-element">
+    <input type="text" id="adminFirstname" REQUIRED name="adminFirstname" class="form-control rounded-1 mb-4" placeholder="Firstname">
+    </div>
+
+   <div class="w-50 center-element">
+    <input type="text" id="adminLastname" REQUIRED name="adminLastname" class="form-control rounded-1 mb-4" placeholder="Lastname">
+    </div>
+
+
+    <div class="w-50 center-element">
+    <input type="text" id="adminUsername" REQUIRED name="adminUsername" class="form-control rounded-1 mb-4" placeholder="Username">
+    </div>
+
+    <div class="w-50 center-element">
+    <input type="password" id="adminPassword" REQUIRED name="adminPassword" class="form-control rounded-1 mb-4" placeholder="Password">
+    </div>
+    <div class="w-50 center-element">
+    <input type="password" id="adminConfirmPassword" REQUIRED name="adminConfirmPassword" class="form-control rounded-1 mb-4" placeholder="Confirm Password">
+    </div>
+
+
+    <button class="btn btn-primary btn-sm my-4 " type="submit">Submit</button>
+
+    </form>
+
+ </div>
+<% } %>
+
     </section>
 
     </div>

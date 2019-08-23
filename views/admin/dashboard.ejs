@@ -99,7 +99,7 @@ swal("Error!", "An error has occured", "error");
         <!--Table-->
       <a class="btn primary-color-dark white-text btn-sm ml-5 " href="/add/upcoming" role="button">add new</a>
       <a class="btn primary-color-dark white-text btn-sm ml-5 " href="/info/" role="button">View All</a>
-      <small class="grey-text mt-4 mr-5" style="float:right;">Click on the title to view participant's list.</small>
+      <small class="grey-text mt-4 mr-5" style="float:right;">Click the name to view participants list for that event.</small>
       </div>
 
     </section>
@@ -125,7 +125,7 @@ swal("Error!", "An error has occured", "error");
           <!--Table body-->
           <tbody>
         <% visits.forEach(function(item){ %>
-        <tr> 
+        <tr class="text-justify"> 
               <th><%= item.title %></th>
               <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.key %>" role="button">Edit</a>
               <!-- Button trigger modal -->

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta name="author" content="MONARCH MAISURIYA">
+<meta name="author" content="HIMANSHU JOSHI">
+   <% include ./head %>
+</head>
+ 
+<body class="grey lighten-3">
+
+  <!--Main Navigation-->
+  <header>
+ <% include ./header %>
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+
+    <section class="">
+
+  <div class="jumbotron p-5">
+  <h2 class="text-center mb-4"> Admins</h2>
+    <table class="table table-striped container text-center">
+  <thead>
+    <tr>
+      
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Username</th>
+      <th>Registered</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% admins.forEach(function(item){ %>
+    <tr>
+      <td><%= item.firstname %></td>
+      <td><%= item.lastname %></td>
+      <td><%= item.username %></td>
+      <td><%= item.signedUpOn %></td>
+    </tr>
+     <% }) %>
+  </tbody>
+</table>
+     <a class="btn primary-color-dark white-text btn-sm ml-5 mt-5 " href="/add/newadmin" role="button">add new</a>
+    
+    </div>
+  </div>
+
+
+    </section>
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="text-center font-small ">
+  <% include ./footer %>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+
+    <!--  JavaScript -->
+    <script type="text/javascript">
+      let date = new Date();
+      document.getElementById("copyrightDate").innerHTML = date.getFullYear();
+    </script>
+    <!-- JavaScript -->
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="../../admin/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../../admin/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
+
+</body>
+
+</html>
+
