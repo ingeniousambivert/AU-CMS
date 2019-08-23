@@ -148,7 +148,7 @@ low(participantAdapter).then(participantDB => {
     clientRouter.post("/event/:id", (req, res) => {
       let { user_name, user_email, user_phone } = req.body;
       const upcomingEvents = upcomingDB.get("upcoming").value();
-      let eventID = req.params.id;
+      let eID = req.params.id;
       let time = Date.now().toString();
 
       addParticipant = () => {
@@ -159,7 +159,7 @@ low(participantAdapter).then(participantDB => {
             email: user_email,
             phone: user_phone,
             date: moment().format("MMMM Do YYYY, h:mm:ss a"),
-            eventID: eventID,
+            eventID: eID,
             id: time,
             key: "PARTICIPANT" + time
           })
@@ -169,7 +169,7 @@ low(participantAdapter).then(participantDB => {
         res.render("pages/event", {
           succ: false,
           err: true,
-          eID: eventID,
+          eventID: eID,
           upcomingEvents: upcomingEvents,
           swalsucc: false,
           swalerr: false
@@ -178,7 +178,7 @@ low(participantAdapter).then(participantDB => {
         return res.render("pages/event", {
           succ: false,
           err: true,
-          eID: eventID,
+          eventID: eID,
           upcomingEvents: upcomingEvents,
           swalsucc: false,
           swalerr: false
@@ -200,12 +200,12 @@ low(participantAdapter).then(participantDB => {
               .map("eventID")
               .value();
             checkEvent.forEach(element => {
-              if (eventID == element) {
+              if (eID == element) {
                 flag = false;
                 return res.render("pages/event", {
                   succ: false,
                   err: true,
-                  eID: eventID,
+                  eventID: eID,
                   upcomingEvents: upcomingEvents,
                   swalsucc: false,
                   swalerr: false
@@ -220,7 +220,7 @@ low(participantAdapter).then(participantDB => {
           return res.render("pages/event", {
             succ: true,
             err: false,
-            eID: eventID,
+            eventID: eID,
             upcomingEvents: upcomingEvents,
             swalsucc: false,
             swalerr: false
@@ -230,7 +230,7 @@ low(participantAdapter).then(participantDB => {
           return res.render("pages/event", {
             succ: true,
             err: false,
-            eID: eventID,
+            eventID: eID,
             upcomingEvents: upcomingEvents,
             swalsucc: false,
             swalerr: false
@@ -239,7 +239,7 @@ low(participantAdapter).then(participantDB => {
           return res.render("pages/event", {
             succ: false,
             err: true,
-            eID: eventID,
+            eventID: eID,
             upcomingEvents: upcomingEvents,
             swalsucc: false,
             swalerr: false
@@ -275,13 +275,10 @@ clientRouter.post("/", (req, res) => {
 
       const options = {
         url: "https://us18.api.mailchimp.com/3.0/lists/8bd6f842d1",
-        // Temp URL
         // Replace with Owner's list URL
-
         method: "POST",
         headers: {
           Authorization: "auth dde461ecf68f1bc5df4741297ae870d4-us18"
-          // Temp API KEY
           // Replace with Owner's API Key
         },
         body: postData
