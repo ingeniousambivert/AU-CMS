@@ -8,7 +8,7 @@
       "stages": ["HELLO", "HEY"],
       "images": ["slide-1.png"],
       "active": "slide-2.png",
-      "key": "IV1"
+      "key": "VISIT1"
     },
     {
       "id": "2",
@@ -18,14 +18,14 @@
       "stages": ["", ""],
       "images": ["slide-2.png"],
       "active": "slide-3.png",
-      "key": "IV2"
+      "key": "VISIT2"
     },
     {
       "title": "3rd-Industrial Visit – Paryavaran Mandir ",
       "date": "2019-05-28",
       "stages": "trial",
       "details": "Moment was designed to work both in the browser and in Node.js.\r\n\r\nAll code should work in both of these environments, and all unit tests are run in both of these environments.\r\n",
-      "key": "IV1566406302582",
+      "key": "VISIT1566406302582",
       "id": "1566406302582",
       "images": ["slide-2.png"],
       "active": "slide-1.png"
@@ -35,7 +35,7 @@
       "date": "2019-05-29",
       "stages": ["trial"],
       "details": "Industrial Visits\r\nIndustrial Visits\r\nIndustrial Visits\r\n",
-      "key": "IV1566411017462",
+      "key": "VISIT1566411017462",
       "id": "1566411017462"
     }
   ]

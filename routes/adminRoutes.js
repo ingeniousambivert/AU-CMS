@@ -231,14 +231,14 @@ low(formerAdapter).then(formerDB => {
 
           const getFormer = formerDB
             .get("former")
-            .filter({ title: checkEvent })
-            .map("title")
+            .filter({ key: checkEvent })
+            .map("key")
             .value();
 
           const getIndustrial = industrialDB
             .get("industrial")
-            .filter({ title: checkEvent })
-            .map("title")
+            .filter({ key: checkEvent })
+            .map("key")
             .value();
 
           let {
@@ -384,7 +384,7 @@ low(formerAdapter).then(formerDB => {
                     date: dateForVisit,
                     stages: [stagesForVisit],
                     details: detailsForVisit,
-                    key: "IV" + time
+                    key: "VISIT" + time
                   })
                   .last()
                   .assign({ id: time })

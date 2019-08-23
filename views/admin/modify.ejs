@@ -32,10 +32,12 @@
           <a href="/dashboard">Go back</a>
         </div>
         <% } %>
-          <% upcomingEvents.forEach(function(item){ %>
-              <% if (item.key == event) { %>
-        <h2 class="text-center mb-4">Modify the contents of : <%= item.title %></h2>
+
         <!--Upcoming Events-->
+          <% upcomingEvents.forEach(function(item){ %>
+          <% if (item.key == event) { %>
+        <h2 class="text-center mb-4">Modify the contents of : <%= item.title %></h2>
+        
          <form method="POST" class="container p-5" action="/modify/<%= event %>">
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
        <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
@@ -70,15 +72,17 @@
       <% } %>
     <% }) %>
    
-     
-
-         <!--Former Events-->
-
-          <form method="POST" class="container p-5" action="/modify/<%= event %>">
-       
+        
+        
+        <!--Former Events-->
+        
        <% formerEvents.forEach(function(item){ %>
-       
-      <% if (item.title == event) { %>
+      <% if (item.key == event) { %>
+
+    <h2 class="text-center mb-4">Modify the contents of : <%= item.title %></h2>
+
+       <form method="POST" class="container p-5" action="/modify/<%= event %>">
+    
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
        <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
        <label for="detailForEvent"><h6 class="font-weight-bold">Details:</h6></label>
@@ -109,21 +113,22 @@
    
     
          <!--Industrial Visits-->
+  
+       <% industrialVisits.forEach(function(element){ %>
+     
+        <% if (element.key == event) { %>
 
+        <h2 class="text-center mb-4">Modify the contents of : <%= element.title %></h2>
           <form method="POST" class="container p-5" action="/modify/<%= event %>">
-       
-       <% industrialVisits.forEach(function(item){ %>
-       
-      <% if (item.title == event) { %>
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
-       <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
+       <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= element.title %>">
        <label for="detailForEvent"><h6 class="font-weight-bold">Details:</h6></label>
-       <textarea type="text" class="form-control mb-4"  id="detailsForEvent" name="detailsForEvent" rows="3" ><%= item.details%></textarea>
+       <textarea type="text" class="form-control mb-4"  id="detailsForEvent" name="detailsForEvent" rows="3" ><%= element.details%></textarea>
         <label for="stagesForEvent"><h6 class="font-weight-bold">Stages:</h6></label>
-       <input type="text" id="stagesForEvent" name="stagesForEvent" class="form-control mb-4" value="<%= item.stages %>">
+       <input type="text" id="stagesForEvent" name="stagesForEvent" class="form-control mb-4" value="<%= element.stages %>">
       <label for="dateForEvent"><h6 class="font-weight-bold">Current Date:</h6></label>
        <div class="row">
-       <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= item.date%>">
+       <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= element.date%>">
        <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
        </div>
       <label for="fileForEvent"><h6 class="font-weight-bold mt-4">Upload Images:</h6></label>
