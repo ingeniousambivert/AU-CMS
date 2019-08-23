@@ -114,15 +114,6 @@ low(formerAdapter).then(formerDB => {
             });
           });
 
-          // Admin Accounts Route
-          adminRouter.get("/dashboard/admins", checkSignIn, (req, res) => {
-            res.render("admin/admins", {
-              admins: admins,
-              succ: false,
-              err: false
-            });
-          });
-
           //  Info Route
           adminRouter.get("/info/", checkSignIn, (req, res) => {
             const participantsToDisplay = participantDB
@@ -518,88 +509,6 @@ low(formerAdapter).then(formerDB => {
                     event: checkEvent,
                     succ: true,
                     err: false
-                  });
-                }
-              }
-              // For Admins
-
-              if (checkEvent == "newadmin") {
-                let {
-                  adminUsername,
-                  adminFirstname,
-                  adminLastname,
-                  adminPassword,
-                  adminConfirmPassword
-                } = req.body;
-
-                let time = Date.now().toString();
-                const checkUsername = adminDB
-                  .get("admins")
-                  .filter({ username: adminUsername })
-                  .map("username")
-                  .value();
-
-                if (
-                  !adminUsername ||
-                  !adminFirstname ||
-                  !adminLastname ||
-                  !adminPassword ||
-                  !adminConfirmPassword
-                ) {
-                  res.render("admin/add", {
-                    formerEvents: former,
-                    upcomingEvents: upcoming,
-                    visits: industrial,
-                    event: checkEvent,
-                    succ: false,
-                    err: "Please enter all the fields"
-                  });
-                } else if (adminPassword !== adminConfirmPassword) {
-                  res.render("admin/add", {
-                    formerEvents: former,
-                    upcomingEvents: upcoming,
-                    visits: industrial,
-                    event: checkEvent,
-                    succ: false,
-                    err: "Passwords do not match. Please try again"
-                  });
-                } else {
-                  checkUsername.forEach(element => {
-                    if (adminUsername == element) {
-                      res.render("admin/add", {
-                        formerEvents: former,
-                        upcomingEvents: upcoming,
-                        visits: industrial,
-                        event: checkEvent,
-                        succ: false,
-                        err:
-                          "Username is already taken. Please try a different one"
-                      });
-                    } else {
-                      console.log("admin added");
-                      adminDB
-                        .get("admins")
-                        .push({
-                          firstname: adminFirstname,
-                          lastname: adminLastname,
-                          username: adminUsername,
-                          password: adminPassword,
-                          id: time,
-                          signedUpOn: moment().format("MMMM Do YYYY, h:mm:ss a")
-                        })
-                        .last()
-                        .assign({ id: time })
-                        .write();
-
-                      res.render("admin/add", {
-                        formerEvents: former,
-                        upcomingEvents: upcoming,
-                        visits: industrial,
-                        event: checkEvent,
-                        succ: true,
-                        err: false
-                      });
-                    }
                   });
                 }
               }
