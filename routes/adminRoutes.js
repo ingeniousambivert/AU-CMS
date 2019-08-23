@@ -417,7 +417,6 @@ low(formerAdapter).then(formerDB => {
                   succ: false,
                   err: true
                 });
-                // res.status(400);
               } else {
                 industrialDB
                   .get("industrial")
@@ -462,14 +461,13 @@ low(formerAdapter).then(formerDB => {
                   err: true
                 });
               } else {
-                upcomingDB
-                  .get("upcoming")
-                  .remove({ title: itemtoMove })
-                  .write();
-
                 formerDB
                   .get("former")
                   .push(getUpcoming)
+                  .write();
+                upcomingDB
+                  .get("upcoming")
+                  .remove({ title: itemtoMove })
                   .write();
 
                 res.render("admin/add", {
