@@ -241,22 +241,64 @@ low(formerAdapter).then(formerDB => {
             .map("key")
             .value();
 
+          const upcomingKey = getUpcoming.toString();
+          const formerKey = getFormer.toString();
+          const industrialKey = getIndustrial.toString();
+
           let {
             titleForEvent,
             briefForEvent,
             dateForEvent,
-            detailsForEvent
+            detailsForEvent,
+            stagesForEvent
           } = req.body;
-          const upcomingKey = getUpcoming.toString();
 
           if (checkEvent == upcomingKey) {
-            const getUpcoming = upcomingDB
+            upcomingDB
               .get("upcoming")
               .find({ key: upcomingKey })
               .assign({
                 title: titleForEvent,
                 date: dateForEvent,
                 brief: briefForEvent,
+                details: detailsForEvent
+              })
+              .write();
+            res.render("admin/modify", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              industrialVisits: industrial,
+              event: req.params.event,
+              succ: true,
+              err: false
+            });
+          } else if (checkEvent == formerKey) {
+            formerDB
+              .get("former")
+              .find({ key: formerKey })
+              .assign({
+                title: titleForEvent,
+                date: dateForEvent,
+                brief: briefForEvent,
+                details: detailsForEvent
+              })
+              .write();
+            res.render("admin/modify", {
+              formerEvents: former,
+              upcomingEvents: upcoming,
+              industrialVisits: industrial,
+              event: req.params.event,
+              succ: true,
+              err: false
+            });
+          } else if (checkEvent == industrialKey) {
+            industrialDB
+              .get("industrial")
+              .find({ key: industrialKey })
+              .assign({
+                title: titleForEvent,
+                date: dateForEvent,
+                stages: [stagesForEvent],
                 details: detailsForEvent
               })
               .write();
