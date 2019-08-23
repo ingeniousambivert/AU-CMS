@@ -98,6 +98,19 @@ low(formerAdapter).then(formerDB => {
         });
 
         //  Info Route
+        adminRouter.get("/info/", checkSignIn, (req, res) => {
+          const participantsToDisplay = participantDB
+            .get("participants")
+            .value();
+          res.render("admin/info", {
+            event: req.params.event,
+            err: false,
+            succ: false,
+            all: true,
+            upcomingEvents: upcoming,
+            participants: participantsToDisplay
+          });
+        });
         adminRouter.get("/info/:event", checkSignIn, (req, res) => {
           const checkEventID = upcomingDB
             .get("upcoming")
@@ -116,6 +129,7 @@ low(formerAdapter).then(formerDB => {
             res.render("admin/info", {
               err: true,
               succ: false,
+              all: false,
               upcomingEvents: upcoming,
               event: req.params.event
             });
@@ -123,6 +137,7 @@ low(formerAdapter).then(formerDB => {
             res.render("admin/info", {
               err: false,
               succ: true,
+              all: false,
               upcomingEvents: upcoming,
               event: req.params.event,
               participants: participantsToDisplay
