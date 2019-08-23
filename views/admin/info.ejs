@@ -24,7 +24,7 @@
 
         <% if (all) { %>
         <h3 class="text-center mb-4">All Participants</h3>
-          <table class="table table-striped container center-element ">
+          <table id="dataTableAll" class="table table-striped container center-element ">
                 <thead>
                     <tr>
                     <th>Email</th>
@@ -97,13 +97,6 @@
 
   <!-- SCRIPTS -->
 
-    <!--  JavaScript -->
-    <script type="text/javascript">
-      let date = new Date();
-      document.getElementById("copyrightDate").innerHTML = date.getFullYear();
-    </script>
-    <!-- JavaScript -->
-
   <!-- JQuery -->
   <script type="text/javascript" src="../../admin/js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -112,6 +105,21 @@
   <script type="text/javascript" src="../../admin/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
+
+    <!--  JavaScript -->
+    <script type="text/javascript">
+      let date = new Date();
+      document.getElementById("copyrightDate").innerHTML = date.getFullYear();
+
+          // Basic example
+        $(document).ready(function () {
+          $('#dataTableAll').DataTable({
+            "paging": "simple_numbers" 
+          });
+          $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+    <!-- JavaScript -->
 
 </body>
 
