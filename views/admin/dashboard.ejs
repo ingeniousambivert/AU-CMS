@@ -58,7 +58,7 @@ swal("Error!", "An error has occured", "error");
            <% upcomingEvents.forEach(function(item){ %>
             <tr> 
               <th><a href="info/<%= item.title %>"><%= item.title %></a></th>
-              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
+              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.key %>" role="button">Edit</a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
                Delete
@@ -126,7 +126,7 @@ swal("Error!", "An error has occured", "error");
         <% visits.forEach(function(item){ %>
         <tr> 
               <th><%= item.title %></th>
-              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
+              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.key %>" role="button">Edit</a>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
                Delete
@@ -193,7 +193,7 @@ swal("Error!", "An error has occured", "error");
          <% formerEvents.forEach(function(item){ %>
          <tr> 
               <th><%= item.title %></th>
-              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.title %>" role="button">Edit</a>
+              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.key %>" role="button">Edit</a>
                <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
                Delete

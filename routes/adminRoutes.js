@@ -213,7 +213,7 @@ low(formerAdapter).then(formerDB => {
           res.render("admin/modify", {
             formerEvents: former,
             upcomingEvents: upcoming,
-            visits: industrial,
+            industrialVisits: industrial,
             event: req.params.event,
             succ: false,
             err: false
@@ -225,21 +225,34 @@ low(formerAdapter).then(formerDB => {
           let checkEvent = req.params.event;
           const getUpcoming = upcomingDB
             .get("upcoming")
+            .filter({ key: checkEvent })
+            .map("key")
+            .value();
+
+          const getFormer = formerDB
+            .get("former")
             .filter({ title: checkEvent })
             .map("title")
             .value();
+
+          const getIndustrial = industrialDB
+            .get("industrial")
+            .filter({ title: checkEvent })
+            .map("title")
+            .value();
+
           let {
             titleForEvent,
             briefForEvent,
             dateForEvent,
             detailsForEvent
           } = req.body;
-          const upcomingTitle = getUpcoming.toString();
+          const upcomingKey = getUpcoming.toString();
 
-          if (checkEvent == upcomingTitle) {
+          if (checkEvent == upcomingKey) {
             const getUpcoming = upcomingDB
               .get("upcoming")
-              .find({ title: upcomingTitle })
+              .find({ key: upcomingKey })
               .assign({
                 title: titleForEvent,
                 date: dateForEvent,
@@ -250,7 +263,7 @@ low(formerAdapter).then(formerDB => {
             res.render("admin/modify", {
               formerEvents: former,
               upcomingEvents: upcoming,
-              visits: industrial,
+              industrialVisits: industrial,
               event: req.params.event,
               succ: true,
               err: false
@@ -259,7 +272,7 @@ low(formerAdapter).then(formerDB => {
             res.render("admin/modify", {
               formerEvents: former,
               upcomingEvents: upcoming,
-              visits: industrial,
+              industrialVisits: industrial,
               event: req.params.event,
               succ: false,
               err: true

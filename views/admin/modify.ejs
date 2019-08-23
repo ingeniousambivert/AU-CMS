@@ -20,22 +20,23 @@
     <div class="container-fluid mt-5">
 
         <div class="jumbotron">
-         <h2 class="text-center mb-4">Modify the contents of : <%= event %></h2>
+        
           
         <% if (err) { %>
-        <div class="alert alert-danger text-center center-element w-50" role="alert">
+        <div class="alert alert-danger text-center center-element w-50 mb-5" role="alert">
           <h6>An error has occured.</h6>
         </div>
         <% } %> <% if (succ) { %>
-        <div class="alert text-center alert-success center-element w-50" role="alert">
+        <div class="alert text-center alert-success center-element w-50 mb-5" role="alert">
           <h6>Event updated successfully</h6>
           <a href="/dashboard">Go back</a>
         </div>
         <% } %>
+          <% upcomingEvents.forEach(function(item){ %>
+              <% if (item.key == event) { %>
+        <h2 class="text-center mb-4">Modify the contents of : <%= item.title %></h2>
+        <!--Upcoming Events-->
          <form method="POST" class="container p-5" action="/modify/<%= event %>">
-       <% upcomingEvents.forEach(function(item){ %>
-     
-      <% if (item.title == event) { %>
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
        <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
        <label for="briefForEvent"><h6 class="font-weight-bold">Brief:</h6></label>
@@ -61,12 +62,89 @@
       </div>
       
     </div>
-       
-      <% } %>
-     <% }) %>
-     <button class="btn btn-primary btn-sm my-4" type="submit">Update</button>
+
+    <button class="btn btn-primary btn-sm my-4" type="submit">Update</button>
          
          </form>
+       
+      <% } %>
+    <% }) %>
+   
+     
+
+         <!--Former Events-->
+
+          <form method="POST" class="container p-5" action="/modify/<%= event %>">
+       
+       <% formerEvents.forEach(function(item){ %>
+       
+      <% if (item.title == event) { %>
+      <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
+       <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
+       <label for="detailForEvent"><h6 class="font-weight-bold">Details:</h6></label>
+       <textarea type="text" class="form-control mb-4"  id="detailsForEvent" name="detailsForEvent" rows="3" ><%= item.details%></textarea>
+      <label for="dateForEvent"><h6 class="font-weight-bold">Current Date:</h6></label>
+       <div class="row">
+       <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= item.date%>">
+       <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
+       </div>
+      <label for="fileForEvent"><h6 class="font-weight-bold mt-4">Upload Images:</h6></label>
+      <div class="input-group col-md-5 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+
+      <div class="custom-file ">
+          <input type="file" multiple class="custom-file-input" id="fileForEvent"
+          name="fileForEvent"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose images to upload</label>
+      </div>
+      
+    </div>
+        <button class="btn btn-primary btn-sm my-4" type="submit">Update</button>
+         </form>
+      <% } %>
+    <% }) %>
+   
+    
+         <!--Industrial Visits-->
+
+          <form method="POST" class="container p-5" action="/modify/<%= event %>">
+       
+       <% industrialVisits.forEach(function(item){ %>
+       
+      <% if (item.title == event) { %>
+      <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
+       <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
+       <label for="detailForEvent"><h6 class="font-weight-bold">Details:</h6></label>
+       <textarea type="text" class="form-control mb-4"  id="detailsForEvent" name="detailsForEvent" rows="3" ><%= item.details%></textarea>
+        <label for="stagesForEvent"><h6 class="font-weight-bold">Stages:</h6></label>
+       <input type="text" id="stagesForEvent" name="stagesForEvent" class="form-control mb-4" value="<%= item.stages %>">
+      <label for="dateForEvent"><h6 class="font-weight-bold">Current Date:</h6></label>
+       <div class="row">
+       <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= item.date%>">
+       <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
+       </div>
+      <label for="fileForEvent"><h6 class="font-weight-bold mt-4">Upload Images:</h6></label>
+      <div class="input-group col-md-5 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+
+      <div class="custom-file ">
+          <input type="file" multiple class="custom-file-input" id="fileForEvent"
+          name="fileForEvent"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose images to upload</label>
+      </div>
+      
+    </div>
+        <button class="btn btn-primary btn-sm my-4" type="submit">Update</button>
+         </form>
+      <% } %>
+    <% }) %>
+              
          
         </div>
 
