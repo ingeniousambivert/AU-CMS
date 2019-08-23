@@ -168,7 +168,7 @@ low(participantAdapter).then(participantDB => {
       if (!user_name || !user_email || !user_phone) {
         res.render("pages/event", {
           succ: false,
-          err: true,
+          err: "Please enter all the fields",
           eventID: eID,
           upcomingEvents: upcomingEvents,
           swalsucc: false,
@@ -177,7 +177,7 @@ low(participantAdapter).then(participantDB => {
       } else if (user_phone.length < 10) {
         return res.render("pages/event", {
           succ: false,
-          err: true,
+          err: "Please enter a valid phone number",
           eventID: eID,
           upcomingEvents: upcomingEvents,
           swalsucc: false,
@@ -204,7 +204,7 @@ low(participantAdapter).then(participantDB => {
                 flag = false;
                 return res.render("pages/event", {
                   succ: false,
-                  err: true,
+                  err: "This E-mail has already been registered",
                   eventID: eID,
                   upcomingEvents: upcomingEvents,
                   swalsucc: false,
@@ -238,7 +238,7 @@ low(participantAdapter).then(participantDB => {
         } else {
           return res.render("pages/event", {
             succ: false,
-            err: true,
+            err: "An error has occurred",
             eventID: eID,
             upcomingEvents: upcomingEvents,
             swalsucc: false,
