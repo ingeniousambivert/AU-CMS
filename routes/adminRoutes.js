@@ -53,12 +53,9 @@ low(formerAdapter).then(formerDB => {
           const upcoming = upcomingDB.get("upcoming").value();
           const former = formerDB.get("former").value();
           const industrial = industrialDB.get("industrial").value();
-          const admins = adminDB.get("admins").value();
 
           // Login Route
           adminRouter.get("/login", (req, res) => {
-            // use res.render to load up an ejs view file
-            // login page
             res.render("admin/login", { succ: false, err: false });
           });
 
@@ -128,6 +125,7 @@ low(formerAdapter).then(formerDB => {
               participants: participantsToDisplay
             });
           });
+          //  Info Route
           adminRouter.get("/info/:event", checkSignIn, (req, res) => {
             const checkEventID = upcomingDB
               .get("upcoming")
@@ -164,8 +162,6 @@ low(formerAdapter).then(formerDB => {
 
           //  Delete Route
           adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
-            // use res.render to load up an ejs view file
-            // admin panel
             let itemtoDelete = req.params.event;
 
             const getUpcoming = upcomingDB
