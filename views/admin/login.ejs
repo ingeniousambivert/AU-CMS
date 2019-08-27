@@ -1,54 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta name="author" content="MONARCH MAISURIYA" />
+    <meta name="author" content="HIMANSHU JOSHI" />
+    <% include ./head %>
+  </head>
 
-<head>
-  <meta name="author" content="MONARCH MAISURIYA">
-  <meta name="author" content="HIMANSHU JOSHI">
-   <% include ./head %>
-</head>
-
-<body class="grey lighten-3">
-
-<div class="container mt-5 text-center">
-    <div class="jumbotron text-center border border-light col-md-8" style="margin:0 auto;">
+  <body class="grey lighten-3">
+    <div class="container mt-5 text-center">
+      <div
+        class="jumbotron text-center border border-light col-md-8"
+        style="margin:0 auto;"
+      >
         <!--EJS Conditions-->
         <% if (err) { %>
-        <div class="alert alert-danger center-element w-75 text-center" role="alert">
-          <h6> An error has occurred.<br>Please login again</h6>
+        <div
+          class="alert alert-danger center-element w-75 text-center"
+          role="alert"
+        >
+          <h6>An error has occurred.<br />Please login again</h6>
         </div>
         <% } %> <% if (succ) { %>
-        <div class="alert text-center center-element w-75 alert-success" role="alert">
+        <div
+          class="alert text-center center-element w-75 alert-success"
+          role="alert"
+        >
           <h6>Logged In successfully</h6>
         </div>
         <% } %>
-    <form class="p-5" method="POST" action="/login">
+        <form class="p-5" method="POST" action="/login">
+          <p class="h4 mb-10 text-center">Access The Admin Dashboard</p>
 
-    <p class="h4 mb-10 text-center"> Access The Admin Dashboard </p>
+          <input
+            type="text"
+            id="username"
+            name="adminUsername"
+            required
+            class="form-control mb-4 p-4 w-75 center-element"
+            placeholder="Username"
+          />
 
-    <input type="text" id="username" name="adminUsername" required class="form-control mb-4 p-4" placeholder="Username">
+          <input
+            type="password"
+            id="password"
+            name="adminPassword"
+            required
+            class="form-control mb-4 p-4 w-75 center-element"
+            placeholder="Password"
+          />
 
-    <input type="password" id="password" name="adminPassword" required class="form-control mb-4 p-4" placeholder="Password">
+          <div class="custom-control custom-checkbox mb-4">
+            <input
+              type="checkbox"
+              onclick="ShowPassword()"
+              class="custom-control-input"
+              id="checkbox"
+            />
+            <label class="custom-control-label" for="checkbox"
+              >Show Password</label
+            >
+          </div>
 
-      <div class="custom-control custom-checkbox mb-4">
-        <input type="checkbox" onclick="ShowPassword()"class="custom-control-input" id="checkbox">
-        <label class="custom-control-label" for="checkbox">Show Password</label>
+          <div class="d-flex justify-content-between">
+            <button
+              class="btn primary-color-dark white-text waves-effect center-element"
+              type="submit"
+            >
+              Sign in
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+    <!--Footer-->
+    <footer class="text-center font-small ">
+      <% include ./footer %>
+    </footer>
+    <!--/.Footer-->
 
-    <div class="d-flex justify-content-between">
-    <button class="btn btn-primary my-4" type="submit">Sign in</button>    
-    </div>
-    
-</form>
-   
-    </div>
-</div>
-  <!--Footer-->
-  <footer class="text-center font-small ">
-  <% include ./footer %>
-  </footer>
-  <!--/.Footer-->
-
-   <!--  JavaScript -->
+    <!--  JavaScript -->
     <script type="text/javascript">
       let date = new Date();
       document.getElementById("copyrightDate").innerHTML = date.getFullYear();
@@ -57,27 +87,30 @@
 
     <!--  JavaScript -->
     <script type="text/javascript">
-         ShowPassword = () => {
-      let ele = document.getElementById("password");
+      ShowPassword = () => {
+        let ele = document.getElementById("password");
         if (ele.type === "password") {
-            ele.type = "text";
+          ele.type = "text";
         } else {
-            ele.type = "password";
+          ele.type = "password";
         }
-     }
+      };
     </script>
     <!-- JavaScript -->
 
-  <!-- JQuery -->
-  <script type="text/javascript" src="../../admin/js/jquery-3.4.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="../../admin/js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="../../admin/js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
-  
-
-</body>
-
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="../../admin/js/jquery-3.4.1.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../../admin/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="../../admin/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../../admin/js/mdb.min.js"></script>
+  </body>
 </html>
