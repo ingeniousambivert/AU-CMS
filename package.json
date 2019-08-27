@@ -5,7 +5,8 @@
   "scripts": {
     "js-compile-plugins": "babel --presets env js/src/ --out-dir js/dist/",
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "debug": "node --inspect"
   },
   "repository": {
     "type": "git",
