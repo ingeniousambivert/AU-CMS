@@ -48,7 +48,7 @@ swal("Error!", "An error has occured", "error");
             <tr>
              
               <th>Name</th>
-              <th>Options</th>
+              <th colspan=2>Options</th>
             </tr>
           </thead>
           <!--Table head-->
@@ -58,14 +58,12 @@ swal("Error!", "An error has occured", "error");
            <% upcomingEvents.forEach(function(item){ %>
             <tr> 
               <th><a href="info/<%= item.title %>"><%= item.title %></a></th>
-              <td colspan="2"><a class="btn btn-indigo btn-sm " href="/modify/<%= item.key %>" role="button">Edit</a>
-              <!-- Button trigger modal -->
+              <td><a class="btn btn-indigo btn-sm " href="/modify/<%= item.key %>" role="button">Edit</a>
               <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#<%= item.key %>">
                Delete
               </button>
               </td>
            
-
               <!-- Modal -->
               <div class="modal fade" id="<%= item.key %>" tabindex="-1" role="dialog" aria-labelledby="<%= item.key %>"
                 aria-hidden="true">
