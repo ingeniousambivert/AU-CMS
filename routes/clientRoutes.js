@@ -25,6 +25,24 @@ const team = require("../data/team.json");
 
 low(formerAdapter).then(formerDB => {
   // Index Route
+  clientRouter.get("/subscribed", (req, res) => {
+    const former = formerDB.get("former").value();
+    res.render("pages/index", {
+      formerEvents: former,
+      swalsucc: true,
+      swalerr: false
+    });
+  });
+  // Index Route
+  clientRouter.get("/failed", (req, res) => {
+    const former = formerDB.get("former").value();
+    res.render("pages/index", {
+      formerEvents: former,
+      swalsucc: false,
+      swalerr: true
+    });
+  });
+  // Index Route
   clientRouter.get("/", (req, res) => {
     const former = formerDB.get("former").value();
     res.render("pages/index", {
@@ -289,28 +307,16 @@ clientRouter.post("/", (req, res) => {
         console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
 
         if (res.statusCode == 200) {
-          res.render("pages/index", {
-            formerEvents: former,
-            swalsucc: true,
-            swalerr: false
-          });
+          res.redirect("/subscribed");
         } else if (
           res.statusCode == 400 ||
           res.statusCode == 401 ||
           res.statusCode == 403
         ) {
-          res.render("pages/index", {
-            formerEvents: former,
-            swalsucc: false,
-            swalerr: true
-          });
+          res.redirect("/failed");
         } else {
           res.status(400);
-          res.render("pages/index", {
-            formerEvents: former,
-            swalsucc: false,
-            swalerr: true
-          });
+          res.redirect("/failed");
         }
       });
     }
