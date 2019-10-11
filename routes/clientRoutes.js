@@ -24,23 +24,87 @@ const team = require("../data/team.json");
 //----- CLIENT ROUTES -----//
 
 low(formerAdapter).then(formerDB => {
+  let flag = false;
+  //Newsletter Signup
+  clientRouter.post("/", (req, res) => {
+    const { user_email } = req.body;
+    if (!user_email) {
+      res.render("pages/index", {
+        formerEvents: former,
+        swalsucc: false,
+        swalerr: true
+      });
+      res.status(400);
+    } else {
+      if (res.statusCode == 200) {
+        //Mailchimp Integration
+        const data = {
+          members: [
+            {
+              email_address: user_email,
+              status: "subscribed"
+            }
+          ]
+        };
+        const postData = JSON.stringify(data);
+
+        const options = {
+          url: "https://us18.api.mailchimp.com/3.0/lists/8bd6f842d1",
+          // Replace with Owner's list URL
+          method: "POST",
+          headers: {
+            Authorization: "auth dde461ecf68f1bc5df4741297ae870d4-us18"
+            // Replace with Owner's API Key
+          },
+          body: postData
+        };
+        request(options, (err, response, body) => {
+          console.log(response.statusCode);
+          res.statusCode = response.statusCode;
+          console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
+
+          if (res.statusCode == 200) {
+            res.redirect("/subscribed");
+            flag = true;
+          } else if (
+            res.statusCode == 400 ||
+            res.statusCode == 401 ||
+            res.statusCode == 403
+          ) {
+            flag = false;
+            res.redirect("/failed");
+          } else {
+            flag = false;
+            res.status(400);
+            res.redirect("/failed");
+          }
+        });
+      }
+    }
+  });
   // Index Route
   clientRouter.get("/subscribed", (req, res) => {
     const former = formerDB.get("former").value();
-    res.render("pages/index", {
-      formerEvents: former,
-      swalsucc: true,
-      swalerr: false
-    });
+    if (flag == true) {
+      res.render("pages/index", {
+        formerEvents: former,
+        swalsucc: true,
+        swalerr: false
+      });
+    } else {
+      res.redirect("/");
+    }
   });
   // Index Route
   clientRouter.get("/failed", (req, res) => {
     const former = formerDB.get("former").value();
-    res.render("pages/index", {
-      formerEvents: former,
-      swalsucc: false,
-      swalerr: true
-    });
+    if (flag == false) {
+      res.render("pages/index", {
+        formerEvents: former,
+        swalsucc: false,
+        swalerr: true
+      });
+    }
   });
   // Index Route
   clientRouter.get("/", (req, res) => {
@@ -268,60 +332,6 @@ low(participantAdapter).then(participantDB => {
   });
 });
 
-//Newsletter Signup
-clientRouter.post("/", (req, res) => {
-  const { user_email } = req.body;
-  if (!user_email) {
-    res.render("pages/index", {
-      formerEvents: former,
-      swalsucc: false,
-      swalerr: true
-    });
-    res.status(400);
-  } else {
-    if (res.statusCode == 200) {
-      //Mailchimp Integration
-      const data = {
-        members: [
-          {
-            email_address: user_email,
-            status: "subscribed"
-          }
-        ]
-      };
-      const postData = JSON.stringify(data);
-
-      const options = {
-        url: "https://us18.api.mailchimp.com/3.0/lists/8bd6f842d1",
-        // Replace with Owner's list URL
-        method: "POST",
-        headers: {
-          Authorization: "auth dde461ecf68f1bc5df4741297ae870d4-us18"
-          // Replace with Owner's API Key
-        },
-        body: postData
-      };
-      request(options, (err, response, body) => {
-        console.log(response.statusCode);
-        res.statusCode = response.statusCode;
-        console.log(`POST REQUEST FOR SUBSCRIBE ${body}`);
-
-        if (res.statusCode == 200) {
-          res.redirect("/subscribed");
-        } else if (
-          res.statusCode == 400 ||
-          res.statusCode == 401 ||
-          res.statusCode == 403
-        ) {
-          res.redirect("/failed");
-        } else {
-          res.status(400);
-          res.redirect("/failed");
-        }
-      });
-    }
-  }
-});
 // clientRouter.post(
 //   "/register",
 //   [
