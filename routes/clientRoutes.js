@@ -49,12 +49,10 @@ low(formerAdapter).then(formerDB => {
         const postData = JSON.stringify(data);
 
         const options = {
-          url: "https://us18.api.mailchimp.com/3.0/lists/8bd6f842d1",
-          // Replace with Owner's list URL
+          url: process.env.API_URL,
           method: "POST",
           headers: {
-            Authorization: "auth dde461ecf68f1bc5df4741297ae870d4-us18"
-            // Replace with Owner's API Key
+            Authorization: process.env.API_KEY
           },
           body: postData
         };

@@ -370,7 +370,7 @@ low(formerAdapter).then(formerDB => {
             });
             // For Upcoming Events
 
-            if (checkEvent == "upcoming") {
+            if (checkEvent == "upcoming") {  
               let {
                 titleForUpcoming,
                 briefForUpcoming,
