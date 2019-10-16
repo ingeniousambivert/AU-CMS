@@ -36,7 +36,7 @@
         </div>
         <% } %>
     <!-- CRUD FORM -->
-    <form class="container" method="POST" action="/add/industrial">
+    <form class="container" method="POST" action="/add/industrial" enctype="multipart/form-data">
 
     <p class="h4 text-center dark-grey-text mb-4">Add a new visit</p>
 
@@ -116,7 +116,7 @@
         </div>
         <% } %>
     <!-- CRUD FORM -->
-    <form class="container" method="POST" action="/add/upcoming">
+    <form class="container" method="POST" action="/add/upcoming" enctype="multipart/form-data">
 
     <p class="h4 text-center dark-grey-text mb-4">Add a new event</p>
 
@@ -191,7 +191,8 @@
         </div>
         <% } %>
    <form class="container" method="POST" action="/add/former">
-  <ul class="list-group mt-4 mb-4 p-4">
+
+    <ul class="list-group mt-4 mb-4 p-4">
         <% upcomingEvents.forEach(function(item){ %>
         <li class="list-group-item "><div class="custom-control custom-checkbox">
     <input type="radio" class="custom-control-input" name="itemtoMove" value="<%= item.title %>" id="<%= item.id %>">

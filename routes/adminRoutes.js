@@ -355,22 +355,23 @@ low(formerAdapter).then(formerDB => {
           // Add New Events
           adminRouter.post("/add/:event", checkSignIn, (req, res) => {
             let checkEvent = req.params.event;
-            if (!req.files || Object.keys(req.files).length === 0) {
-              return res.status(400).send("No files were uploaded.");
-            }
-            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-            let sampleFile = req.files.sampleFile;
-            let filename = "FILE" + Date.now().toString();
-            // Use the mv() method to place the file somewhere on your server
-            sampleFile.mv(`./public/img/${filename}.png`, function(err) {
-              if (err) return res.status(500).send(err);
-              else {
-                res.redirect(`/upload/${filename}`);
-              }
-            });
+            let time = Date.now().toString();
+            // if (!req.files || Object.keys(req.files).length === 0) {
+            //   return res.status(400).send("No files were uploaded.");
+            // }
+            // // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            // let sampleFile = req.files.sampleFile;
+            // let filename = "FILE" + Date.now().toString();
+            // // Use the mv() method to place the file somewhere on your server
+            // sampleFile.mv(`./public/img/${filename}.png`, function(err) {
+            //   if (err) return res.status(500).send(err);
+            //   else {
+            //     res.redirect(`/upload/${filename}`);
+            //   }
+            // });
             // For Upcoming Events
 
-            if (checkEvent == "upcoming") {  
+            if (checkEvent == "upcoming") {
               let {
                 titleForUpcoming,
                 briefForUpcoming,
@@ -400,7 +401,8 @@ low(formerAdapter).then(formerDB => {
                     title: titleForUpcoming,
                     date: dateForUpcoming,
                     brief: briefForUpcoming,
-                    details: detailsForUpcoming
+                    details: detailsForUpcoming,
+                    key: "UPCOMING" + time
                   })
                   .last()
                   .assign({ id: Date.now().toString() })
@@ -426,8 +428,6 @@ low(formerAdapter).then(formerDB => {
                 detailsForVisit,
                 dateForVisit
               } = req.body;
-              const files = req.files;
-              let time = Date.now().toString();
 
               if (
                 !titleForVisit ||
