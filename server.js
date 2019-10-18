@@ -40,18 +40,6 @@ app.use("/", clientRoutes);
 const adminRoutes = require("./routes/adminRoutes");
 app.use("/", adminRoutes);
 
-// DB Config
-// const mongoose = require("mongoose");
-// const db = "mongodb://localhost:27017/AU_DB";
-
-// // Connect to MongoDB
-// mongoose
-//   .connect(db, { useNewUrlParser: true })
-//   .then(() => console.log("MongoDB connected successfully"))
-//   .catch(err => console.log(err));
-// Load Participant model
-//const Participant = require("./models/participant.model");
-
 // Listen to the port
 app.listen(process.env.PORT || 8000, function() {
   console.log(
