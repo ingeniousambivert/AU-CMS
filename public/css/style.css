@@ -11,7 +11,7 @@ html {
   scroll-behavior: smooth;
 }
 nav {
-  background-color: #4285f4;
+  background-color: #09606a;
   color: #fff;
   font-size: 0.9rem;
 }
@@ -30,7 +30,10 @@ nav a:hover {
   color: #1b2230;
 }
 .top-nav-collapse {
-  background-color: #4285f4;
+  background-color: #09606a;
+}
+.footer-color {
+  background-color: #09606a;
 }
 @media (max-width: 768px) {
   .navbar:not(.top-nav-collapse) {
