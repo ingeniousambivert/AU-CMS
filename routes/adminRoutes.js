@@ -1,10 +1,10 @@
 const express = require("express");
 const adminRouter = express.Router();
-const moment = require("moment");
 
 const fileUpload = require("express-fileupload");
-// default options
 adminRouter.use(fileUpload());
+
+const moment = require("moment");
 
 // Middlewares for Auth
 const checkSignIn = require("../middlewares/checkSignIn");
@@ -281,7 +281,7 @@ low(formerAdapter).then(formerDB => {
                   date: dateForEvent,
                   brief: briefForEvent,
                   details: detailsForEvent,
-                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
+                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
                 })
                 .write();
               res.render("admin/modify", {
@@ -301,7 +301,7 @@ low(formerAdapter).then(formerDB => {
                   date: dateForEvent,
                   brief: briefForEvent,
                   details: detailsForEvent,
-                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
+                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
                 })
                 .write();
               res.render("admin/modify", {
@@ -321,7 +321,7 @@ low(formerAdapter).then(formerDB => {
                   date: dateForEvent,
                   stages: [stagesForEvent],
                   details: detailsForEvent,
-                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
+                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
                 })
                 .write();
               res.render("admin/modify", {
@@ -362,7 +362,6 @@ low(formerAdapter).then(formerDB => {
             let time = Date.now().toString();
 
             // For Upcoming Events
-
             if (checkEvent == "upcoming") {
               let {
                 titleForUpcoming,
@@ -385,7 +384,6 @@ low(formerAdapter).then(formerDB => {
                   succ: false,
                   err: true
                 });
-                //res.status(400);
               } else {
                 upcomingDB
                   .get("upcoming")
@@ -401,13 +399,22 @@ low(formerAdapter).then(formerDB => {
                   .assign({ id: Date.now().toString() })
                   .write();
 
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: true,
-                  err: false
+                let fileForUpcoming = req.files.fileForUpcoming;
+                let filename = "fileForUpcoming" + Date.now().toString();
+                fileForUpcoming.mv(`./public/img/${filename}.png`, function(
+                  err
+                ) {
+                  if (err) return res.status(500).send(err);
+                  else {
+                    res.render("admin/add", {
+                      formerEvents: former,
+                      upcomingEvents: upcoming,
+                      visits: industrial,
+                      event: checkEvent,
+                      succ: true,
+                      err: false
+                    });
+                  }
                 });
               }
             }

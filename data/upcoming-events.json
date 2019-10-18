@@ -41,6 +41,15 @@
       "key": "UPCOMING1566410877988",
       "images": [],
       "active": "upcoming.jpg"
+    },
+    {
+      "title": "Random Event Five",
+      "date": "2019-11-06",
+      "brief": "Moment was designed to work both in the browser and in Node.js.",
+      "details": "Moment was designed to work both in the browser and in Node.js.",
+      "lastModified": "October 18th 2019, 6:41:55 pm",
+      "key": "UPCOMING1571404315817",
+      "id": "1571404315826"
     }
   ]
 }
