@@ -1,5 +1,6 @@
 const express = require("express");
 const adminRouter = express.Router();
+const moment = require("moment");
 
 const fileUpload = require("express-fileupload");
 // default options
@@ -279,7 +280,8 @@ low(formerAdapter).then(formerDB => {
                   title: titleForEvent,
                   date: dateForEvent,
                   brief: briefForEvent,
-                  details: detailsForEvent
+                  details: detailsForEvent,
+                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
                 })
                 .write();
               res.render("admin/modify", {
@@ -298,7 +300,8 @@ low(formerAdapter).then(formerDB => {
                   title: titleForEvent,
                   date: dateForEvent,
                   brief: briefForEvent,
-                  details: detailsForEvent
+                  details: detailsForEvent,
+                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
                 })
                 .write();
               res.render("admin/modify", {
@@ -317,7 +320,8 @@ low(formerAdapter).then(formerDB => {
                   title: titleForEvent,
                   date: dateForEvent,
                   stages: [stagesForEvent],
-                  details: detailsForEvent
+                  details: detailsForEvent,
+                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
                 })
                 .write();
               res.render("admin/modify", {
@@ -356,19 +360,7 @@ low(formerAdapter).then(formerDB => {
           adminRouter.post("/add/:event", checkSignIn, (req, res) => {
             let checkEvent = req.params.event;
             let time = Date.now().toString();
-            // if (!req.files || Object.keys(req.files).length === 0) {
-            //   return res.status(400).send("No files were uploaded.");
-            // }
-            // // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-            // let sampleFile = req.files.sampleFile;
-            // let filename = "FILE" + Date.now().toString();
-            // // Use the mv() method to place the file somewhere on your server
-            // sampleFile.mv(`./public/img/${filename}.png`, function(err) {
-            //   if (err) return res.status(500).send(err);
-            //   else {
-            //     res.redirect(`/upload/${filename}`);
-            //   }
-            // });
+
             // For Upcoming Events
 
             if (checkEvent == "upcoming") {
@@ -402,6 +394,7 @@ low(formerAdapter).then(formerDB => {
                     date: dateForUpcoming,
                     brief: briefForUpcoming,
                     details: detailsForUpcoming,
+                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
                     key: "UPCOMING" + time
                   })
                   .last()
@@ -451,6 +444,7 @@ low(formerAdapter).then(formerDB => {
                     date: dateForVisit,
                     stages: [stagesForVisit],
                     details: detailsForVisit,
+                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
                     key: "VISIT" + time
                   })
                   .last()
@@ -490,6 +484,10 @@ low(formerAdapter).then(formerDB => {
                 formerDB
                   .get("former")
                   .push(getUpcoming)
+                  .last()
+                  .assign({
+                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
+                  })
                   .write();
                 upcomingDB
                   .get("upcoming")
