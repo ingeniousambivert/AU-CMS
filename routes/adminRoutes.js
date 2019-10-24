@@ -1,8 +1,25 @@
 const express = require("express");
 const adminRouter = express.Router();
+const multer = require("multer");
+const path = require("path");
 
-const fileUpload = require("express-fileupload");
-adminRouter.use(fileUpload());
+// Set The Storage Engine
+const storage = multer.diskStorage({
+  destination: function(req, file, callback) {
+    callback(null, "../public/img/");
+  },
+  filename: function(req, file, callback) {
+    callback(null, file.originalname);
+  }
+});
+const fileFilter = function(req, file, callback) {
+  // accept images only
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+    return callback(new Error("Only image files are allowed!"), false);
+  }
+  callback(null, true);
+};
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 const moment = require("moment");
 
@@ -357,161 +374,168 @@ low(formerAdapter).then(formerDB => {
           });
 
           // Add New Events
-          adminRouter.post("/add/:event", checkSignIn, (req, res) => {
-            let checkEvent = req.params.event;
-            let time = Date.now().toString();
+          adminRouter.post(
+            "/add/:event",
+            checkSignIn,
+            upload.array("fileForUpcoming", 20),
+            (req, res) => {
+              let checkEvent = req.params.event;
+              let time = Date.now().toString();
 
-            // For Upcoming Events
-            if (checkEvent == "upcoming") {
-              let {
-                titleForUpcoming,
-                briefForUpcoming,
-                detailsForUpcoming,
-                dateForUpcoming
-              } = req.body;
+              // For Upcoming Events
+              if (checkEvent == "upcoming") {
+                let {
+                  titleForUpcoming,
+                  briefForUpcoming,
+                  detailsForUpcoming,
+                  dateForUpcoming
+                } = req.body;
 
-              if (
-                !titleForUpcoming ||
-                !briefForUpcoming ||
-                !detailsForUpcoming ||
-                !dateForUpcoming
-              ) {
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: false,
-                  err: true
-                });
-              } else {
-                upcomingDB
-                  .get("upcoming")
-                  .push({
-                    title: titleForUpcoming,
-                    date: dateForUpcoming,
-                    brief: briefForUpcoming,
-                    details: detailsForUpcoming,
-                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
-                    key: "UPCOMING" + time
-                  })
-                  .last()
-                  .assign({ id: Date.now().toString() })
-                  .write();
-
-                let fileForUpcoming = req.files.fileForUpcoming;
-                let filename = "fileForUpcoming" + Date.now().toString();
-                fileForUpcoming.mv(`./public/img/${filename}.png`, function(
-                  err
+                if (
+                  !titleForUpcoming ||
+                  !briefForUpcoming ||
+                  !detailsForUpcoming ||
+                  !dateForUpcoming ||
+                  !req.files
                 ) {
-                  if (err) return res.status(500).send(err);
-                  else {
-                    res.render("admin/add", {
-                      formerEvents: former,
-                      upcomingEvents: upcoming,
-                      visits: industrial,
-                      event: checkEvent,
-                      succ: true,
-                      err: false
-                    });
-                  }
-                });
+                  res.render("admin/add", {
+                    formerEvents: former,
+                    upcomingEvents: upcoming,
+                    visits: industrial,
+                    event: checkEvent,
+                    succ: false,
+                    err: true
+                  });
+                } else {
+                  upcomingDB
+                    .get("upcoming")
+                    .push({
+                      title: titleForUpcoming,
+                      date: dateForUpcoming,
+                      brief: briefForUpcoming,
+                      details: detailsForUpcoming,
+                      lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
+                      key: "UPCOMING" + time
+                    })
+                    .last()
+                    .assign({ id: Date.now().toString() })
+                    .write();
+                  console.log(req.files);
+
+                  res.render("admin/add", {
+                    formerEvents: former,
+                    upcomingEvents: upcoming,
+                    visits: industrial,
+                    event: checkEvent,
+                    succ: true,
+                    err: false
+                  });
+                  // let fileForUpcoming = req.files.fileForUpcoming;
+                  // let filename = "fileForUpcoming" + Date.now().toString();
+                  // fileForUpcoming.mv(`./public/img/${filename}.png`, function(
+                  //   err
+                  // ) {
+                  //   if (err) return res.status(500).send(err);
+                  //   else {
+                  // }
+                  // });
+                }
               }
-            }
 
-            // For Industrial Visits
+              // For Industrial Visits
 
-            if (checkEvent == "industrial") {
-              let {
-                titleForVisit,
-                stagesForVisit,
-                detailsForVisit,
-                dateForVisit
-              } = req.body;
+              if (checkEvent == "industrial") {
+                let {
+                  titleForVisit,
+                  stagesForVisit,
+                  detailsForVisit,
+                  dateForVisit
+                } = req.body;
 
-              if (
-                !titleForVisit ||
-                !stagesForVisit ||
-                !dateForVisit ||
-                !detailsForVisit
-              ) {
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: false,
-                  err: true
-                });
-              } else {
-                industrialDB
-                  .get("industrial")
-                  .push({
-                    title: titleForVisit,
-                    date: dateForVisit,
-                    stages: [stagesForVisit],
-                    details: detailsForVisit,
-                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
-                    key: "VISIT" + time
-                  })
-                  .last()
-                  .assign({ id: time })
-                  .write();
+                if (
+                  !titleForVisit ||
+                  !stagesForVisit ||
+                  !dateForVisit ||
+                  !detailsForVisit
+                ) {
+                  res.render("admin/add", {
+                    formerEvents: former,
+                    upcomingEvents: upcoming,
+                    visits: industrial,
+                    event: checkEvent,
+                    succ: false,
+                    err: true
+                  });
+                } else {
+                  industrialDB
+                    .get("industrial")
+                    .push({
+                      title: titleForVisit,
+                      date: dateForVisit,
+                      stages: [stagesForVisit],
+                      details: detailsForVisit,
+                      lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
+                      key: "VISIT" + time
+                    })
+                    .last()
+                    .assign({ id: time })
+                    .write();
 
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: true,
-                  err: false
-                });
+                  res.render("admin/add", {
+                    formerEvents: former,
+                    upcomingEvents: upcoming,
+                    visits: industrial,
+                    event: checkEvent,
+                    succ: true,
+                    err: false
+                  });
+                }
               }
-            }
 
-            // For Former Events
+              // For Former Events
 
-            if (checkEvent == "former") {
-              let { itemtoMove } = req.body;
-              const getUpcoming = upcomingDB
-                .get("upcoming")
-                .find({ title: itemtoMove })
-                .value();
-
-              if (!itemtoMove) {
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: false,
-                  err: true
-                });
-              } else {
-                formerDB
-                  .get("former")
-                  .push(getUpcoming)
-                  .last()
-                  .assign({
-                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
-                  })
-                  .write();
-                upcomingDB
+              if (checkEvent == "former") {
+                let { itemtoMove } = req.body;
+                const getUpcoming = upcomingDB
                   .get("upcoming")
-                  .remove({ title: itemtoMove })
-                  .write();
+                  .find({ title: itemtoMove })
+                  .value();
 
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: true,
-                  err: false
-                });
+                if (!itemtoMove) {
+                  res.render("admin/add", {
+                    formerEvents: former,
+                    upcomingEvents: upcoming,
+                    visits: industrial,
+                    event: checkEvent,
+                    succ: false,
+                    err: true
+                  });
+                } else {
+                  formerDB
+                    .get("former")
+                    .push(getUpcoming)
+                    .last()
+                    .assign({
+                      lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
+                    })
+                    .write();
+                  upcomingDB
+                    .get("upcoming")
+                    .remove({ title: itemtoMove })
+                    .write();
+
+                  res.render("admin/add", {
+                    formerEvents: former,
+                    upcomingEvents: upcoming,
+                    visits: industrial,
+                    event: checkEvent,
+                    succ: true,
+                    err: false
+                  });
+                }
               }
             }
-          });
+          );
         });
       });
     });

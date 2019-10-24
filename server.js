@@ -11,7 +11,10 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
+// Setting app methods
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(cookieParser());
 app.use(
   session({
