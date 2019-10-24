@@ -430,15 +430,6 @@ low(formerAdapter).then(formerDB => {
                     succ: true,
                     err: false
                   });
-                  // let fileForUpcoming = req.files.fileForUpcoming;
-                  // let filename = "fileForUpcoming" + Date.now().toString();
-                  // fileForUpcoming.mv(`./public/img/${filename}.png`, function(
-                  //   err
-                  // ) {
-                  //   if (err) return res.status(500).send(err);
-                  //   else {
-                  // }
-                  // });
                 }
               }
 
