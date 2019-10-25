@@ -384,13 +384,14 @@ low(formerAdapter).then(formerDB => {
           adminRouter.post("/add/:event", checkSignIn, (req, res) => {
             let checkEvent = req.params.event;
             let time = Date.now().toString();
+
+            // For Upcoming Events
             upload(req, res, function(err) {
               if (err instanceof multer.MulterError) {
                 res.send("Multer Error :", err);
               } else if (err) {
                 res.send(err);
               } else {
-                // For Upcoming Events
                 if (checkEvent == "upcoming") {
                   let {
                     titleForUpcoming,
@@ -447,54 +448,63 @@ low(formerAdapter).then(formerDB => {
             });
 
             // For Industrial Visits
-
-            if (checkEvent == "industrial") {
-              let {
-                titleForVisit,
-                stagesForVisit,
-                detailsForVisit,
-                dateForVisit
-              } = req.body;
-
-              if (
-                !titleForVisit ||
-                !stagesForVisit ||
-                !dateForVisit ||
-                !detailsForVisit
-              ) {
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: false,
-                  err: true
-                });
+            upload(req, res, function(err) {
+              if (err instanceof multer.MulterError) {
+                res.send("Multer Error :", err);
+              } else if (err) {
+                res.send(err);
               } else {
-                industrialDB
-                  .get("industrial")
-                  .push({
-                    title: titleForVisit,
-                    date: dateForVisit,
-                    stages: [stagesForVisit],
-                    details: detailsForVisit,
-                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
-                    key: "VISIT" + time
-                  })
-                  .last()
-                  .assign({ id: time })
-                  .write();
+                if (checkEvent == "industrial") {
+                  let {
+                    titleForVisit,
+                    stagesForVisit,
+                    detailsForVisit,
+                    dateForVisit
+                  } = req.body;
 
-                res.render("admin/add", {
-                  formerEvents: former,
-                  upcomingEvents: upcoming,
-                  visits: industrial,
-                  event: checkEvent,
-                  succ: true,
-                  err: false
-                });
+                  if (
+                    !titleForVisit ||
+                    !stagesForVisit ||
+                    !dateForVisit ||
+                    !detailsForVisit
+                  ) {
+                    res.render("admin/add", {
+                      formerEvents: former,
+                      upcomingEvents: upcoming,
+                      visits: industrial,
+                      event: checkEvent,
+                      succ: false,
+                      err: true
+                    });
+                  } else {
+                    industrialDB
+                      .get("industrial")
+                      .push({
+                        title: titleForVisit,
+                        date: dateForVisit,
+                        stages: [stagesForVisit],
+                        details: detailsForVisit,
+                        lastModified: moment().format(
+                          "MMMM Do YYYY, h:mm:ss a"
+                        ),
+                        key: "VISIT" + time
+                      })
+                      .last()
+                      .assign({ id: time })
+                      .write();
+
+                    res.render("admin/add", {
+                      formerEvents: former,
+                      upcomingEvents: upcoming,
+                      visits: industrial,
+                      event: checkEvent,
+                      succ: true,
+                      err: false
+                    });
+                  }
+                }
               }
-            }
+            });
 
             // For Former Events
 
