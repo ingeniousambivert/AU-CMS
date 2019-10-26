@@ -381,6 +381,7 @@ low(formerAdapter).then(formerDB => {
               succ: false,
               err: false
             });
+
           });
 
           // Add New Events
@@ -416,6 +417,8 @@ low(formerAdapter).then(formerDB => {
                     err: true
                   });
                 } else {
+                  
+                  let allImages= req.files.map(file=>file.filename);
                   upcomingDB
                     .get("upcoming")
                     .push({
@@ -423,8 +426,8 @@ low(formerAdapter).then(formerDB => {
                       date: dateForUpcoming,
                       brief: briefForUpcoming,
                       details: detailsForUpcoming,
-                      active: "",
-                      images: [],
+                      active: allImages[0],
+                      images: allImages.slice(1),
                       lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
                       key: "UPCOMING" + time
                     })
@@ -432,7 +435,8 @@ low(formerAdapter).then(formerDB => {
                     .assign({ id: Date.now().toString() })
                     .write();
                   console.log(req.body);
-                  console.log(req.files);
+                 
+                  
 
                   res.render("admin/add", {
                     formerEvents: former,
@@ -468,6 +472,7 @@ low(formerAdapter).then(formerDB => {
                     err: true
                   });
                 } else {
+                  let allImages= req.files.map(file=>file.filename);
                   industrialDB
                     .get("industrial")
                     .push({
@@ -475,8 +480,8 @@ low(formerAdapter).then(formerDB => {
                       date: dateForVisit,
                       stages: [stagesForVisit],
                       details: detailsForVisit,
-                      active: "",
-                      images: [],
+                      active: allImages[0],
+                      images: allImages.slice(1),
                       lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),
                       key: "VISIT" + time
                     })
