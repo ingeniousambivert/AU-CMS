@@ -451,6 +451,8 @@ low(formerAdapter).then(formerDB => {
                         date: dateForUpcoming,
                         brief: briefForUpcoming,
                         details: detailsForUpcoming,
+                        active: "",
+                        images: [],
                         lastModified: moment().format(
                           "MMMM Do YYYY, h:mm:ss a"
                         ),
@@ -512,6 +514,8 @@ low(formerAdapter).then(formerDB => {
                         date: dateForVisit,
                         stages: [stagesForVisit],
                         details: detailsForVisit,
+                        active: "",
+                        images: [],
                         lastModified: moment().format(
                           "MMMM Do YYYY, h:mm:ss a"
                         ),
