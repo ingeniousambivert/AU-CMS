@@ -9,6 +9,8 @@ const moment = require("moment");
 const low = require("lowdb");
 const FileAsync = require("lowdb/adapters/FileAsync");
 
+// Data for views
+
 // Participants DB
 const participantAdapter = new FileAsync("./data/participants.json");
 // Upcoming Events DB
@@ -17,8 +19,7 @@ const upcomingAdapter = new FileAsync("./data/upcoming-events.json");
 const industrialAdapter = new FileAsync("./data/industrial-visits.json");
 // Former Events DB
 const formerAdapter = new FileAsync("./data/former-events.json");
-
-// Data for views
+// Team DB
 const team = require("../data/team.json");
 
 //----- CLIENT ROUTES -----//
@@ -329,53 +330,5 @@ low(participantAdapter).then(participantDB => {
     });
   });
 });
-
-// clientRouter.post(
-//   "/register",
-//   [
-//     check("user_email")
-//       .isEmail()
-//       .custom((value, { req }) => {
-//         return new Promise((resolve, reject) => {
-//           Participant.findOne({ email: req.body.email }, function(
-//             err,
-//             participant
-//           ) {
-//             if (err) {
-//               reject(console.log("Error"));
-//             }
-//             if (Boolean(participant)) {
-//               reject(console.log("Error in Email"));
-//             }
-//             resolve(true);
-//           });
-//         });
-//       })
-//   ],
-//   (req, res) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(422).json({ errors: errors.array() });
-//     }
-//     // Save the participant in MongoDB
-//     let name = req.body.user_name;
-//     let email = req.body.user_email;
-//     const newParticipant = new Participant({
-//       name: name,
-//       email: email
-//     });
-//     newParticipant
-//       .save()
-//       .then(() => {
-//         res.render("pages/upcoming", { succ: true, err: false });
-//       })
-//       .catch(
-//         err => console.log(err),
-//         () => {
-//           res.render("pages/upcoming", { succ: false, err: true });
-//         }
-//       );
-//   }
-// );
 
 module.exports = clientRouter;
