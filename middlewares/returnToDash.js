@@ -1,9 +1,10 @@
-const checkSignIn = require("./checkSignIn");
-const session = require("express-session");
-
-module.exports = returnToDash = (req, res, next) => {
-  if (checkSignIn()) {
+module.exports = checkSignIn = (req, res, next) => {
+  if (req.session.admin && req.cookies.admin_key) {
     res.redirect("/dashboard");
-    return next();
+  } else {
+    res.render("admin/login", {
+      succ: false,
+      err: true
+    });
   }
 };

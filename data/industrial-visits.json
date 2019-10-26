@@ -9,9 +9,9 @@
         "trial,one"
       ],
       "images": [
-        "/events/slide-1.jpg"
+        "slide-1.jpg"
       ],
-      "active": "/events/slide-2.jpg",
+      "active": "slide-2.jpg",
       "key": "VISIT1"
     },
     {
@@ -24,9 +24,9 @@
         ""
       ],
       "images": [
-        "/events/slide-2.jpg"
+        "slide-2.jpg"
       ],
-      "active": "/events/slide-3.jpg",
+      "active": "slide-3.jpg",
       "key": "VISIT2"
     },
     {
@@ -37,9 +37,9 @@
       "key": "VISIT1566406302582",
       "id": "1566406302582",
       "images": [
-        "/events/slide-2.jpg"
+        "slide-2.jpg"
       ],
-      "active": "/events/slide-1.jpg"
+      "active": "slide-1.jpg"
     },
     {
       "title": "4th-Industrial Visit – ISRO",
@@ -51,9 +51,9 @@
       "key": "VISIT1566411017462",
       "id": "1566411017462",
       "images": [
-        "/events/slide-2.jpg"
+        "slide-2.jpg"
       ],
-      "active": "/events/slide-1.jpg"
+      "active": "slide-1.jpg"
     }
   ]
 }

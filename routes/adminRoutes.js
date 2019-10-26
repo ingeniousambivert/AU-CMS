@@ -19,10 +19,12 @@ const storage = multer.diskStorage({
     );
   }
 });
-
 const fileFilter = function(req, file, callback) {
   if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-    return callback(new Error("Only image files are allowed!"), false);
+    return callback(
+      new Error("Only jpg|jpeg|png|gif extension files are allowed."),
+      false
+    );
   }
   callback(null, true);
 };
@@ -33,7 +35,7 @@ const upload = multer({
 
 // Middlewares for Auth
 const checkSignIn = require("../middlewares/checkSignIn");
-const returnToDash = require("../middlewares/returnToDash");
+// const returnToDash = require("../middlewares/returnToDash");
 
 // LowDB Instances
 //See https://github.com/typicode/lowdb for docs
