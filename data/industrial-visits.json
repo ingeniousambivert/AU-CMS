@@ -5,8 +5,12 @@
       "title": "1st Industrial Visit – Narayan industry, Naroda ",
       "date": "2019-05-01",
       "details": "Energy of the students was at the utmost level as it was the first industrial visit of AIChE Ahmedabad University. We have shown the outline of the Narayan industry so that students understand in better way and solve their doubts during the industrial visit. The reason why we have set this industrial visit was that students had perform few experiments on dye during their academy year and we want to show them in the large scale. We want our students to know the importance, classification and uses of dye. On the day of the industrial visit it was great to see massive response from the students. Students had taken major initiative to learn about industry and process. Industrial visit had completed smoothly and students had learned a lot from this visit.",
-      "stages": ["trial,one"],
-      "images": ["/events/slide-1.jpg"],
+      "stages": [
+        "trial,one"
+      ],
+      "images": [
+        "/events/slide-1.jpg"
+      ],
       "active": "/events/slide-2.jpg",
       "key": "VISIT1"
     },
@@ -15,8 +19,13 @@
       "title": "2nd Industrial Visit – Paryavaran Mandir and NEPL effluent plant",
       "date": "2nd March 2019",
       "details": "It was the second biggest success for the chapter as there was great enthusiasm among the student for the “AIChE weekend”. We have planned industrial visit on Saturday. On Sunday, there was interbatch cricket tournament. This time we want our students to know about water treatment plant and how to reduce the TDS of the acidic water, which is release from the industry. First of all we had attended a small seminar regarding uses and conservation of water at Paryavaran Mandir. Further we went to NEPL effluent plant were we had seen how to minimize the TDS of water and from where the this water had been supplied from the different industry. ",
-      "stages": ["", ""],
-      "images": ["/events/slide-2.jpg"],
+      "stages": [
+        "",
+        ""
+      ],
+      "images": [
+        "/events/slide-2.jpg"
+      ],
       "active": "/events/slide-3.jpg",
       "key": "VISIT2"
     },
@@ -27,17 +36,23 @@
       "details": "Moment was designed to work both in the browser and in Node.js.\r\n\r\nAll code should work in both of these environments, and all unit tests are run in both of these environments.\r\n",
       "key": "VISIT1566406302582",
       "id": "1566406302582",
-      "images": ["/events/slide-2.jpg"],
+      "images": [
+        "/events/slide-2.jpg"
+      ],
       "active": "/events/slide-1.jpg"
     },
     {
       "title": "4th-Industrial Visit – ISRO",
       "date": "",
-      "stages": ["trial"],
+      "stages": [
+        "trial"
+      ],
       "details": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, \r\n",
       "key": "VISIT1566411017462",
       "id": "1566411017462",
-      "images": ["/events/slide-2.jpg"],
+      "images": [
+        "/events/slide-2.jpg"
+      ],
       "active": "/events/slide-1.jpg"
     }
   ]
