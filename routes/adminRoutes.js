@@ -3,12 +3,13 @@ const adminRouter = express.Router();
 const multer = require("multer");
 const moment = require("moment");
 const path = require("path");
-// Set The Storage Engine
-const storage = multer.diskStorage({
+
+// Set The Storage Engine For Upcoming
+const storageForUpcoming = multer.diskStorage({
   destination: function(req, file, callback) {
     callback(
       null,
-      path.resolve(__dirname.replace("routes", "") + "public/img/")
+      path.resolve(__dirname.replace("routes", "") + "public/img/events/")
     );
   },
   filename: function(req, file, callback) {
@@ -19,16 +20,43 @@ const storage = multer.diskStorage({
   }
 });
 
-const fileFilter = function(req, file, callback) {
+const fileFilterForUpcoming = function(req, file, callback) {
   if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
     return callback(new Error("Only image files are allowed!"), false);
   }
   callback(null, true);
 };
-const upload = multer({ storage: storage, fileFilter: fileFilter }).array(
-  "fileForUpcoming",
-  20
-);
+const uploadForUpcoming = multer({
+  storage: storageForUpcoming,
+  fileFilter: fileFilterForUpcoming
+}).array("fileForUpcoming", 20);
+
+// Set The Storage Engine For Industrial
+const storageForIndustrial = multer.diskStorage({
+  destination: function(req, file, callback) {
+    callback(
+      null,
+      path.resolve(__dirname.replace("routes", "") + "public/img/events/")
+    );
+  },
+  filename: function(req, file, callback) {
+    callback(
+      null,
+      file.originalname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+
+const fileFilterForIndustrial = function(req, file, callback) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+    return callback(new Error("Only image files are allowed!"), false);
+  }
+  callback(null, true);
+};
+const uploadForIndustrial = multer({
+  storage: storageForIndustrial,
+  fileFilter: fileFilterForIndustrial
+}).array("fileForIndustrial", 20);
 
 // Middlewares for Auth
 const checkSignIn = require("../middlewares/checkSignIn");
@@ -386,11 +414,11 @@ low(formerAdapter).then(formerDB => {
             let time = Date.now().toString();
 
             // For Upcoming Events
-            upload(req, res, function(err) {
+            uploadForUpcoming(req, res, function(err) {
               if (err instanceof multer.MulterError) {
-                res.send("Multer Error :", err);
+                res.status(400);
               } else if (err) {
-                res.send(err);
+                res.status(400);
               } else {
                 if (checkEvent == "upcoming") {
                   let {
@@ -448,11 +476,11 @@ low(formerAdapter).then(formerDB => {
             });
 
             // For Industrial Visits
-            upload(req, res, function(err) {
+            uploadForIndustrial(req, res, function(err) {
               if (err instanceof multer.MulterError) {
-                res.send("Multer Error :", err);
+                res.status(400);
               } else if (err) {
-                res.send(err);
+                res.status(400);
               } else {
                 if (checkEvent == "industrial") {
                   let {
