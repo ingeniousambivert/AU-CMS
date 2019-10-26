@@ -176,8 +176,8 @@ low(upcomingAdapter).then(upcomingDB => {
 });
 
 // Chemecar Route
-clientRouter.get("/chemecar", (req, res) => {
-  res.render("pages/chemecar", {
+clientRouter.get("/rsc", (req, res) => {
+  res.render("pages/rsc", {
     swalsucc: false,
     swalerr: false
   });
