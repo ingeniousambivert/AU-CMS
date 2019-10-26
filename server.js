@@ -32,7 +32,7 @@ app.use(
 // Set the view engine to ejs
 app.set("view engine", "ejs");
 
-// Use CSS and Media
+// Use CSS and Static Media
 app.use(express.static(__dirname + "/public"));
 
 // Routes for the app

@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const fileFilter = function(req, file, callback) {
   if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
     return callback(
-      new Error("Only jpg|jpeg|png|gif extension files are allowed."),
+      new Error("Only jpg|jpeg|png|gif files are allowed."),
       false
     );
   }
