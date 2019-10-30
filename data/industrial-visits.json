@@ -2,8 +2,8 @@
   "industrial": [
     {
       "id": "1",
-      "title": "1st Industrial Visit – Narayan industry, Naroda ",
-      "date": "2019-05-01",
+      "title": "2nd Industrial Visit – Narayan industry, Naroda ",
+      "date": "",
       "details": "Energy of the students was at the utmost level as it was the first industrial visit of AIChE Ahmedabad University. We have shown the outline of the Narayan industry so that students understand in better way and solve their doubts during the industrial visit. The reason why we have set this industrial visit was that students had perform few experiments on dye during their academy year and we want to show them in the large scale. We want our students to know the importance, classification and uses of dye. On the day of the industrial visit it was great to see massive response from the students. Students had taken major initiative to learn about industry and process. Industrial visit had completed smoothly and students had learned a lot from this visit.",
       "stages": [
         "trial,one"
@@ -12,22 +12,23 @@
         "slide-1.jpg"
       ],
       "active": "slide-2.jpg",
-      "key": "VISIT1"
+      "key": "VISIT1",
+      "lastModified": "October 30th 2019, 10:58:24 pm"
     },
     {
       "id": "2",
-      "title": "2nd Industrial Visit – Paryavaran Mandir and NEPL effluent plant",
-      "date": "2019-03-02",
+      "title": "1st Industrial Visit – Paryavaran Mandir and NEPL effluent plant",
+      "date": "",
       "details": "It was the second biggest success for the chapter as there was great enthusiasm among the student for the “AIChE weekend”. We have planned industrial visit on Saturday. On Sunday, there was interbatch cricket tournament. This time we want our students to know about water treatment plant and how to reduce the TDS of the acidic water, which is release from the industry. First of all we had attended a small seminar regarding uses and conservation of water at Paryavaran Mandir. Further we went to NEPL effluent plant were we had seen how to minimize the TDS of water and from where the this water had been supplied from the different industry. ",
       "stages": [
-        "",
-        ""
+        ","
       ],
       "images": [
         "slide-2.jpg"
       ],
       "active": "slide-3.jpg",
-      "key": "VISIT2"
+      "key": "VISIT2",
+      "lastModified": "October 30th 2019, 10:58:44 pm"
     },
     {
       "title": "3rd-Industrial Visit – Paryavaran Mandir ",

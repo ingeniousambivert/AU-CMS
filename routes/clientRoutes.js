@@ -83,7 +83,10 @@ low(formerAdapter).then(formerDB => {
   });
   // Index Route
   clientRouter.get("/subscribed", (req, res) => {
-    const former = formerDB.get("former").value();
+    const former = formerDB
+      .get("former")
+      .orderBy("date", "desc")
+      .value();
     if (flag == true) {
       res.render("pages/index", {
         formerEvents: former,
@@ -96,7 +99,10 @@ low(formerAdapter).then(formerDB => {
   });
   // Index Route
   clientRouter.get("/failed", (req, res) => {
-    const former = formerDB.get("former").value();
+    const former = formerDB
+      .get("former")
+      .orderBy("date", "desc")
+      .value();
     if (flag == false) {
       res.render("pages/index", {
         formerEvents: former,
@@ -107,7 +113,10 @@ low(formerAdapter).then(formerDB => {
   });
   // Index Route
   clientRouter.get("/", (req, res) => {
-    const former = formerDB.get("former").value();
+    const former = formerDB
+      .get("former")
+      .orderBy("date", "desc")
+      .value();
     res.render("pages/index", {
       formerEvents: former,
       swalsucc: false,
@@ -117,7 +126,10 @@ low(formerAdapter).then(formerDB => {
 
   // Former Route
   clientRouter.get("/former", (req, res) => {
-    const former = formerDB.get("former").value();
+    const former = formerDB
+      .get("former")
+      .orderBy("date", "desc")
+      .value();
     res.render("pages/former", {
       formerEvents: former,
       swalsucc: false,
@@ -166,7 +178,10 @@ low(upcomingAdapter).then(upcomingDB => {
 
   // Upcoming Route
   clientRouter.get("/upcoming", (req, res) => {
-    const upcoming = upcomingDB.get("upcoming").value();
+    const upcoming = upcomingDB
+      .get("upcoming")
+      .orderBy("date", "desc")
+      .value();
 
     res.render("pages/upcoming", {
       upcomingEvents: upcoming,
@@ -176,7 +191,7 @@ low(upcomingAdapter).then(upcomingDB => {
   });
 });
 
-// Chemecar Route
+// RSC
 clientRouter.get("/rsc", (req, res) => {
   res.render("pages/rsc", {
     swalsucc: false,
@@ -213,7 +228,10 @@ low(industrialAdapter).then(industrialDB => {
 
   // Industrial Visit Route
   clientRouter.get("/industrial-visits", (req, res) => {
-    const industrial = industrialDB.get("industrial").value();
+    const industrial = industrialDB
+      .get("industrial")
+      .orderBy("date", "desc")
+      .value();
     res.render("pages/industrial-visits", {
       visit: industrial,
       swalsucc: false,
