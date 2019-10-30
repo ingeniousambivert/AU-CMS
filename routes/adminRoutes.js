@@ -3,6 +3,8 @@ const adminRouter = express.Router();
 const multer = require("multer");
 const moment = require("moment");
 const path = require("path");
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('we will win hackathon');
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -87,11 +89,13 @@ low(formerAdapter).then(formerDB => {
               .value();
             const checkPassword = adminDB
               .get("admins")
-              .filter({ password: adminPassword })
+              .filter({ username: adminUsername })
               .map("password")
               .value();
-
-            if (!adminUsername || !adminPassword) {
+             
+              
+             
+              if (!adminUsername || !adminPassword  )  {
               res.render("admin/login", {
                 succ: false,
                 err: true
@@ -99,7 +103,7 @@ low(formerAdapter).then(formerDB => {
             } else {
               checkUsername.forEach(element => {
                 checkPassword.forEach(item => {
-                  if (adminUsername == element && adminPassword == item) {
+                  if (adminUsername == element && adminPassword == cryptr.decrypt(item)) {
                     let adminValues = [
                       {
                         username: adminUsername
@@ -419,6 +423,8 @@ low(formerAdapter).then(formerDB => {
                 } else {
                   
                   let allImages= req.files.map(file=>file.filename);
+                 
+                 
                   upcomingDB
                     .get("upcoming")
                     .push({

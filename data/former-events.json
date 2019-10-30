@@ -5,7 +5,9 @@
       "title": "Inauguration",
       "date": "29th August 2018",
       "details": "It was the first event of AIChE Ahmedabad University student chapter on 29thAugust 2018. We had welcome Dr. Jaimin Vasa who is President of Gujarat Chamber of commerce and industry and Dr. Unnat Pandit who is head of operation Atal Innovation Mission. Both of our chief guest’s gave an insight about the future of chemical engineers and the developing field. It was followed by our Dean Dr Sunil Kale who was so glad to have these two legends in our campus.",
-      "images": ["1_2.jpg"],
+      "images": [
+        "1_2.jpg"
+      ],
       "active": "1_1.jpg",
       "key": "FORMER1"
     },
@@ -32,7 +34,9 @@
       "title": "Inter Batch cricket tournament",
       "date": "4th March 2019",
       "details": "We want our student to do some exercise and play sports so that it can help them to maintain their body and reduce the stress from studies. Sports can teach them teamwork and leadership quality, which enhance them during their academy period. So we started with the most prominent game among the student i.e. Cricket tournament. It was great game among the students. We had also invited alumina students to join with us. At the end of the game, the boys from third year had played well in all the three formats of the i.e. on field, batting and bowling and they were the front-runners in interbatch cricket tournament.",
-      "images": ["4_1.jpg"],
+      "images": [
+        "4_1.jpg"
+      ],
       "active": "4_2.jpg",
       "key": "FORMER4"
     },
@@ -42,8 +46,27 @@
       "date": "7th April 2019",
       "details": "The farewell ceremony was arranged in honour of the outgoing fourth year students of chemical engineering. The students of first and second years had shown enthusiasm in arranging the farewell for their seniors. The thing is that “we have got the best senior who can give best advice to us at every movement of our life”. So it was our responsibility to give our best effort to make the farewell more memorable. We had planned for the dinner and some games for them to make their night more shining. They had shared their best memories, which they have done in their college life.  We had captured some beautiful memories with them, which we would never forget in our life. ",
       "active": "5_1.jpg",
-      "images": ["5_2.jpg", "5_3.jpg"],
+      "images": [
+        "5_2.jpg",
+        "5_3.jpg"
+      ],
       "key": "FORMER5"
+    },
+    {
+      "title": "Diwali",
+      "date": "2019-10-10",
+      "brief": "new cool event",
+      "details": "hjhjhjhjhjhjhjhjhjh",
+      "active": "reg.png-1572164736554.png",
+      "images": [
+        "insta.png-1572164736563.png",
+        "TechTalks (2).png-1572164736566.png",
+        "pp.jpg-1572164736658.jpg",
+        "TechTalks (1).png-1572164736661.png"
+      ],
+      "lastModified": "October 27th 2019, 1:56:54 pm",
+      "key": "UPCOMING1572164736720",
+      "id": "1572164736753"
     }
   ]
 }
