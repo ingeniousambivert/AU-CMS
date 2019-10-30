@@ -3,8 +3,8 @@ const adminRouter = express.Router();
 const multer = require("multer");
 const moment = require("moment");
 const path = require("path");
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('we will win hackathon');
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr("AdminSecret");
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -92,10 +92,8 @@ low(formerAdapter).then(formerDB => {
               .filter({ username: adminUsername })
               .map("password")
               .value();
-             
-              
-             
-              if (!adminUsername || !adminPassword  )  {
+
+            if (!adminUsername || !adminPassword) {
               res.render("admin/login", {
                 succ: false,
                 err: true
@@ -103,7 +101,10 @@ low(formerAdapter).then(formerDB => {
             } else {
               checkUsername.forEach(element => {
                 checkPassword.forEach(item => {
-                  if (adminUsername == element && adminPassword == cryptr.decrypt(item)) {
+                  if (
+                    adminUsername == element &&
+                    adminPassword == cryptr.decrypt(item)
+                  ) {
                     let adminValues = [
                       {
                         username: adminUsername
@@ -385,7 +386,6 @@ low(formerAdapter).then(formerDB => {
               succ: false,
               err: false
             });
-
           });
 
           // Add New Events
@@ -421,10 +421,8 @@ low(formerAdapter).then(formerDB => {
                     err: true
                   });
                 } else {
-                  
-                  let allImages= req.files.map(file=>file.filename);
-                 
-                 
+                  let allImages = req.files.map(file => file.filename);
+
                   upcomingDB
                     .get("upcoming")
                     .push({
@@ -441,8 +439,6 @@ low(formerAdapter).then(formerDB => {
                     .assign({ id: Date.now().toString() })
                     .write();
                   console.log(req.body);
-                 
-                  
 
                   res.render("admin/add", {
                     formerEvents: former,
@@ -478,7 +474,7 @@ low(formerAdapter).then(formerDB => {
                     err: true
                   });
                 } else {
-                  let allImages= req.files.map(file=>file.filename);
+                  let allImages = req.files.map(file => file.filename);
                   industrialDB
                     .get("industrial")
                     .push({
