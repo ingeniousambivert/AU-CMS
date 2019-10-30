@@ -31,6 +31,11 @@
 
     <!-- Grid column -->
     <div class="col-md-12 mb-4">
+        <%  upcomingEvents.sort((element1,element2)=>{
+      
+          return new Date(element1.date) < new Date(element2.date); 
+          
+        })%>
      <% upcomingEvents.forEach(function(item){ %>
      
     <!-- Grid column -->

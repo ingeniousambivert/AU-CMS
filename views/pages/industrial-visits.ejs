@@ -31,6 +31,11 @@
   <div class="row">
 
     <!-- Grid column -->
+    <%  visit.sort((element1,element2)=>{
+      
+      return new Date(element1.date) < new Date(element2.date); 
+      
+    })%>
     <div class="col-md-12 mb-4">
      <% visit.forEach(function(item){ %>
      
@@ -71,7 +76,8 @@
     <script type="text/javascript">
       let date = new Date();
       document.getElementById("copyrightDate").innerHTML = date.getFullYear();
-    </script>
+        
+</script>
     <!-- Gogogle Maps JavaScript -->
     <script type="text/javascript" src="../js/script.js"></script>
     <!-- JQuery -->

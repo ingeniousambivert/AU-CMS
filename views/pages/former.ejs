@@ -29,6 +29,11 @@
         
   <!-- Card -->
 <div class="row">
+    <%  formerEvents.sort((element1,element2)=>{
+      
+      return new Date(element1.date) < new Date(element2.date); 
+      
+    })%>
     <% formerEvents.forEach(function(item){ %>
        
   <div class="col-md-6">
