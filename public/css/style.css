@@ -55,12 +55,12 @@ nav a:hover {
 }
 @media (max-width: 768px) {
   .navbar:not(.top-nav-collapse) {
-    background-color: #4285f4;
+    background-color: #aa381e;
   }
 }
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
-    background-color: #4285f4;
+    background-color: #aa381e;
   }
 }
 .dropdown:hover > .dropdown-menu {
