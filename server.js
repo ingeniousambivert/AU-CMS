@@ -45,9 +45,6 @@ app.use("/", adminRoutes);
 
 // Listen to the port
 app.listen(process.env.PORT || 8000, function() {
-  console.log(
-    "Express Server - http://localhost:%d in %s mode",
-    this.address().port,
-    app.settings.env
-  );
+  console.log("Server : http://localhost:%d", this.address().port);
+  console.log("Stage : %s", app.settings.env);
 });
