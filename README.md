@@ -14,7 +14,6 @@ npm install
 
 ```bash
 npm start
-npm run dev
 Open http://localhost:8000
 ```
 
