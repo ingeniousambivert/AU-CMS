@@ -4,7 +4,7 @@ const multer = require("multer");
 const moment = require("moment");
 const path = require("path");
 const Cryptr = require("cryptr");
-const cryptr = new Cryptr("AdminSecret");
+const cryptr = new Cryptr("AdminSecretKey");
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
