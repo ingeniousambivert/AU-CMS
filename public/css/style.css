@@ -57,10 +57,22 @@ nav a:hover {
   .navbar:not(.top-nav-collapse) {
     background-color: #aa381e;
   }
+  .container {
+    margin-top: 20%;
+  }
+  .up-space {
+    margin-top: 20%;
+  }
 }
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
     background-color: #aa381e;
+  }
+  .container {
+    margin-top: 20%;
+  }
+  .up-space {
+    margin-top: 20%;
   }
 }
 .dropdown:hover > .dropdown-menu {
