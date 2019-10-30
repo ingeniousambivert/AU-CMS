@@ -11,29 +11,47 @@ html {
   scroll-behavior: smooth;
 }
 nav {
-  background-color: #09606a;
+  background-color: #aa381e;
   color: #fff;
   font-size: 0.85rem;
 }
 
 nav a {
-  color: #fff;
+  color: rgb(214, 182, 182);
   transition: ease all 500ms;
 }
 .dropdown-item {
   font-size: 0.85rem !important;
 }
 nav a:hover {
-  color: #18343b;
+  color: #fff;
+}
+.center-element {
+  margin: 0 auto;
+  text-align: center;
+}
+.dropdown {
+  color: rgb(214, 182, 182);
+}
+.dropdown:hover {
+  color: #fff;
 }
 .dropdown-item a {
   color: #1b2230;
 }
 .top-nav-collapse {
-  background-color: #09606a;
+  background-color: #aa381e;
+}
+
+.unique-color-dark {
+  background: #aa381e !important;
+}
+
+.footer-text {
+  color: #fff;
 }
 .footer-color {
-  background-color: #09606a;
+  background-color: #aa381e;
 }
 @media (max-width: 768px) {
   .navbar:not(.top-nav-collapse) {

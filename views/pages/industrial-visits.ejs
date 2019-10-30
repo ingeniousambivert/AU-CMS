@@ -34,17 +34,15 @@
      <% visit.forEach(function(item){ %>
      
     <!-- Grid column -->
-    <div class="col-md-12 mb-5">
-      <div class="card card-image" style="background-image: url(img/events/<%= item.active %>);">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+    <div class="col-md-12 mb-5 center-element">
+      <div class="card card-image center-element" style="background-image: url(img/events/<%= item.active %>);">
+        <div class="text-white text-center align-items-center rgba-black-strong py-5 px-4 rounded">
           <div class=" text-center">
             <h3 class="font-weight-bold text-center mb-5">
               <strong><%= item.title %></strong>
             </h3>
             <p ><%= item.date %>
-            </p>
-            <p style="visibility:hidden;"><%= item.details %>
-            </p>
+            </p>           
             <a class="btn btn-secondary btn-rounded btn-md" href="visit/<%= item.id %>"><i class="fas fa-clone left"></i>Learn More</a>
           </div>
         </div>
