@@ -45,6 +45,6 @@ app.use("/", adminRoutes);
 
 // Listen to the port
 app.listen(process.env.PORT || 8000, function() {
-  console.log("Server : http://localhost:%d", this.address().port);
-  console.log("Stage : %s", app.settings.env);
+  console.log("server : http://localhost:%d", this.address().port);
+  console.log("stage : %s", app.settings.env);
 });
