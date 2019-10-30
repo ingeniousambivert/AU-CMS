@@ -4,6 +4,7 @@
       "id": "1",
       "title": "Random Event one",
       "date": "2019-09-11",
+      "displayDate": "September 11th 2019",
       "brief": "Okay it works ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae odio in risus rutrum sodales. Praesent facilisis ac lectus sed hendrerit.",
       "details": "It was the first event of AIChE Ahmedabad University student chapter on 29thAugust 2018. We had welcome Dr. Jaimin Vasa who is President of Gujarat Chamber of commerce and industry and Dr. Unnat Pandit who is head of operation Atal Innovation Mission. Both of our chief guest’s gave an insight about the future of chemical engineers and the developing field. It was followed by our Dean Dr Sunil Kale who was so glad to have these two legends in our campus.",
       "images": [
@@ -16,6 +17,7 @@
       "id": "2",
       "title": "Random Event two",
       "date": "2019-10-29",
+      "displayDate": "October 29th 2019",
       "brief": "Test Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae odio in risus rutrum sodales. Praesent facilisis ac lectus sed hendrerit.",
       "details": "After Inauguration we had organized an event which was based on the most additive game of all time i.e. PUBG. In this event it was a mixture of treasure hunt with PUBG elements and chemistry. This was planning to be a great event and a huge event where exact 100 students participated. All the 4 years were invited and the whole campus was the playfield. We had a total of 20~30 Volunteers and only because of them It was possible.Students were overwhelmed with the management and they were glad they could participate in an event like this.",
       "images": [],
@@ -24,14 +26,15 @@
     },
     {
       "title": "Random Event three",
-      "date": "2019-11-02",
+      "date": "2019-10-31",
+      "displayDate": "October 31st 2019",
       "brief": "Moment was designed to work both in the browser and in Node.js.",
-      "details": "Moment was designed to work both in the browser and in Node.js",
-      "active": "4.png-1572457377319.png",
+      "details": "Moment was designed to work both in the browser and in Node.js. It worked",
+      "active": "12.jpg-1572461767415.jpg",
       "images": [],
-      "lastModified": "October 30th 2019, 11:31:02 pm",
-      "key": "UPCOMING1572457377355",
-      "id": "1572457377357"
+      "lastModified": "October 31st 2019, 12:44:09 am",
+      "key": "UPCOMING1572461767426",
+      "id": "1572461767431"
     }
   ]
 }

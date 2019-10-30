@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
   }
 });
 const fileFilter = function(req, file, callback) {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif|JPG|PNG|JPEG|GIF)$/)) {
     return callback(
       new Error("Only jpg|jpeg|png|gif files are allowed."),
       false
@@ -269,109 +269,127 @@ low(formerAdapter).then(formerDB => {
           });
 
           // Modify Route
-          adminRouter.post("/modify/:event", checkSignIn, (req, res) => {
-            let checkEvent = req.params.event;
-            const getUpcoming = upcomingDB
-              .get("upcoming")
-              .filter({ key: checkEvent })
-              .map("key")
-              .value();
-
-            const getFormer = formerDB
-              .get("former")
-              .filter({ key: checkEvent })
-              .map("key")
-              .value();
-
-            const getIndustrial = industrialDB
-              .get("industrial")
-              .filter({ key: checkEvent })
-              .map("key")
-              .value();
-
-            const upcomingKey = getUpcoming.toString();
-            const formerKey = getFormer.toString();
-            const industrialKey = getIndustrial.toString();
-
-            let {
-              titleForEvent,
-              briefForEvent,
-              dateForEvent,
-              detailsForEvent,
-              stagesForEvent
-            } = req.body;
-
-            if (checkEvent == upcomingKey) {
-              upcomingDB
+          adminRouter.post(
+            "/modify/:event",
+            checkSignIn,
+            upload.array("fileForUpload", 20),
+            (req, res) => {
+              let checkEvent = req.params.event;
+              const getUpcoming = upcomingDB
                 .get("upcoming")
-                .find({ key: upcomingKey })
-                .assign({
-                  title: titleForEvent,
-                  date: dateForEvent,
-                  brief: briefForEvent,
-                  details: detailsForEvent,
-                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
-                })
-                .write();
-              res.render("admin/modify", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                industrialVisits: industrial,
-                event: req.params.event,
-                succ: true,
-                err: false
-              });
-            } else if (checkEvent == formerKey) {
-              formerDB
+                .filter({ key: checkEvent })
+                .map("key")
+                .value();
+
+              const getFormer = formerDB
                 .get("former")
-                .find({ key: formerKey })
-                .assign({
-                  title: titleForEvent,
-                  date: dateForEvent,
-                  brief: briefForEvent,
-                  details: detailsForEvent,
-                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
-                })
-                .write();
-              res.render("admin/modify", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                industrialVisits: industrial,
-                event: req.params.event,
-                succ: true,
-                err: false
-              });
-            } else if (checkEvent == industrialKey) {
-              industrialDB
+                .filter({ key: checkEvent })
+                .map("key")
+                .value();
+
+              const getIndustrial = industrialDB
                 .get("industrial")
-                .find({ key: industrialKey })
-                .assign({
-                  title: titleForEvent,
-                  date: dateForEvent,
-                  stages: [stagesForEvent],
-                  details: detailsForEvent,
-                  lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
-                })
-                .write();
-              res.render("admin/modify", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                industrialVisits: industrial,
-                event: req.params.event,
-                succ: true,
-                err: false
-              });
-            } else {
-              res.render("admin/modify", {
-                formerEvents: former,
-                upcomingEvents: upcoming,
-                industrialVisits: industrial,
-                event: req.params.event,
-                succ: false,
-                err: true
-              });
+                .filter({ key: checkEvent })
+                .map("key")
+                .value();
+
+              const upcomingKey = getUpcoming.toString();
+              const formerKey = getFormer.toString();
+              const industrialKey = getIndustrial.toString();
+
+              let {
+                titleForEvent,
+                briefForEvent,
+                dateForEvent,
+                detailsForEvent,
+                stagesForEvent
+              } = req.body;
+              let updatedDate = moment(dateForEvent, "YYYY-MM-DD").format(
+                "MMMM Do YYYY"
+              );
+              let allImages = req.files.map(file => file.filename);
+              console.log(allImages);
+              if (checkEvent == upcomingKey) {
+                upcomingDB
+                  .get("upcoming")
+                  .find({ key: upcomingKey })
+                  .assign({
+                    title: titleForEvent,
+                    date: dateForEvent,
+                    displayDate: updatedDate,
+                    brief: briefForEvent,
+                    active: allImages[0],
+                    images: allImages.slice(1),
+                    details: detailsForEvent,
+                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
+                  })
+                  .write();
+                res.render("admin/modify", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  industrialVisits: industrial,
+                  event: req.params.event,
+                  succ: true,
+                  err: false
+                });
+              } else if (checkEvent == formerKey) {
+                formerDB
+                  .get("former")
+                  .find({ key: formerKey })
+                  .assign({
+                    title: titleForEvent,
+                    date: dateForEvent,
+                    displayDate: updatedDate,
+                    brief: briefForEvent,
+                    active: allImages[0],
+                    images: allImages.slice(1),
+                    details: detailsForEvent,
+                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
+                  })
+                  .write();
+                res.render("admin/modify", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  industrialVisits: industrial,
+                  event: req.params.event,
+                  succ: true,
+                  err: false
+                });
+              } else if (checkEvent == industrialKey) {
+                industrialDB
+                  .get("industrial")
+                  .find({ key: industrialKey })
+                  .assign({
+                    title: titleForEvent,
+                    date: dateForEvent,
+                    displayDate: updatedDate,
+                    stages: [stagesForEvent],
+                    active: allImages[0],
+                    images: allImages.slice(1),
+                    details: detailsForEvent,
+                    lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
+                  })
+                  .write();
+                res.render("admin/modify", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  industrialVisits: industrial,
+                  event: req.params.event,
+                  succ: true,
+                  err: false
+                });
+              } else {
+                res.render("admin/modify", {
+                  formerEvents: former,
+                  upcomingEvents: upcoming,
+                  industrialVisits: industrial,
+                  event: req.params.event,
+                  succ: false,
+                  err: true
+                });
+              }
             }
-          });
+          );
 
           //  Add Route
           adminRouter.get("/add/:event", checkSignIn, (req, res) => {
@@ -419,12 +437,16 @@ low(formerAdapter).then(formerDB => {
                   });
                 } else {
                   let allImages = req.files.map(file => file.filename);
-
+                  let updatedDate = moment(
+                    dateForUpcoming,
+                    "YYYY-MM-DD"
+                  ).format("MMMM Do YYYY");
                   upcomingDB
                     .get("upcoming")
                     .push({
                       title: titleForUpcoming,
                       date: dateForUpcoming,
+                      displayDate: updatedDate,
                       brief: briefForUpcoming,
                       details: detailsForUpcoming,
                       active: allImages[0],
@@ -435,7 +457,6 @@ low(formerAdapter).then(formerDB => {
                     .last()
                     .assign({ id: Date.now().toString() })
                     .write();
-                  console.log(req.body);
 
                   res.render("admin/add", {
                     formerEvents: former,
@@ -455,7 +476,9 @@ low(formerAdapter).then(formerDB => {
                   detailsForVisit,
                   dateForVisit
                 } = req.body;
-
+                let updatedDate = moment(dateForUpcoming, "YYYY-MM-DD").format(
+                  "MMMM Do YYYY"
+                );
                 if (
                   !titleForVisit ||
                   !stagesForVisit ||
@@ -477,6 +500,7 @@ low(formerAdapter).then(formerDB => {
                     .push({
                       title: titleForVisit,
                       date: dateForVisit,
+                      displayDate: updatedDate,
                       stages: [stagesForVisit],
                       details: detailsForVisit,
                       active: allImages[0],

@@ -127,7 +127,7 @@
             <p class="font-weight-bold black-text"><%= item.title %><br>
             <small><a class="dark-grey-text font-weight-bold" href="/former#<%=item.id%>">Read More</a>
             </small><br>
-            <small class="font-weight-bold dark-grey-text"><%= item.date %></small>
+            <small class="font-weight-bold dark-grey-text"><%= item.displayDate %></small>
             </p>
           </div>
           <!-- Grid column -->
@@ -159,7 +159,8 @@
   <!-- End your project here-->
 
   <!-- SCRIPTS -->
-  <!-- Gogogle Maps JavaScript -->
+  <script src="../../js/script.js"></script>
+
   <script type="text/javascript">
     let date = new Date();
     document.getElementById("copyrightDate").innerHTML = date.getFullYear();

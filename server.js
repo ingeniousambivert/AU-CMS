@@ -1,6 +1,7 @@
 // Express App Starts Here
 const express = require("express");
 const app = express();
+const moment = require("moment");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use("/", adminRoutes);
 
 // Listen to the port
 app.listen(process.env.PORT || 8000, function() {
+  // console.log(moment("2019-08-29", "YYYY-MM-DD").format("MMMM Do YYYY"));
   console.log("server : http://localhost:%d", this.address().port);
   console.log("stage : %s", app.settings.env);
 });
