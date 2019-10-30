@@ -3,7 +3,7 @@ module.exports = checkSignIn = (req, res, next) => {
     next();
   } else {
     res.render("admin/login", {
-      succ: false,
+      warn: false,
       err: true
     });
   }

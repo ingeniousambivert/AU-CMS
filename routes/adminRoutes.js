@@ -76,7 +76,7 @@ low(formerAdapter).then(formerDB => {
 
           // Login Route
           adminRouter.get("/login", (req, res) => {
-            res.render("admin/login", { succ: false, err: false });
+            res.render("admin/login", { warn: false, err: false });
           });
 
           // Login Route
@@ -95,7 +95,7 @@ low(formerAdapter).then(formerDB => {
 
             if (!adminUsername || !adminPassword) {
               res.render("admin/login", {
-                succ: false,
+                warn: false,
                 err: true
               });
             } else {
@@ -105,17 +105,14 @@ low(formerAdapter).then(formerDB => {
                     adminUsername == element &&
                     adminPassword == cryptr.decrypt(item)
                   ) {
-                    let adminValues = [
-                      {
-                        username: adminUsername
-                      }
-                    ];
+                    loginFlag = true;
+                    let adminValues = [{ username: adminUsername }];
                     req.session.admin = adminValues;
                     res.redirect("/dashboard");
                   } else {
                     res.render("admin/login", {
-                      succ: false,
-                      err: true
+                      warn: true,
+                      err: false
                     });
                   }
                 });

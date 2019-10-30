@@ -20,12 +20,12 @@
         >
           <h6>An error has occurred.<br />Please login again</h6>
         </div>
-        <% } %> <% if (succ) { %>
+        <% } %> <% if (warn) { %>
         <div
-          class="alert text-center center-element w-75 alert-success"
+          class="alert alert-warning center-element w-75 text-center"
           role="alert"
         >
-          <h6>Logged In successfully</h6>
+          <h6>Username/Password is wrong.<br />Please try again</h6>
         </div>
         <% } %>
         <form class="p-5" method="POST" action="/login">
