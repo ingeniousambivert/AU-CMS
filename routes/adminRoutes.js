@@ -1,8 +1,10 @@
 const express = require("express");
 const adminRouter = express.Router();
+
 const multer = require("multer");
 const moment = require("moment");
 const path = require("path");
+
 const Cryptr = require("cryptr");
 const cryptr = new Cryptr("AdminSecretKey");
 
@@ -14,10 +16,17 @@ const storage = multer.diskStorage({
       path.resolve(__dirname.replace("routes", "") + "public/img/events/")
     );
   },
+
   filename: function(req, file, callback) {
+    let dateObject = new Date();
+    let date = dateObject.getDate();
+    let month = dateObject.getMonth() + 1;
+    let hour = dateObject.getHours();
+    let hourDateMonth = hour + "h" + date + "d" + month + "m";
+
     callback(
       null,
-      file.originalname + "-" + Date.now() + path.extname(file.originalname)
+      file.originalname + "_" + hourDateMonth + path.extname(file.originalname)
     );
   }
 });
