@@ -307,8 +307,9 @@ low(formerAdapter).then(formerDB => {
               let updatedDate = moment(dateForEvent, "YYYY-MM-DD").format(
                 "MMMM Do YYYY"
               );
+
               let allImages = req.files.map(file => file.filename);
-              console.log(allImages);
+
               if (checkEvent == upcomingKey) {
                 upcomingDB
                   .get("upcoming")

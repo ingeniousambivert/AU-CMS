@@ -38,7 +38,7 @@
           <% if (item.key == event) { %>
         <h2 class="text-center mb-4">Modify the contents of : <%= item.title %></h2>
         
-         <form method="POST" class="container p-5" action="/modify/<%= event %>">
+         <form method="POST" class="container p-5" action="/modify/<%= event %>" enctype="multipart/form-data">
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
        <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
        <label for="briefForEvent"><h6 class="font-weight-bold">Brief:</h6></label>
@@ -80,7 +80,7 @@
 
     <h2 class="text-center mb-4">Modify the contents of : <%= item.title %></h2>
 
-       <form method="POST" class="container p-5" action="/modify/<%= event %>">
+       <form method="POST" class="container p-5" enctype="multipart/form-data" action="/modify/<%= event %>">
     
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
        <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= item.title %>">
@@ -117,7 +117,7 @@
         <% if (element.key == event) { %>
 
         <h2 class="text-center mb-4">Modify the contents of : <%= element.title %></h2>
-          <form method="POST" class="container p-5" action="/modify/<%= event %>">
+          <form method="POST" class="container p-5" enctype="multipart/form-data" action="/modify/<%= event %>">
       <label for="titleForEvent"><h6 class="font-weight-bold">Title:</h6></label>
        <input type="text" id="titleForEvent" name="titleForEvent" class="form-control mb-4 col-md-5" value="<%= element.title %>">
        <label for="detailForEvent"><h6 class="font-weight-bold">Details:</h6></label>
