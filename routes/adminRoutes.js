@@ -311,6 +311,21 @@ low(formerAdapter).then(formerDB => {
               let allImages = req.files.map(file => file.filename);
 
               if (checkEvent == upcomingKey) {
+                let allmedia = [];
+                let media;
+                const img = upcomingDB
+                  .get("upcoming")
+                  .filter({ key: upcomingKey })
+                  .map("images")
+                  .value();
+
+                if (img) {
+                  allMedia = allImages + "," + img;
+                  media = allMedia.split(",");
+                } else {
+                  allMedia = allImages;
+                }
+
                 upcomingDB
                   .get("upcoming")
                   .find({ key: upcomingKey })
@@ -319,7 +334,7 @@ low(formerAdapter).then(formerDB => {
                     date: dateForEvent,
                     displayDate: updatedDate,
                     brief: briefForEvent,
-                   images:[allImages],
+                    images: media,
                     details: detailsForEvent,
                     lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
                   })
@@ -333,6 +348,21 @@ low(formerAdapter).then(formerDB => {
                   err: false
                 });
               } else if (checkEvent == formerKey) {
+                let allmedia = [];
+                let media;
+                const img = formerDB
+                  .get("former")
+                  .filter({ key: formerKey })
+                  .map("images")
+                  .value();
+
+                if (img) {
+                  allMedia = allImages + "," + img;
+                  media = allMedia.split(",");
+                } else {
+                  allMedia = allImages;
+                }
+
                 formerDB
                   .get("former")
                   .find({ key: formerKey })
@@ -341,7 +371,7 @@ low(formerAdapter).then(formerDB => {
                     date: dateForEvent,
                     displayDate: updatedDate,
                     brief: briefForEvent,
-                    images:[allImages],
+                    images: media,
                     details: detailsForEvent,
                     lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
                   })
@@ -355,6 +385,20 @@ low(formerAdapter).then(formerDB => {
                   err: false
                 });
               } else if (checkEvent == industrialKey) {
+                let allmedia = [];
+                let media;
+                const img = upcomingDB
+                  .get("upcoming")
+                  .filter({ key: upcomingKey })
+                  .map("images")
+                  .value();
+
+                if (img) {
+                  allMedia = allImages + "," + img;
+                  media = allMedia.split(",");
+                } else {
+                  allMedia = allImages;
+                }
                 industrialDB
                   .get("industrial")
                   .find({ key: industrialKey })
@@ -362,8 +406,8 @@ low(formerAdapter).then(formerDB => {
                     title: titleForEvent,
                     date: dateForEvent,
                     displayDate: updatedDate,
-                    stages: [stagesForEvent],
-                    images:[allImages],
+                    stages: stagesForEvent,
+                    images: media,
                     details: detailsForEvent,
                     lastModified: moment().format("MMMM Do YYYY, h:mm:ss a")
                   })
