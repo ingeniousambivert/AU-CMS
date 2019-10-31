@@ -47,8 +47,8 @@
        <textarea type="text" class="form-control mb-4"  id="detailsForEvent" name="detailsForEvent" rows="3" ><%= item.details%></textarea>
       <label for="dateForEvent"><h6 class="font-weight-bold">Current Date:</h6></label>
        <div class="row">
-       <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= item.date%>">
-       <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
+       <input type="date" disabled class="form-control datepicker col-md-2 ml-3" value="<%= item.date%>">
+       <input type="date" id="dateForEvent" name="dateForEvent" value="<%= item.date%>" class="form-control datepicker col-md-2 ml-2" >
        </div>
       <label for="fileForEvent"><h6 class="font-weight-bold mt-4">Upload Images:</h6></label>
       <div class="input-group col-md-5 ">
@@ -90,7 +90,7 @@
       <label for="dateForEvent"><h6 class="font-weight-bold">Current Date:</h6></label>
        <div class="row">
        <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= item.date%>">
-       <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
+       <input type="date" id="dateForEvent" name="dateForEvent"  class="form-control datepicker col-md-2 ml-2" value="<%= item.date%>" >
        </div>
       <label for="fileForEvent"><h6 class="font-weight-bold mt-4">Upload Images:</h6></label>
       <div class="input-group col-md-5 ">
@@ -129,7 +129,7 @@
       <label for="dateForEvent"><h6 class="font-weight-bold">Current Date:</h6></label>
        <div class="row">
        <input type="text" disabled class="form-control datepicker col-md-2 ml-3" value="<%= element.date%>">
-       <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" >
+       <input type="date" id="dateForEvent" name="dateForEvent" class="form-control datepicker col-md-2 ml-2" value="<%= element.date%>" >
        </div>
       <label for="fileForEvent"><h6 class="font-weight-bold mt-4">Upload Images:</h6></label>
       <div class="input-group col-md-5 ">
