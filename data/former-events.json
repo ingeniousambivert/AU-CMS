@@ -55,11 +55,19 @@
       "title": "Chem-e-Jeopardy",
       "date": "2019-11-02",
       "displayDate": "November 2nd 2019",
-      "brief": "Chem e Jeopardy is a game inspired by an American television game show JEOPARDY!",
       "details": "Chem e Jeopardy is a game inspired by an American television game show JEOPARDY!. The show features a quiz competition in which contestants are presented with general knowledge clues in the form of answers and must phrase their responses in the form of questions. Similarly, Chem e Jeopardy is a competition in which clues related to chemical engineering subjects are given to the contestants and they have to phrase their responses in the form of questions. The competition comprises of different subjects related to chemical engineering subjects as categories and each category comprises of 5-6 questions carrying different points. On answering correctly, the team gets the assigned points and if their response is incorrect, same number of points are deducted from their score. So, we planned Chem E Jeopardy as our chapter’s first event for this year. Everyone had to register in a team of 4 comprising of juniors and seniors. The competition was played in 2 rounds and the team with the highest points at the end, won. ",
       "active": "20.jpeg_17h2d11m.jpeg",
+<<<<<<< HEAD
       "images": ["21.JPG_17h2d11m.JPG", "22.jpeg_17h2d11m.jpeg"],
       "lastModified": "November 2nd 2019, 5:18:01 pm",
+=======
+      "images": [
+        "",
+        "21.JPG_17h2d11m.JPG",
+        "22.jpeg_17h2d11m.jpeg"
+      ],
+      "lastModified": "November 2nd 2019, 7:41:15 pm",
+>>>>>>> dfbf99ee82923c462e486451ba872b4212addb6d
       "key": "UPCOMING1572695230136",
       "id": "1572695230146"
     }

@@ -245,7 +245,7 @@ low(participantAdapter).then(participantDB => {
   low(upcomingAdapter).then(upcomingDB => {
     // Event Route
     clientRouter.post("/event/:id", (req, res) => {
-      let { user_name, user_email, user_phone } = req.body;
+      let { user_fname, user_lname, user_email, user_phone } = req.body;
       const upcomingEvents = upcomingDB.get("upcoming").value();
       let eID = req.params.id;
       let time = Date.now().toString();
@@ -254,7 +254,7 @@ low(participantAdapter).then(participantDB => {
         participantDB
           .get("participants")
           .push({
-            name: user_name,
+            name: user_fname + " " + user_lname,
             email: user_email,
             phone: user_phone,
             date: moment().format("MMMM Do YYYY, h:mm:ss a"),
@@ -264,7 +264,7 @@ low(participantAdapter).then(participantDB => {
           })
           .write();
       };
-      if (!user_name || !user_email || !user_phone) {
+      if (!user_fname || !user_lname || !user_email || !user_phone) {
         res.render("pages/event", {
           succ: false,
           err: "Please enter all the fields",
