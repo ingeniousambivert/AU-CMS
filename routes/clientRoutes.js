@@ -274,7 +274,7 @@ low(participantAdapter).then(participantDB => {
             name: user_fname + " " + user_lname,
             email: user_email,
             phone: user_phone,
-            registeredOn: moment().format("MMMM Do YYYY, h:mm:ss a"),
+            date: moment().format("MMMM Do YYYY, h:mm:ss a"),
             eventID: eID,
             eventName: eventName,
             id: time,
