@@ -5,6 +5,9 @@ const multer = require("multer");
 const moment = require("moment");
 const path = require("path");
 
+const json2xls = require("json2xls");
+adminRouter.use(json2xls.middleware);
+
 const Cryptr = require("cryptr");
 const cryptr = new Cryptr("AdminSecretKey");
 
@@ -188,6 +191,18 @@ low(formerAdapter).then(formerDB => {
               });
             }
           });
+
+          //  Export Participants List
+          adminRouter.get(
+            "/participants-list-download",
+            checkSignIn,
+            (req, res) => {
+              const participantsList = participantDB
+                .get("participants")
+                .value();
+              res.xls("participantsList.xlsx", participantsList);
+            }
+          );
 
           //  Delete Route
           adminRouter.post("/delete/:event", checkSignIn, (req, res) => {
