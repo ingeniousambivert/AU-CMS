@@ -1,7 +1,7 @@
 const express = require("express");
 const request = require("request");
 const clientRouter = express.Router();
-const fs = require("fs");
+
 const moment = require("moment");
 
 // LowDB Instances
@@ -81,13 +81,10 @@ low(formerAdapter).then(formerDB => {
       }
     }
   });
-  // Index Route
 
+  // PDF Download Route
   clientRouter.get("/newletter/:id", (req, res) => {
-    //res.sendFile(__dirname + "/../public/newsletter/" + req.params.id);
-    var data = fs.readFileSync("./public/newsletter/" + req.params.id);
-    res.contentType("application/pdf");
-    res.send(data);
+    res.download("./public/newsletter/" + req.params.id);
   });
 
   clientRouter.get("/subscribed", (req, res) => {
@@ -256,6 +253,16 @@ low(participantAdapter).then(participantDB => {
       let { user_fname, user_lname, user_email, user_phone } = req.body;
       const upcomingEvents = upcomingDB.get("upcoming").value();
       let eID = req.params.id;
+      const event = upcomingDB
+        .get("upcoming")
+        .filter({
+          id: eID
+        })
+        .map("title")
+        .value();
+      const eventName = event.toString();
+      let successFlag = false;
+      let errorFlag = false;
       let time = Date.now().toString();
 
       addParticipant = () => {
@@ -265,8 +272,9 @@ low(participantAdapter).then(participantDB => {
             name: user_fname + " " + user_lname,
             email: user_email,
             phone: user_phone,
-            date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+            registeredOn: moment().format("MMMM Do YYYY, h:mm:ss a"),
             eventID: eID,
+            eventName: eventName,
             id: time,
             key: "PARTICIPANT" + time
           })
@@ -281,6 +289,9 @@ low(participantAdapter).then(participantDB => {
           swalsucc: false,
           swalerr: false
         });
+
+        successFlag = false;
+        errorFlag = true;
       } else if (user_phone.length < 10) {
         return res.render("pages/event", {
           succ: false,
@@ -290,6 +301,9 @@ low(participantAdapter).then(participantDB => {
           swalsucc: false,
           swalerr: false
         });
+
+        successFlag = false;
+        errorFlag = true;
       } else {
         let flag = new Boolean(true);
         const isFull = participantDB.has("participants").value();
@@ -322,20 +336,9 @@ low(participantAdapter).then(participantDB => {
           }
         });
 
-        if (flag) {
-          addParticipant();
-          return res.render("pages/event", {
-            succ: true,
-            err: false,
-            eventID: eID,
-            upcomingEvents: upcomingEvents,
-            swalsucc: false,
-            swalerr: false
-          });
-        } else if (isFull == false) {
-          addParticipant();
-          return res.render("pages/event", {
-            succ: true,
+        if (!errorFlag && successFlag) {
+          res.render("pages/event", {
+            succ: false,
             err: false,
             eventID: eID,
             upcomingEvents: upcomingEvents,
@@ -343,14 +346,63 @@ low(participantAdapter).then(participantDB => {
             swalerr: false
           });
         } else {
-          return res.render("pages/event", {
-            succ: false,
-            err: "An error has occurred",
-            eventID: eID,
-            upcomingEvents: upcomingEvents,
-            swalsucc: false,
-            swalerr: false
-          });
+          if (flag) {
+            addParticipant();
+            successFlag = true;
+            if (successFlag) {
+              return res.render("pages/event", {
+                succ: true,
+                err: false,
+                eventID: eID,
+                upcomingEvents: upcomingEvents,
+                swalsucc: false,
+                swalerr: false
+              });
+            } else {
+              return res.render("pages/event", {
+                succ: false,
+                err: false,
+                eventID: eID,
+                upcomingEvents: upcomingEvents,
+                swalsucc: false,
+                swalerr: false
+              });
+            }
+          } else if (isFull == false) {
+            addParticipant();
+            errorFlag = false;
+            successFlag = true;
+            if (successFlag) {
+              return res.render("pages/event", {
+                succ: true,
+                err: false,
+                eventID: eID,
+                upcomingEvents: upcomingEvents,
+                swalsucc: false,
+                swalerr: false
+              });
+            } else {
+              return res.render("pages/event", {
+                succ: false,
+                err: false,
+                eventID: eID,
+                upcomingEvents: upcomingEvents,
+                swalsucc: false,
+                swalerr: false
+              });
+            }
+          } else {
+            errorFlag = false;
+            successFlag = false;
+            return res.render("pages/event", {
+              succ: false,
+              err: "An error has occurred",
+              eventID: eID,
+              upcomingEvents: upcomingEvents,
+              swalsucc: false,
+              swalerr: false
+            });
+          }
         }
       }
     });
