@@ -32,10 +32,7 @@
       "details": "Moment was designed to work both in the browser and in Node.js.\r\n\r\nAll code should work in both of these environments, and all unit tests are run in both of these environments.\r\n",
       "key": "VISIT1566406302582",
       "id": "1566406302582",
-      "images": [
-        "",
-        ""
-      ],
+      "images": [],
       "active": "slide-1.jpg",
       "lastModified": "November 2nd 2019, 5:40:21 pm"
     }
