@@ -53,28 +53,7 @@ nav a:hover {
 .footer-color {
   background-color: #aa381e;
 }
-@media (max-width: 768px) {
-  .navbar:not(.top-nav-collapse) {
-    background-color: #aa381e;
-  }
-  .container {
-    margin-top: 20%;
-  }
-  .up-space {
-    margin-top: 20%;
-  }
-}
-@media (min-width: 800px) and (max-width: 850px) {
-  .navbar:not(.top-nav-collapse) {
-    background-color: #aa381e;
-  }
-  .container {
-    margin-top: 20%;
-  }
-  .up-space {
-    margin-top: 20%;
-  }
-}
+
 .dropdown:hover > .dropdown-menu {
   display: block;
 }
@@ -171,4 +150,35 @@ video {
   box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.75);
   border: rgba(0, 0, 0, 0.884) solid 1px;
   border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #aa381e;
+  }
+  .container {
+    margin-top: 20%;
+  }
+  .up-space {
+    margin-top: 20%;
+  }
+  #carousel-example-2 {
+    margin-top: 50px;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #aa381e;
+  }
+  .container {
+    margin-top: 20%;
+  }
+  .up-space {
+    margin-top: 20%;
+  }
+}
+@media (max-width: 337px) {
+  #carousel-example-2 {
+    margin-top: 70px;
+  }
 }
