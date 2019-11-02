@@ -1,7 +1,7 @@
 const express = require("express");
 const request = require("request");
 const clientRouter = express.Router();
-
+const fs = require("fs");
 const moment = require("moment");
 
 // LowDB Instances
@@ -84,7 +84,10 @@ low(formerAdapter).then(formerDB => {
   // Index Route
 
   clientRouter.get("/newletter/:id", (req, res) => {
-    res.download("./public/newsletter/" + req.params.id);
+    //res.sendFile(__dirname + "/../public/newsletter/" + req.params.id);
+    var data = fs.readFileSync("./public/newsletter/" + req.params.id);
+    res.contentType("application/pdf");
+    res.send(data);
   });
 
   clientRouter.get("/subscribed", (req, res) => {
@@ -253,15 +256,6 @@ low(participantAdapter).then(participantDB => {
       let { user_fname, user_lname, user_email, user_phone } = req.body;
       const upcomingEvents = upcomingDB.get("upcoming").value();
       let eID = req.params.id;
-      const event = upcomingDB
-        .get("upcoming")
-        .filter({
-          id: eID
-        })
-        .map("title")
-        .value();
-      const eventName = event.toString();
-
       let time = Date.now().toString();
 
       addParticipant = () => {
@@ -271,9 +265,8 @@ low(participantAdapter).then(participantDB => {
             name: user_fname + " " + user_lname,
             email: user_email,
             phone: user_phone,
-            registeredOn: moment().format("MMMM Do YYYY, h:mm:ss a"),
+            date: moment().format("MMMM Do YYYY, h:mm:ss a"),
             eventID: eID,
-            eventName: eventName,
             id: time,
             key: "PARTICIPANT" + time
           })
