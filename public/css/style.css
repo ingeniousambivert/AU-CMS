@@ -11,7 +11,7 @@ html {
   scroll-behavior: smooth;
 }
 nav {
-  background-color: #aa381e;
+  background-color: #09606a;
   color: #fff;
   font-size: 0.85rem;
 }
@@ -40,22 +40,22 @@ nav a:hover {
   color: #1b2230;
 }
 .top-nav-collapse {
-  background-color: #aa381e;
+  background-color: #09606a;
 }
 
 .unique-color-dark {
-  background: #aa381e !important;
+  background: #09606a !important;
 }
 
 .footer-text {
   color: #fff;
 }
 .footer-color {
-  background-color: #aa381e;
+  background-color: #09606a;
 }
 @media (max-width: 768px) {
   .navbar:not(.top-nav-collapse) {
-    background-color: #aa381e;
+    background-color: #09606a;
   }
   .container {
     margin-top: 20%;
@@ -66,7 +66,7 @@ nav a:hover {
 }
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
-    background-color: #aa381e;
+    background-color: #09606a;
   }
   .container {
     margin-top: 20%;

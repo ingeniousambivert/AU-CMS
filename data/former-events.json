@@ -6,7 +6,9 @@
       "date": "2018-08-29",
       "displayDate": "August 29th 2018",
       "details": "It was the first event of AIChE Ahmedabad University student chapter on 29thAugust 2018. We had welcome Dr. Jaimin Vasa who is President of Gujarat Chamber of commerce and industry and Dr. Unnat Pandit who is head of operation Atal Innovation Mission. Both of our chief guest’s gave an insight about the future of chemical engineers and the developing field. It was followed by our Dean Dr Sunil Kale who was so glad to have these two legends in our campus.",
-      "images": ["1_2.jpg"],
+      "images": [
+        "1_2.jpg"
+      ],
       "active": "1_1.jpg",
       "key": "FORMER1"
     },
@@ -16,8 +18,11 @@
       "date": "2018-09-01",
       "displayDate": "September 1st 2018",
       "details": "After Inauguration we had organized an event which was based on the most additive game of all time i.e. PUBG. In this event it was a mixture of treasure hunt with PUBG elements and chemistry. This was planning to be a great event and a huge event where exact 100 students participated. All the 4 years were invited and the whole campus was the playfield. We had a total of 20~30 Volunteers and only because of them It was possible. Students were overwhelmed with the management and they were glad they could participate in an event like this.",
-      "images": ["14.jpeg_23h31d10m.jpeg"],
-      "active": "2_1.jpg",
+      "images": [
+        "15.jpeg",
+        "16.jpeg"
+      ],
+      "active": "14.jpeg",
       "key": "FORMER2",
       "lastModified": "October 31st 2019, 11:09:28 pm"
     },
@@ -27,8 +32,11 @@
       "date": "2018-10-10",
       "displayDate": "October 10th 2018",
       "details": "The main goal towards this event was to spread awareness against all the AIChE awards, special events, SAChE Certificates and etc.This meeting was an eye opener for many members as they had no clue on what all AIChE has to offer and what all they can do improve their CV and resume.  But our main topics for the discussion in this were ChemECar competition and RSC, there were 5-6 people who went to RSC held in VIT Pune the following year and they all were sharing their feelings.",
-      "images": [],
-      "active": "3_1.jpg",
+      "images": [
+        "18.jpg",
+        "19.jpg"
+      ],
+      "active": "17.jpg",
       "key": "FORMER3"
     },
     {
@@ -37,7 +45,9 @@
       "date": "2019-03-04",
       "displayDate": "March 4th 2019",
       "details": "We want our student to do some exercise and play sports so that it can help them to maintain their body and reduce the stress from studies. Sports can teach them teamwork and leadership quality, which enhance them during their academy period. So we started with the most prominent game among the student i.e. Cricket tournament. It was great game among the students. We had also invited alumina students to join with us. At the end of the game, the boys from third year had played well in all the three formats of the i.e. on field, batting and bowling and they were the front-runners in interbatch cricket tournament.",
-      "images": ["4_1.jpg"],
+      "images": [
+        "4_1.jpg"
+      ],
       "active": "4_2.jpg",
       "key": "FORMER4"
     },
@@ -48,8 +58,26 @@
       "displayDate": "April 7th 2019",
       "details": "The farewell ceremony was arranged in honour of the outgoing fourth year students of chemical engineering. The students of first and second years had shown enthusiasm in arranging the farewell for their seniors. The thing is that “we have got the best senior who can give best advice to us at every movement of our life”. So it was our responsibility to give our best effort to make the farewell more memorable. We had planned for the dinner and some games for them to make their night more shining. They had shared their best memories, which they have done in their college life.  We had captured some beautiful memories with them, which we would never forget in our life. ",
       "active": "5_1.jpg",
-      "images": ["5_2.jpg", "5_3.jpg"],
+      "images": [
+        "5_2.jpg",
+        "5_3.jpg"
+      ],
       "key": "FORMER5"
+    },
+    {
+      "title": "Add Chem-e-Jeopardy",
+      "date": "2019-11-02",
+      "displayDate": "November 2nd 2019",
+      "brief": "Chem e Jeopardy is a game inspired by an American television game show JEOPARDY!",
+      "details": "Chem e Jeopardy is a game inspired by an American television game show JEOPARDY!. The show features a quiz competition in which contestants are presented with general knowledge clues in the form of answers and must phrase their responses in the form of questions. Similarly, Chem e Jeopardy is a competition in which clues related to chemical engineering subjects are given to the contestants and they have to phrase their responses in the form of questions. The competition comprises of different subjects related to chemical engineering subjects as categories and each category comprises of 5-6 questions carrying different points. On answering correctly, the team gets the assigned points and if their response is incorrect, same number of points are deducted from their score. So, we planned Chem E Jeopardy as our chapter’s first event for this year. Everyone had to register in a team of 4 comprising of juniors and seniors. The competition was played in 2 rounds and the team with the highest points at the end, won. ",
+      "active": "20.jpeg_17h2d11m.jpeg",
+      "images": [
+        "21.JPG_17h2d11m.JPG",
+        "22.jpeg_17h2d11m.jpeg"
+      ],
+      "lastModified": "November 2nd 2019, 5:18:01 pm",
+      "key": "UPCOMING1572695230136",
+      "id": "1572695230146"
     }
   ]
 }
