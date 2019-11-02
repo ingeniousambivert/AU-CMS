@@ -9,6 +9,43 @@
 -->
   <head>
     <% include ../partials/head %>
+    <link href="../../css/swipe.css" rel="stylesheet" />
+    <style>
+      html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    </style>
     <!-- MAIN CAROUSEL-->
     <!--Carousel Wrapper-->
     <div
@@ -170,6 +207,138 @@
             <!--Grid column-->
           </div>
           <!-- Grid row -->
+          <div class="row mt-5" style="text-align: center;">
+            <h4 style="margin:auto;" class="mb-3">Newletter</h4>
+            
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  
+                  <div class="swiper-slide">
+                    
+                      <a href="newletter/June_2018.pdf" target="_blank">  
+                      <div class="row">
+                            <div class="col">
+                                June 2018
+                            </div>  
+                            </div>
+                       
+         
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                    
+                        <a href="newletter/July_2018.pdf" target="_blank">  
+                        <div class="row">
+                              <div class="col">
+                                  July 2018
+                              </div>  
+                              </div>
+                         
+           
+                        </a>
+                      </div>
+
+                      <div class="swiper-slide">
+                    
+                          <a href="newletter/August_2018.pdf" target="_blank">  
+                          <div class="row">
+                                <div class="col">
+                                    August 2018
+                                </div>  
+                                </div>
+                           
+             
+                          </a>
+                        </div>
+
+                        <div class="swiper-slide">
+                    
+                            <a href="newletter/January_2019.pdf" target="_blank">  
+                            <div class="row">
+                                  <div class="col">
+                                      January 2019
+                                  </div>  
+                                  </div>
+                             
+               
+                            </a>
+                          </div>
+
+                          <div class="swiper-slide">
+                    
+                              <a href="newletter/February_2019.pdf" target="_blank">  
+                              <div class="row">
+                                    <div class="col">
+                                        February 2019
+                                    </div>  
+                                    </div>
+                               
+                 
+                              </a>
+                            </div>
+
+                            <div class="swiper-slide">
+                    
+                                <a href="newletter/July_2019.pdf" target="_blank">  
+                                <div class="row">
+                                      <div class="col">
+                                          July 2019
+                                      </div>  
+                                      </div>
+                                 
+                   
+                                </a>
+                              </div>
+
+                              <div class="swiper-slide">
+                    
+                                  <a href="newletter/August_2019.pdf" target="_blank">  
+                                  <div class="row">
+                                        <div class="col">
+                                            August 2019
+                                        </div>  
+                                        </div>
+                                   
+                     
+                                  </a>
+                                </div>
+
+                                <div class="swiper-slide">
+                    
+                                    <a href="newletter/October_2019.pdf" target="_blank">  
+                                    <div class="row">
+                                          <div class="col">
+                                              October 2019
+                                          </div>  
+                                          </div>
+                                     
+                       
+                                    </a>
+                                  </div>
+
+                                  <div class="swiper-slide">
+                    
+                                      <a href="newletter/Dcember_2019.pdf"   target="_blank">  
+                                      <div class="row">
+                                            <div class="col">
+                                                Dcember 2019
+                                            </div>  
+                                            </div>
+                                       
+                         
+                                      </a>
+                                    </div>
+  
+
+                </div>
+                <!-- Add Pagination -->
+                 <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+
+          </div>
         </section>
         <!-- Section: Magazine v.2 -->
       </div>
@@ -200,5 +369,23 @@
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../js/mdb.min.js"></script>
+    <script type="text/javascript" src="../js/swipe.js"></script>
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    </script>
   </body>
 </html>

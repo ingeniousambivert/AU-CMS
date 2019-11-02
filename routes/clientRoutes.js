@@ -82,6 +82,11 @@ low(formerAdapter).then(formerDB => {
     }
   });
   // Index Route
+
+  clientRouter.get("/newletter/:id", (req, res) => {
+    res.download("./public/newsletter/" + req.params.id);
+  });
+
   clientRouter.get("/subscribed", (req, res) => {
     const former = formerDB
       .get("former")
