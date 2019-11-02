@@ -81,8 +81,8 @@ low(formerAdapter).then(formerDB => {
       }
     }
   });
-  // Index Route
 
+  // PDF Download Route
   clientRouter.get("/newletter/:id", (req, res) => {
     res.download("./public/newsletter/" + req.params.id);
   });
