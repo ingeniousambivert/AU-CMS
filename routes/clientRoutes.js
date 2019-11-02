@@ -253,6 +253,15 @@ low(participantAdapter).then(participantDB => {
       let { user_fname, user_lname, user_email, user_phone } = req.body;
       const upcomingEvents = upcomingDB.get("upcoming").value();
       let eID = req.params.id;
+      const event = upcomingDB
+        .get("upcoming")
+        .filter({
+          id: eID
+        })
+        .map("title")
+        .value();
+      const eventName = event.toString();
+
       let time = Date.now().toString();
 
       addParticipant = () => {
@@ -262,8 +271,9 @@ low(participantAdapter).then(participantDB => {
             name: user_fname + " " + user_lname,
             email: user_email,
             phone: user_phone,
-            date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+            registeredOn: moment().format("MMMM Do YYYY, h:mm:ss a"),
             eventID: eID,
+            eventName: eventName,
             id: time,
             key: "PARTICIPANT" + time
           })
