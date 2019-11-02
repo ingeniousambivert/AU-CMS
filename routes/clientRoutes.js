@@ -1,7 +1,7 @@
 const express = require("express");
 const request = require("request");
 const clientRouter = express.Router();
-
+const fs = require("fs");
 const moment = require("moment");
 
 // LowDB Instances
@@ -84,7 +84,9 @@ low(formerAdapter).then(formerDB => {
 
   // PDF Download Route
   clientRouter.get("/newletter/:id", (req, res) => {
-    res.download("./public/newsletter/" + req.params.id);
+    var data = fs.readFileSync("./public/newsletter/" + req.params.id);
+    res.contentType("application/pdf");
+    res.send(data);
   });
 
   clientRouter.get("/subscribed", (req, res) => {
