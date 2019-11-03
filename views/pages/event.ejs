@@ -55,7 +55,8 @@
           </div>
         </div>
         <!-- Jumbotron -->
-
+      <% if (item.registeration == "true") { %>
+       
         <!--Registration Form-->
         <!--Section: Contact v.2-->
         <section class="mb-4">
@@ -136,7 +137,19 @@
           <!--Grid column-->
         </section>
         <!--Section: Contact v.2-->
-      <% } %>
+         <% } %>
+         <% if (item.registeration == "false") { %>
+
+          <div class="container mt-5">
+          <h3 class="h3-responsive text-danger text-center">Registerations Closed</h3>
+          <p class="lead text-center">The participant registeration for this event is closed. If there is any problem please contact the administrator.</p>
+          <hr class="my-4">
+        
+        </div>
+
+         <% } %>
+
+       <% } %>
  <% }) %>
       </div>
     </main>
