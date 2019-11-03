@@ -1,8 +1,15 @@
 const express = require("express");
 const request = require("request");
 const clientRouter = express.Router();
+
 const fs = require("fs");
 const moment = require("moment");
+const schedule = require("node-schedule");
+
+//Cron Format : https://www.npmjs.com/package/node-schedule
+const showForm = schedule.scheduleJob("57 8 3 11 7", () => {
+  console.log("The answer to life, the universe, and everything!");
+});
 
 // LowDB Instances
 //See https://github.com/typicode/lowdb for docs

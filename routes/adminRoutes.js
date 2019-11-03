@@ -515,6 +515,7 @@ low(formerAdapter).then(formerDB => {
                       displayDate: updatedDate,
                       brief: briefForUpcoming,
                       details: detailsForUpcoming,
+                      registeration: true,
                       active: allImages[0],
                       images: allImages.slice(1),
                       lastModified: moment().format("MMMM Do YYYY, h:mm:ss a"),

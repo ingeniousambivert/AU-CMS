@@ -6,6 +6,7 @@
       "date": "2019-09-11",
       "displayDate": "September 11th 2019",
       "brief": "Okay it works ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae odio in risus rutrum sodales. Praesent facilisis ac lectus sed hendrerit.",
+      "registeration": "true",
       "details": "It was the first event of AIChE Ahmedabad University student chapter on 29thAugust 2018. We had welcome Dr. Jaimin Vasa who is President of Gujarat Chamber of commerce and industry and Dr. Unnat Pandit who is head of operation Atal Innovation Mission. Both of our chief guest’s gave an insight about the future of chemical engineers and the developing field. It was followed by our Dean Dr Sunil Kale who was so glad to have these two legends in our campus.",
       "images": ["1_2.jpg"],
       "active": "upcoming.jpg",
@@ -18,6 +19,7 @@
       "displayDate": "October 29th 2019",
       "brief": "Test Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae odio in risus rutrum sodales. Praesent facilisis ac lectus sed hendrerit.",
       "details": "After Inauguration we had organized an event which was based on the most additive game of all time i.e. PUBG. In this event it was a mixture of treasure hunt with PUBG elements and chemistry. This was planning to be a great event and a huge event where exact 100 students participated. All the 4 years were invited and the whole campus was the playfield. We had a total of 20~30 Volunteers and only because of them It was possible.Students were overwhelmed with the management and they were glad they could participate in an event like this.",
+      "registeration": "true",
       "images": [],
       "active": "upcoming.jpg",
       "key": "UPCOMING2"
@@ -28,6 +30,7 @@
       "displayDate": "October 31st 2019",
       "brief": "Moment was designed to work both in the browser and in Node.js.",
       "details": "Moment was designed to work both in the browser and in Node.js. It worked",
+      "registeration": "true",
       "active": "upcoming.jpg",
       "images": [],
       "lastModified": "October 31st 2019, 10:10:59 am",
