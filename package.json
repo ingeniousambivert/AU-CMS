@@ -15,7 +15,7 @@
   "authors": "Monarch Maisuriya,Himanshu Joshi",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.6.4",
+    "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.6.3",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.1.2",
