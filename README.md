@@ -1,6 +1,6 @@
 # AU-CMS
 
-AU-CMS as the name suggests is a content management system for Ahmedabad University , to manage all its events in one place.
+AU-CMS is an event management system for Ahmedabad University.
 
 ## Installation
 
